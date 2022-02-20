@@ -10,6 +10,10 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        $this->call([EventSeeder::class, EventCategorySeeder::class, SpeakerSeeder::class]);
+        $this->call([
+            EventCategorySeeder::class,
+            SpeakerSeeder::class,
+            EventSeeder::class,
+        ]);
     }
 }
