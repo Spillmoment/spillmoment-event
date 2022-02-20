@@ -5,43 +5,47 @@
     <div class="box-v1">
         <div class="container">
             <div class="title-box">
-                <h2>Event</h2>
+                <h2>Daftar Event</h2>
             </div><br>
             <div class="wrapper-combo-box">
                 <div class="combo-box">
-                    <p>Kategory Event</p><br>
+                    <p>Kategori Event</p><br>
                     <select name="" id="" class="select-combox">
-                        <option>- Cari kategory event -</option>
+                        <option>- Pilih Kategori Event -</option>
+                        @foreach ($category as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="combo-box">
                     <p>Status Event</p><br>
                     <select name="" id="" class="select-combox">
-                        <option>- Pilih Status event -</option>
+                        <option>- Pilih Status Event -</option>
+                        @foreach ($status as $item)
+                        <option value="{{ $item->id }}">{{ $item->status }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="combo-box">
                     <p>Tipe Event</p><br>
                     <select name="" id="" class="select-combox">
-                        <option>- Pilih tipe event -</option>
+                        <option>- Pilih Tipe Event -</option>
+                        @foreach ($type as $item)
+                        <option value="{{ $item->id }}">{{ $item->type }}</option>
+                        @endforeach
                     </select>
                 </div>
-                <!-- <div class="combo-box">
-                <p>Vendor Event</p><br>
-                <select name="" id="" class="select-combox">
-                    <option>- Cari nama vendor -</option>
-                </select>
-            </div> -->
-                <!-- <br><br> -->
+
             </div>
             <div class="wrapper-card">
                 <!-- tambahkan data v-for disini -->
-                <div class="card" v-for="events in event" v-bind:key="events.id">
+                @forelse ($events as $item)
+                <div class="card">
                     <!-- note gambar akan terpotong apabila foto yang digunakan berukuran potrait -->
-                    <img src="" alt="">
+                    <img src="{{ asset('uploads/events/sharing.jpg') }}" alt="">
                     <!-- content card -->
                     <div class="content-card">
-                        <h2>Event Title</h2>
+                        <h2>{{ $item->title }}</h2>
                         <!-- status event -->
                         <div class="badge-wrap">
                             <!-- Note kasik condition if apabila event nya masih belum dimulai -->
@@ -75,11 +79,16 @@
                         <br>
                         <!-- tombol gabung -->
                         <a href="">
-                            <button type="button" class="btn-event">Gabung Event</button>
+                            <button type="button" class="btn-event">Detail Event</button>
                         </a>
                     </div>
 
                 </div>
+                @empty
+                <center>
+                    <h3>Events Kosong</h3>
+                </center>
+                @endforelse
             </div>
         </div>
     </div>
