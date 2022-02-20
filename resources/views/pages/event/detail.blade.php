@@ -7,7 +7,7 @@
             <div class="flex-w-1">
                 <div class="col-flex">
                     <div class="image-wrapper">
-                        <img src="" alt="">
+                        <img src="{{ asset('uploads/events/image_2022-01-16_23-43-41.png') }}" alt="">
                     </div>
                     <section class="body-box">
                         <div class="title-event">
