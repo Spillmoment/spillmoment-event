@@ -6,7 +6,6 @@
         <div class="container">
             <div class="title-box">
                 <h2>Event</h2>
-                <p>Event diadakan setiap setahun sekali</p>
             </div><br>
             <div class="wrapper-combo-box">
                 <div class="combo-box">
