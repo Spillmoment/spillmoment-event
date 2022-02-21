@@ -1,5 +1,6 @@
 @extends('layouts.auth')
 
+@section('title','Spillmoment | Login User')
 @section('content')
 <div id="auth-login">
     <div class="box-v1">

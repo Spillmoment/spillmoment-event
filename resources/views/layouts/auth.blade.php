@@ -8,7 +8,8 @@
     <title>@yield('title')</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
+    <link rel="shortcut icon" href="https://cdn.spillmoment.id/img/logo.png" type="image/x-icon">
 </head>
 
 <body>
