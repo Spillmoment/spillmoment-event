@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','Spillmoment | Daftar Events')
 @section('content')
 <div id="event">
     <div class="box-v1">
@@ -37,48 +38,63 @@
                 </div>
 
             </div>
-            <div class="wrapper-card">
+            <div class="wrapper-card" a>
                 <!-- tambahkan data v-for disini -->
                 @forelse ($events as $item)
-                <div class="card">
+                <div class="card" style="margin-bottom: 20px">
                     <!-- note gambar akan terpotong apabila foto yang digunakan berukuran potrait -->
-                    <img src="{{ asset('uploads/events/sharing.jpg') }}" alt="">
+                    <img src="{{ asset('uploads/events/' . $item->photo) }}" alt="">
                     <!-- content card -->
                     <div class="content-card">
                         <h2>{{ $item->title }}</h2>
                         <!-- status event -->
                         <div class="badge-wrap">
+
                             <!-- Note kasik condition if apabila event nya masih belum dimulai -->
-                            <button class="badge" v-if="event.status == 'a'">
-                                <fa :icon="['fas', 'stopwatch']" /> <label>Belum dimulai</label>
+                            @if ($item->started == '0')
+                            <button class="badge">
+                                <i class="fas fa-stopwatch"></i> <label> Belum dimulai</label>
                             </button>
-                            <!-- Note kasik condition if apabila eventnya dimulai -->
-                            <button class="badge started" v-else-if="event.status == 'b'">
-                                <p>Telah dimulai</p>
+                            @else
+                            <button class="badge">
+                                <i class="fas fa-stopwatch"></i> <label> Telah dimulai</label>
                             </button>
+                            @endif
                             <!-- Note kasik condition if apabila event nya berbayar -->
-                            <button class="badge paid" v-else-if="event.status == 'c'">
-                                <fa :icon="['fas', 'wallet']" /> <label>Berbayar</label>
+                            @if ($item->type == 'paid')
+                            <button class="badge paid">
+                                <i class="fas fa-wallet"></i> <label>Berbayar</label>
                             </button>
-                            <!-- Note kasik condition if apabila event nya berbayar -->
-                            <button class="badge ended" v-else>
-                                <fa :icon="['fas', 'calendar-check']" /> <label>Sudah berakhir</label>
+                            @else
+                            <button class="badge paid">
+                                <i class="fas fa-wallet"></i> <label>Gratis</label>
                             </button>
+                            @endif
                         </div>
+
                         <br>
+
                         <!-- info waktu dan anggota -->
                         <div class="info-tanggal">
-                            <fa :icon="['fas', 'calendar-alt']" /> <label for="">Jumat, 21 januari 2020 </label>
+                            <i class="fas fa-calendar-alt"></i> <label for="">{{ $item->event_date->format('d F Y') }}
+                            </label>
                         </div><br>
                         <div class="info-jam">
-                            <fa :icon="['fas', 'clock']" /> <label for="">20.30</label>
+                            <i class="fas fa-clock"></i>
+                            <label for="">{{ $item->start_time->format('h:i') }}</label> WIB
                         </div><br>
                         <div class="info-anggota">
-                            <fa :icon="['fas', 'users']" /> <label for="">800 orang</label>
+                            <i class="fas fa-laptop"></i>
+                            @if ($item->status == 'offline')
+                            <label for="">Offline</label>
+                            @else
+                            <label for="">Online</label>
+                            @endif
                         </div>
                         <br>
+
                         <!-- tombol gabung -->
-                        <a href="">
+                        <a href="{{ route('event.detail', $item->slug) }}">
                             <button type="button" class="btn-event">Detail Event</button>
                         </a>
                     </div>

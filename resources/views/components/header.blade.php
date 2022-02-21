@@ -19,7 +19,7 @@
                         <div class="input-search">
                             <input type="text" placeholder="Temukan vendor pernikahan mu...." aria-autocomplete="off"
                                 autocomplete="off" name="search" />
-                            <button><i class="far fa-search"></i></button>
+                            <button><i class="fas fa-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-head">
                     <div class="bar">
-                        <a href="#" onclick="searchVisible()" style="margin: 0 2rem"><i class="far fa-search"></i></a>
+                        <a href="#" onclick="searchVisible()" style="margin: 0 2rem"><i class="fas fa-search"></i></a>
                         <a href="#" onclick="barVisible()"><i class="fas fa-bars"></i></a>
                     </div>
                 </div>

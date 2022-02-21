@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title',$events->title)
 @section('content')
 <div id="event-detail">
     <div class="box-v1">
@@ -7,36 +8,37 @@
             <div class="flex-w-1">
                 <div class="col-flex">
                     <div class="image-wrapper">
-                        <img src="{{ asset('uploads/events/image_2022-01-16_23-43-41.png') }}" alt="">
+                        <img src="{{ asset('uploads/events/' . $events->photo) }}" alt="">
                     </div>
                     <section class="body-box">
                         <div class="title-event">
-                            <h2>Membahas Spill Pernikahan</h2>
+                            <h2>{{ $events->title }}</h2>
                         </div>
                         <div class="badge-wrap">
-                            <!-- Note kasik condition if apabila event nya masih belum dimulai -->
+                            @if ($events->started == '0')
                             <button class="badge">
-                                <fa :icon="['fas', 'stopwatch']" /> <label>Belum dimulai</label>
+                                <i class="fas fa-stopwatch"></i> <label> Belum dimulai</label>
                             </button>
-                            <!-- Note kasik condition if apabila eventnya dimulai -->
-                            <!-- <button class="badge started">
-                        <p>Telah dimulai</p>
-                      </button> -->
+                            @else
+                            <button class="badge">
+                                <i class="fas fa-stopwatch"></i> <label> Telah dimulai</label>
+                            </button>
+                            @endif
                             <!-- Note kasik condition if apabila event nya berbayar -->
+                            @if ($events->type == 'paid')
                             <button class="badge paid">
-                                <fa :icon="['fas', 'wallet']" /> <label>Berbayar</label>
+                                <i class="fas fa-wallet"></i> <label>Berbayar</label>
                             </button>
-                            <!-- Note kasik condition if apabila event nya berbayar -->
-                            <!-- <button class="badge ended">
-                          <fa :icon="['fas', 'calendar-check']" /> <label>Sudah berakhir</label>
-                      </button> -->
+                            @else
+                            <button class="badge paid">
+                                <i class="fas fa-wallet"></i> <label>Gratis</label>
+                            </button>
+                            @endif
                         </div>
                         <br><br>
                         <div class="event-description">
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quos ea natus
-                                maxime reiciendis consequuntur quasi porro exercitationem assumenda, quidem debitis
-                                rerum odit sed nemo eveniet blanditiis harum esse odio.
+                                {{ $events->body }}
                             </p>
                         </div>
                     </section>
@@ -44,9 +46,9 @@
                 <div class="col-flex">
                     <div class="body-box">
                         <div class="auth-info">
-                            <h2>Pendaftaran</h2>
+                            <h2>Pendaftaran Event</h2>
                             <br>
-                            <button class="btn-required">Anda Belum login</button>
+                            <button class="btn-required">Login untuk mendaftar</button>
                         </div>
                         <br><br>
                         <div class="detail-event">
@@ -54,37 +56,50 @@
                             <br><br>
                             <!-- tipe event -->
                             <label for=""><span>
-                                    <fa :icon="['fas', 'hashtag']" /></span> Tipe Event</label>
-                            <p>Event berbayar & E-Sertifikat</p>
+                                    <i class="fas fa-hashtag"></i> </span> Tipe Event</label>
+                            @if ($events->type == 'paid')
+                            <p>Berbayar</p>
+                            @else
+                            <p>Gratis</p>
+                            @endif
                             <br>
                             <!-- partner -->
                             <label for=""><span>
-                                    <fa :icon="['fas', 'handshake']" /></span> Partner</label>
-                            <p>Spillmoment & Degovan</p>
+                                    <i class="fas fa-handshake"></i> </span> Partner</label>
+                            <p>{{ $events->partner }}</p>
                             <br>
                             <!-- mulai event -->
                             <label for=""><span>
-                                    <fa :icon="['fas', 'calendar-alt']" /></span> Mulai</label>
-                            <p>Rabu, 26 januari 2022 : 20.00</p>
+                                    <i class="fas fa-calendar-alt"></i> </span> Mulai</label>
+                            <p>{{ $events->event_date->format('d F Y') }}</p>
                             <br>
                             <!-- harga dan certificate -->
                             <label for=""><span>
-                                    <fa :icon="['fas', 'certificate']" /></span> Harga Event + Sertifikat</label>
-                            <p>Rp. 50.000</p>
+                                    <i class="fas fa-certificate"></i> </span> Harga Event + Sertifikat</label>
+                            @if ($events->price != 0)
+                            <p>Rp. {{ $events->price }}.00</p>
+                            @else
+                            <p>Gratis</p>
+                            @endif
                             <br>
                             <!-- kuota -->
                             <label for=""><span>
-                                    <fa :icon="['fas', 'users']" /></span> Kuota tersisa</label>
-                            <p>3000 orang</p>
+                                    <i class="fas fa-users"></i></span> Kuota tersisa</label>
+                            <p>{{ $events->quota }}</p>
                             <br>
                             <!--  -->
                             <label for=""><span>
-                                    <fa :icon="['fas', 'user']" /></span> Mengikuti</label>
-                            <p>789 orang</p>
+                                    <i class="fas fa-user"></i> </span> Mengikuti</label>
+                            <p>{{ $registers }} orang</p>
                             <br>
                             <label for=""><span>
-                                    <fa :icon="['fas', 'info-circle']" /></span> Status</label>
-                            <p>Belum mulai</p>
+                                    <i class="fas fa-info-circle"></i> </span> Status</label>
+
+                            @if ($events->started == '0')
+                            <p>Belum Dimulai</p>
+                            @else
+                            <p>Sudah Dimulai</p>
+                            @endif
                             <br>
                         </div>
                     </div>
