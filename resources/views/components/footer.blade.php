@@ -4,7 +4,7 @@
             <div class="footer-body">
                 <div class="flex-footer ">
                     <div class="col-footer">
-                        <img src="/img/logo.png" alt="logo Spillmoment" />
+                        <img src="{{ asset('assets/frontend/img/logo.png') }}" alt="logo Spillmoment" />
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto
                             sint quibusdam officia ut necessitatibus aperiam eveniet, quasi

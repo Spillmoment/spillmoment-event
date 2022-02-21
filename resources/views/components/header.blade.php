@@ -6,7 +6,7 @@
                     <div class="title-brand-icons">
                         <a href="/">
                             <span>
-                                <img src="/img/logo.png" alt="logo spillmoment" />
+                                <img src="{{ asset('assets/frontend/img/logo.png') }}" alt="logo spillmoment" />
                             </span>
                         </a>
                     </div>
