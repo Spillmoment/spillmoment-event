@@ -10,4 +10,9 @@ class Event extends Model
     use HasFactory;
 
     protected $dates = ['start_time', 'event_date'];
+
+    public function category()
+    {
+        return $this->belongsTo(EventCategory::class, 'event_category_id');
+    }
 }
