@@ -8,7 +8,7 @@
         <div class="owl-carousel owl-theme" id="carousel-1">
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
+                    <h1>Buat Momen Impianmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
+                    <h1>Buat Momen Impianmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
+                    <h1>Buat Momen Impianmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
+                    <h1>Buat Momen Impianmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
