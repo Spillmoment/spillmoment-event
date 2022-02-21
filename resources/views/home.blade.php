@@ -8,7 +8,7 @@
         <div class="owl-carousel owl-theme" id="carousel-1">
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Pernikahanmu Menjadi Kenyataan</h1>
+                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Pernikahanmu Menjadi Kenyataan</h1>
+                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Pernikahanmu Menjadi Kenyataan</h1>
+                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="item-carousel">
                 <div class="content-item">
-                    <h1>Buat Impian Pernikahanmu Menjadi Kenyataan</h1>
+                    <h1>Buat Impian Momenmu Menjadi Kenyataan</h1>
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="option-menu-box">
                 <h1>Vendor Terbaru</h1>
-                <router-link to="/vendor" class="showall">Lihat Semua</router-link>
+                <a href="/vendor" class="showall">Lihat Semua</a>
             </div>
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-2">
