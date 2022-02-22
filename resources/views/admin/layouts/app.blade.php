@@ -40,12 +40,12 @@
         <div class="row">
             <div class="col-12">
 
-                @include('admin.layouts.sidebar-manager')
+                @include('admin.layouts.sidebar')
 
                 <main class="content">
 
 
-                    @include('admin.layouts.header-manager')
+                    @include('admin.layouts.header')
 
 
                     @yield('content')
