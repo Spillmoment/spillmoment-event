@@ -15,12 +15,12 @@
                             <p>Masuk dengan akun yang sudah terdaftar.</p>
                         </div>
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ url('/login') }}">
                             @csrf
                             <div class="auth-body">
                                 <p>Email atau nomor ponsel</p>
                                 <div class="auth-input-box">
-                                    <input type="text" name="" id="userphonemail" placeholder="" required />
+                                    <input type="text" name="email" id="userphonemail" placeholder="" required />
                                 </div>
                                 <br />
                                 <p>Kata Sandi</p>
@@ -40,16 +40,16 @@
                                     </div>
                                 </div>
                             </div>
+									 <div class="wrap-button">
+										  <br />
+										  {{-- @if (Route::has('password.request')) --}}
+										  <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
+										  {{-- @endif --}}
+										  <button>Masuk</button>
+										  <br /><br />
+									 </div>
                         </form>
 
-                        <div class="wrap-button">
-                            <br />
-                            @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
-                            @endif
-                            <button>Masuk</button>
-                            <br /><br />
-                        </div>
                         <p id="hint">
                             Apakah anda belum mendaftar?<a href="/register">
                                 <span style="margin-rigth: 5px"><b>Daftar Sekarang</b></span>
