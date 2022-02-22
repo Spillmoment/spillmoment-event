@@ -21,44 +21,53 @@
                             <div class="auth-body">
                                 <p>Masukan Nama</p>
                                 <div class="auth-input-box">
-                                    <input type="text" name="" id="nama" placeholder="nama kamu?" required />
-                                </div>
+                                    <input type="text" name="name" id="nama" placeholder="nama kamu?"  value="{{ old('name') }}" />
+											</div>
+											@error('name')
+										  <small style="color: rgb(255, 78, 78); font-weight: bold">{{ $message }}</small>
+                                @enderror
+
                                 <br />
                                 <p>Alamat Email</p>
                                 <div class="auth-input-box">
-                                    <input type="email" name="" id="email" placeholder="Masukan alamat email yang ada"
-                                        required />
+                                    <input type="email" name="email" id="email" placeholder="Masukan alamat email yang ada" value="{{ old('email') }}" />
                                 </div>
+										  @error('email')
+										  <small style="color: rgb(255, 78, 78); font-weight: bold">{{ $message }}</small>
+                                @enderror
+
                                 <br />
                                 <p>Nomor Ponsel (opsional)</p>
                                 <div class="auth-input-box">
-                                    <input type="number" name="" id="phone" placeholder="contoh: +6208974xxxx"
-                                        required />
+                                    <input type="number" name="phone" id="phone" placeholder="contoh: +6208974xxxx" value="{{ old('phone') }}" />
                                 </div>
-                                <br />
+										  @error('phone')
+										  <small style="color: rgb(255, 78, 78); font-weight: bold">{{ $message }}</small>
+                                @enderror
+                                
+										  <br />
                                 <p>Jenis kelamin</p>
                                 <div class="auth-input-box">
                                     <div class="flex-input">
-                                        <select name="" id="select-input gender">
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
+                                        <select name="gender" id="select-input gender">
+                                            <option value="pria" {{old('gender') == 'pria' ? 'selected' : ''}}>Pria</option>
+                                            <option value="wanita" {{old('gender') == 'wanita' ? 'selected' : ''}}>Wanita</option>
                                         </select>
                                         <button>
                                             <fa :icon="['fas', 'caret-down']" />
                                         </button>
                                     </div>
                                 </div>
-                                <br />
-                                <p>Tanggal lahir</p>
-                                <div class="auth-input-box">
-                                    <input type="date" name="" id="born_date" placeholder="" required />
-                                </div>
-                                <br />
-                                <p>Buat Kata sandi</p>
+										  @error('gender')
+										  <small style="color: rgb(255, 78, 78); font-weight: bold">{{ $message }}</small>
+                                @enderror
+                                
+										  <br />
+                                <p>Password</p>
                                 <div class="auth-input-box">
                                     <div class="input-box-password">
-                                        <input type="password" name="katasandi" placeholder=""
-                                            v-on:keyup="isGood(this.value)" id="passwordInput" required />
+                                        <input type="password" name="password" placeholder=""
+                                            v-on:keyup="isGood(this.value)" id="passwordInput" />
                                         <label for="password-function" class="checkbox-pass">
                                             <input type="checkbox" name="" id="password-function" />
                                             <div class="icon-eye1 icon">
@@ -71,19 +80,38 @@
                                     </div>
                                 </div>
                                 <small id="password-text"></small>
-                            </div>
 
-
-                        </form>
+										  <br />
+											<p>Konfirmasi Password</p>
+											<div class="auth-input-box">
+												<div class="input-box-password">
+														<input type="password" name="password_confirmation" placeholder=""
+															v-on:keyup="isGood(this.value)" id="password_confirmation" />
+														<label for="password-function" class="checkbox-pass">
+															<input type="checkbox" name="" id="password-function" />
+															<div class="icon-eye1 icon">
+																<fa :icon="['fas', 'eye-slash']" />
+															</div>
+															<div class="icon-eye2 icon">
+																<fa :icon="['fas', 'eye']" />
+															</div>
+														</label>
+												</div>
+											</div>
+											<small id="password-text"></small>
+											@error('password')
+										  <small style="color: rgb(255, 78, 78); font-weight: bold">{{ $message }}</small>
+                                @enderror
+									</div>
 
                         <div class="wrap-button">
                             <br />
-                            <a href="/forgot-password">Lupa kata sandi?</a>
                             <button @click="reg">Lanjutkan</button>
                             <br /><br />
                         </div>
+								</form>
                         <p id="hint">
-                            Sudah punya akun terdaftar?<router-link to="/login"><b>Masuk!</b></router-link>
+                            Sudah punya akun terdaftar? <a href={{ route('login') }}><b>Masuk!</b></a>
                         </p>
                     </div>
                 </div>
