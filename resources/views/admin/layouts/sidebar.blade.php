@@ -45,9 +45,13 @@
                     </span>
                     <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
                 </span>
-                <div class="multi-level collapse {{ (request()->is('admin/event*')) ? 'show' : '' }}" role="list"
-                    id="submenu-app" aria-expanded="false">
+                <div class="multi-level collapse {{ (request()->is('admin/event*')) || (request()->is('admin/kategori*')) ? 'show' : '' }}"
+                    role="list" id="submenu-app" aria-expanded="false">
                     <ul class="flex-column nav">
+                        <li
+                            class="nav-item {{ (Request::route()->getName() == 'admin.kategori.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.kategori.index') }}"><span>Kategori
+                                    Event</span></a>
                         <li class="nav-item {{ (Request::route()->getName() == 'admin.event.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.event.index') }}"><span>Data Event</span></a>
                         </li>
