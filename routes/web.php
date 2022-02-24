@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\DashboardControlller;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\KategoriEventController;
 
 // User auth
 require __DIR__ . '/auth.php';
@@ -41,5 +42,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 	// Dashboard
 	Route::get('dashboard', [DashboardControlller::class, 'index'])->name('dashboard');
 	// Event
+	Route::resource('kategori', KategoriEventController::class)->except(['show']);
 	Route::resource('event', AdminEventController::class);
 });
