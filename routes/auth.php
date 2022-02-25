@@ -53,4 +53,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+				
+	 Route::prefix('profile')->group(function(){
+		 Route::get('update-profile', 'UpdateProfileController@changeDataIndex')->name('profile.data');
+		 Route::put('update-profile', 'UpdateProfileController@changeDataUpdate')->name('profile.data.store');
+		 
+		 Route::get('change-password', 'UpdateProfileController@changePasswordIndex')->name('profile.password');
+		 Route::put('change-password', 'UpdateProfileController@changePasswordStore')->name('profile.password.store');
+	 });
 });
