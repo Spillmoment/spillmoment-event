@@ -16,6 +16,20 @@
                             <p>Masuk dengan akun yang sudah terdaftar.</p>
                         </div>
 
+								<!-- Session Status -->
+								@if (Session::has('status'))
+									<div class="alert alert-success">
+										<ul>
+												<li>{{ Session::get('status') }}</li>
+										</ul>
+									</div>
+								@endif
+
+								<!-- Validation Errors -->
+								@if($errors->any())
+									<h4>{{$errors->first()}}</h4>
+								@endif
+
                         <form method="POST" action="{{ url('/login') }}">
                             @csrf
                             <div class="auth-body">
