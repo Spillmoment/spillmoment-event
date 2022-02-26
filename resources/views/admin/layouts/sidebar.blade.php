@@ -3,7 +3,6 @@
         <div
             class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
 
-
             <div class="d-flex align-items-center">
                 <div class="user-avatar lg-avatar mr-4">
                     <img src="" class="card-img-top rounded-circle border-white" alt="Bonnie Green">
@@ -36,7 +35,8 @@
             </li>
 
             <!-- Sidebar Event -->
-            <li class="nav-item {{ (request()->is('admin/event*')) ? 'active' : '' }}">
+            <li
+                class="nav-item {{ (request()->is('admin/event*')) || (request()->is('admin/kategori*')) || (request()->is('admin/speaker*')) ? 'active' : '' }}">
                 <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
                     data-toggle="collapse" data-target="#submenu-app">
                     <span>
@@ -45,14 +45,16 @@
                     </span>
                     <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
                 </span>
-                <div class="multi-level collapse {{ (request()->is('admin/event*')) || (request()->is('admin/kategori*')) ? 'show' : '' }}"
+                <div class="multi-level collapse {{ (request()->is('admin/event*')) || (request()->is('admin/kategori*')) || (request()->is('admin/speaker*')) ? 'show' : '' }}"
                     role="list" id="submenu-app" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li
-                            class="nav-item {{ (Request::route()->getName() == 'admin.kategori.index') ? 'active' : '' }}">
+                        <li class="nav-item {{  (request()->is('admin/kategori*')) ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.kategori.index') }}"><span>Kategori
                                     Event</span></a>
-                        <li class="nav-item {{ (Request::route()->getName() == 'admin.event.index') ? 'active' : '' }}">
+                        <li class="nav-item {{ (request()->is('admin/speaker*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.speaker.index') }}"><span>Speaker Event</span></a>
+                        </li>
+                        <li class="nav-item {{ (request()->is('admin/event*')) ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.event.index') }}"><span>Data Event</span></a>
                         </li>
             </li>

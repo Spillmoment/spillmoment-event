@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\DashboardControlller;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\KategoriEventController;
+use App\Http\Controllers\Admin\SpeakerController;
 
 // User auth
 require __DIR__ . '/auth.php';
@@ -43,5 +44,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 	Route::get('dashboard', [DashboardControlller::class, 'index'])->name('dashboard');
 	// Event
 	Route::resource('kategori', KategoriEventController::class)->except(['show']);
+	Route::resource('speaker', SpeakerController::class);
 	Route::resource('event', AdminEventController::class);
 });

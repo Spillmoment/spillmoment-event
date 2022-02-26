@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Halaman Event')
+@section('title', 'Admin - Halaman Speaker')
 
 @section('content')
 
@@ -13,11 +13,11 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                             <li class="breadcrumb-item"><a href="#"><span class="fas fa-home"></span></a></li>
-                            <li class="breadcrumb-item"><a href="#">Event</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Halaman Event</li>
+                            <li class="breadcrumb-item"><a href="#">Speaker</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Halaman Speaker</li>
                         </ol>
                     </nav>
-                    <h2 class="h4 mt-1">Daftar Event</h2>
+                    <h2 class="h4 mt-1">Daftar Speaker</h2>
                 </div>
             </div>
 
@@ -27,8 +27,8 @@
                         <i class="fas fa-file-excel"></i> Export Excel</a>
                     <a href="#" class="btn btn-sm btn-danger mx-1">
                         <i class="fas fa-file-pdf"></i> Export PDF</a>
-                    <a href="{{ route('admin.event.create') }}" class="btn btn-primary btn-sm mx-1">
-                        <i class="fas fa-plus"></i> Tambah Event
+                    <a href="{{ route('admin.speaker.create') }}" class="btn btn-primary btn-sm mx-1">
+                        <i class="fas fa-plus"></i> Tambah Speaker
                     </a>
                 </div>
             </div>
@@ -36,49 +36,41 @@
 
             <div class="card border-light shadow-sm components-section mt-3">
                 <div class="row my-1 mx-1">
-                    {{-- <div class="col-md-3">
-                        <select id="filter-kategori" data-column="0" class="form-select filter">
-                            <option selected>Pilih Kategori</option>
-                            @foreach ($kategori as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                    @endforeach
-                    </select>
-                </div> --}}
-            </div>
-            <div class="row">
+                </div>
+                <div class="row">
 
-                <div class="card-body">
-                    <table class="table table-hover table-striped" id="eventTable">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Event</th>
-                                <th>Kategori</th>
-                                <th>Speaker</th>
-                                <th>Foto</th>
-                                <th width="210">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="card-body">
+                        <table class="table table-hover table-striped" id="speakerTable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>No Telp</th>
+                                    <th>Foto</th>
+                                    <th width="210">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
-                    <footer class="footer section py-2">
+                            </tbody>
+                        </table>
+                        <footer class="footer section py-2">
+
+                    </div>
 
                 </div>
-
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 </div>
 
 @endsection
 @push('scripts')
 <script>
     // AJAX DataTable
-    var datatable = $('#eventTable').DataTable({
+    var datatable = $('#speakerTable').DataTable({
         processing: true,
         serverSide: true,
         ordering: true,
@@ -93,16 +85,16 @@
                 }
             },
             {
-                data: 'title',
-                name: 'title'
+                data: 'name',
+                name: 'name'
             },
             {
-                data: 'category',
-                name: 'category.name'
+                data: 'email',
+                name: 'email'
             },
             {
-                data: 'speaker',
-                name: 'speaker.name'
+                data: 'phone',
+                name: 'phone'
             },
             {
                 data: 'photo',
