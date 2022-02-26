@@ -33,4 +33,17 @@ class SpeakerRequest extends FormRequest
             'position' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Nama lengkap wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'photo.required' => 'Foto wajib diisi',
+            'phone.required' => 'Foto wajib diisi',
+            'address.required' => 'Alamat wajib diisi',
+            'competence.required' => 'Kompetensi wajib diisi',
+            'position.required' => 'Jabatan wajib diisi'
+        ];
+    }
 }
