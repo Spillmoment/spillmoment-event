@@ -97,8 +97,8 @@
 
                             <br>
                             <span class="info-tanggal">
-                                <i class="fas fa-calendar-alt"></i> <label
-                                    for="">{{ $item->event_date->format('d F Y') }}
+                                <i class="fas fa-calendar-alt"></i> <label for="">
+                                    {{ \Carbon\Carbon::parse($item->event_date)->isoFormat('dddd, D MMMM Y') }}
                                 </label>
                             </span><br>
                             <span class="info-jam">
