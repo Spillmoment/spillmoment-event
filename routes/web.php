@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\DashboardControlller;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\EventRegisterControlller;
 use App\Http\Controllers\Admin\KategoriEventController;
 use App\Http\Controllers\Admin\SpeakerController;
 
@@ -46,4 +47,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 	Route::resource('kategori', KategoriEventController::class)->except(['show']);
 	Route::resource('speaker', SpeakerController::class);
 	Route::resource('event', AdminEventController::class);
+	Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
 });
