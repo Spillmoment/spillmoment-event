@@ -62,9 +62,26 @@
                                     <h4>Pendaftaran Event</h4>
                                     <br>
                                     @auth
-                                    <button class="btn-required">Daftar Event</button>
+
+													@if ($cek_state > 0)
+														 <h6 class="text-secondary">Anda sudah bergabung.</h6>
+													@else
+														@if ($events->type == 'paid')
+															<button type="submit" class="btn btn-success btn-sm">
+																<img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
+																<a href="https://api.whatsapp.com/send?phone=085232629479&text=Hallo+Admin%2C+saya+berminat+join+dalam+event+{{ $events->tittle }}" target="_blank" class="text-white text-decoration-none"> Whats App </a>
+															</button>
+														@else
+															<form action="{{ route('event.join', $events->id) }}" method="post">
+																@csrf
+																<button class="btn-required">Daftar Event</button>
+															</form>
+															 
+														@endif
+													@endif
+
                                     @else
-                                    <button class="btn-required">Login untuk mendaftar</button>
+                                    <a href="{{ route('login') }}"><button class="btn-required">Login untuk mengikuti event</button></a>
                                     @endauth
                                 </div>
                                 <br>
