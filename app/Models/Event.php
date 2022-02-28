@@ -10,6 +10,7 @@ class Event extends Model
 {
     use HasFactory;
 
+
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])
