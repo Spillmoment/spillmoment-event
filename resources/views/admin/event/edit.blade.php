@@ -64,11 +64,11 @@
                                     <select name="event_category_id"
                                         class="form-select {{ $errors->first('event_category_id') ? 'is-invalid' : '' }}"
                                         id="kategori" aria-label="Default select example">
-                                        @foreach ($category as $kat)
-                                        <option value="{{ $kat->id }}" @if($event->event_category_id == $kat->id)
-                                            selected
-                                            @endif>
-                                            {{ $kat->name }} </option>
+                                        {{-- Option Selected Dynamic Laravel 9 --}}
+                                        @foreach ($category as $row)
+                                        <option value="{{ $row->id }}" @selected($event->event_category_id == $row->id)>
+                                            {{ $row->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -78,10 +78,10 @@
                                     <select name="speaker_id"
                                         class="form-select {{ $errors->first('speaker_id') ? 'is-invalid' : '' }}"
                                         id="speaker" aria-label="Default select example">
-                                        @foreach ($speaker as $spk)
-                                        <option value="{{ $spk->id }}" @if($event->speaker_id == $spk->id) selected
-                                            @endif>
-                                            {{ $spk->name }} </option>
+                                        @foreach ($speaker as $row)
+                                        <option value="{{ $row->id }}" @selected($event->speaker_id == $row->id)
+                                            >
+                                            {{ $row->name }} </option>
                                         @endforeach
                                     </select>
                                 </div>
