@@ -25,4 +25,9 @@ class Event extends Model
     {
         return $this->belongsTo(Speaker::class);
     }
+
+    public function event_register()
+    {
+        return $this->hasMany(EventRegister::class);
+    }
 }
