@@ -18,7 +18,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                             <li class="breadcrumb-item"><a href="#"><span class="fas fa-home"></span></a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.event.index') }}">Event</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.events.index') }}">Event</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Halaman Event</li>
                         </ol>
                     </nav>
@@ -30,7 +30,7 @@
             <div class="card border-light shadow-sm components-section">
                 <div class="card-body">
 
-                    <form action="{{ route('admin.event.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.events.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-4">
 

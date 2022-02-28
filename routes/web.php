@@ -46,6 +46,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 	// Event
 	Route::resource('kategori', KategoriEventController::class)->except(['show']);
 	Route::resource('speaker', SpeakerController::class);
-	Route::resource('event', AdminEventController::class);
+	Route::resource('events', AdminEventController::class);
 	Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
 });
