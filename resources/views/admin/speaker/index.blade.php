@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Halaman Speaker</li>
                         </ol>
                     </nav>
-                    <h2 class="h4 mt-1">Daftar Speaker</h2>
+                    <h2 class="h4 mt-1">Data Speaker</h2>
                 </div>
             </div>
 

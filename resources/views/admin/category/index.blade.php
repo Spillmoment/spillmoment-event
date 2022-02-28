@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Halaman Kategori Event</li>
                         </ol>
                     </nav>
-                    <h2 class="h4 mt-1">Daftar Kategori Event</h2>
+                    <h2 class="h4 mt-1">Data Kategori Event</h2>
                 </div>
             </div>
 
