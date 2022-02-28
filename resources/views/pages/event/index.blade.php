@@ -23,28 +23,28 @@
                     <div class="wrapper-combo-box">
                         <div class="combo-box">
                             <p>Kategori Event</p><br>
-                            <select name="" id="" class="select-combox">
+                            <select name="kategori-event" id="kategori-event" class="select-combox">
                                 <option>- Pilih Kategori Event -</option>
                                 @foreach ($category as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option value="{{ $item->slug }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="combo-box">
                             <p>Status Event</p><br>
-                            <select name="" id="" class="select-combox">
+                            <select name="status-event" id="status-event" class="select-combox">
                                 <option>- Pilih Status Event -</option>
                                 @foreach ($status as $item)
-                                <option value="{{ $item->id }}">{{ $item->status }}</option>
+                                <option value="{{ $item->status }}">{{ $item->status }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="combo-box">
                             <p>Tipe Event</p><br>
-                            <select name="" id="" class="select-combox">
+                            <select name="type-event" id="type-event" class="select-combox">
                                 <option>- Pilih Tipe Event -</option>
                                 @foreach ($type as $item)
-                                <option value="{{ $item->id }}">{{ $item->type }}</option>
+                                <option value="{{ $item->type }}">{{ $item->type }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -56,7 +56,7 @@
 
     </div>
 
-    <div class="row mt-3 row-cols-1 row-cols-md-3 g-4">
+    <div class="row mt-3 row-cols-1 row-cols-md-3 g-4" id="card-event">
 
         @forelse ($events as $item)
         <div class="col">
@@ -133,3 +133,55 @@
 
 
 @endsection
+
+@push('script')
+	 <script>
+		$(document).ready(function(){
+			$('#kategori-event').val(localStorage.getItem('category'));
+			$('#status-event').val(localStorage.getItem('status'));
+			$('#type-event').val(localStorage.getItem('type'));
+
+			$("#kategori-event").change(function(){
+				let categoryValue = $('#kategori-event').val();
+				localStorage.setItem('category', categoryValue);
+
+				send()
+			});
+			
+			$("#status-event").change(function(){
+				let statusValue = $('#status-event').val();
+				localStorage.setItem('status', statusValue);
+
+				send()
+			});
+
+			$("#type-event").change(function(){
+				let typeValue = $('#type-event').val();
+				localStorage.setItem('type', typeValue);
+
+				send()
+			});
+			
+			function send() {
+				let categoryStorage = localStorage.getItem('category');
+				let statusStorage = localStorage.getItem('status');
+				let typeStorage = localStorage.getItem('type');
+
+				$.ajax({
+					type:'GET',
+					url:"{{ route('event.filter') }}",
+					data:{
+						category: categoryStorage,
+						status: statusStorage,
+						type: typeStorage,
+					},
+					success:function(data)
+					{
+						$('#card-event').html(data);
+						console.log(data);
+					}
+				})
+			}
+		});
+	 </script>
+@endpush
