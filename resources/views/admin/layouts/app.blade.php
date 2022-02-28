@@ -13,7 +13,7 @@
 
     @include('admin.layouts.style')
     @stack('style')
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 
 
     <title> @yield('title') </title>
@@ -23,9 +23,10 @@
 <body>
 
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none">
-        <a class="navbar-brand mr-lg-5" href="../../index.html">
-            <img class="navbar-brand-dark" src="{{ asset('assets/img/brand/light.svg') }}" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="{{ asset('assets/img/brand/dark.svg') }}" alt="Volt logo" />
+        <a class="navbar-brand mr-lg-5" href="{{ route('admin.dashboard') }}">
+            <img class="navbar-brand-dark" src="{{ asset('assets/frontend/img/logo-spillmoment.png') }}"
+                alt="Volt logo" /> <img class="navbar-brand-light"
+                src="{{ asset('assets/frontend/img/logo-spillmoment.png') }}" alt="Volt logo" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse"

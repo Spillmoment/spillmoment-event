@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Halaman Event</li>
                         </ol>
                     </nav>
-                    <h2 class="h4 mt-1">Daftar Event</h2>
+                    <h2 class="h4 mt-1">Data Event</h2>
                 </div>
             </div>
 
@@ -48,13 +48,14 @@
             <div class="row">
 
                 <div class="card-body">
-                    <table class="table table-hover table-striped" id="kursusTable">
+                    <table class="table table-hover table-striped" id="eventTable">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Kursus</th>
+                                <th>Nama Event</th>
                                 <th>Kategori</th>
-                                <th>Gambar Kursus</th>
+                                <th>Speaker</th>
+                                <th>Foto</th>
                                 <th width="210">Action</th>
                             </tr>
                         </thead>
@@ -74,3 +75,49 @@
 </div>
 
 @endsection
+@push('scripts')
+<script>
+    // AJAX DataTable
+    var datatable = $('#eventTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ordering: true,
+        ajax: {
+            url: '{!! url()->current() !!}',
+        },
+        columns: [{
+                "data": 'id',
+                "sortable": false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'title',
+                name: 'title'
+            },
+            {
+                data: 'category',
+                name: 'category.name'
+            },
+            {
+                data: 'speaker',
+                name: 'speaker.name'
+            },
+            {
+                data: 'photo',
+                name: 'photo'
+            },
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false,
+                width: '20%'
+            },
+        ],
+
+    });
+
+</script>
+@endpush

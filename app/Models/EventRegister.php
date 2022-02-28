@@ -11,8 +11,13 @@ class EventRegister extends Model
 
     protected $fillable = ['event_id', 'user_id'];
 
-	 public function user()
+    public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
     }
 }

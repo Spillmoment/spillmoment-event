@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Halaman Kategori Event')
+@section('title', 'Admin - Halaman Registrasi Event')
 
 @section('content')
 
@@ -13,11 +13,11 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                             <li class="breadcrumb-item"><a href="#"><span class="fas fa-home"></span></a></li>
-                            <li class="breadcrumb-item"><a href="#">Kategori Event</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Halaman Kategori Event</li>
+                            <li class="breadcrumb-item"><a href="#">Registrasi Event</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Halaman Registrasi Event</li>
                         </ol>
                     </nav>
-                    <h2 class="h4 mt-1">Data Kategori Event</h2>
+                    <h2 class="h4 mt-1">Data Registrasi Event</h2>
                 </div>
             </div>
 
@@ -27,26 +27,29 @@
                         <i class="fas fa-file-excel"></i> Export Excel</a>
                     <a href="#" class="btn btn-sm btn-danger mx-1">
                         <i class="fas fa-file-pdf"></i> Export PDF</a>
-                    <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary btn-sm mx-1">
-                        <i class="fas fa-plus"></i> Tambah Kategori
-                    </a>
                 </div>
             </div>
 
 
             <div class="card border-light shadow-sm components-section mt-3">
+                <div class="row my-1 mx-1">
+                </div>
                 <div class="row">
 
                     <div class="card-body">
-                        <table class="table table-hover table-striped" id="catageoryTable">
+                        <table class="table table-hover table-striped" id="eventregTable">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kategori</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Event</th>
+                                    <th>Speaker</th>
                                     <th width="210">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                             </tbody>
                         </table>
                         <footer class="footer section py-2">
@@ -64,7 +67,7 @@
 @push('scripts')
 <script>
     // AJAX DataTable
-    var datatable = $('#catageoryTable').DataTable({
+    var datatable = $('#eventregTable').DataTable({
         processing: true,
         serverSide: true,
         ordering: true,
@@ -80,7 +83,19 @@
             },
             {
                 data: 'name',
-                name: 'name'
+                name: 'users.name'
+            },
+            {
+                data: 'email',
+                name: 'users.email'
+            },
+            {
+                data: 'event',
+                name: 'event.title'
+            },
+            {
+                data: 'speaker',
+                name: 'event.speaker.name'
             },
             {
                 data: 'action',

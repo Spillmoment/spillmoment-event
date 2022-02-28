@@ -112,7 +112,7 @@
                                     <!-- mulai event -->
                                     <label for=""><span>
                                             <i class="fas fa-calendar-alt"></i> </span> Mulai</label>
-                                    <p>{{ $events->event_date->format('d F Y') }}</p>
+                                    <p> {{ \Carbon\Carbon::parse($events->event_date)->isoFormat('dddd, D MMMM Y')}}</p>
 
                                     <!-- harga dan certificate -->
                                     <label for=""><span>
