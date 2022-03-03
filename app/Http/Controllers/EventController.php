@@ -50,67 +50,64 @@ class EventController extends Controller
 		if($request->ajax()){
 			$output="";
 
-			// $events = Event::query()->with('category')
-			// 					->when($request->has('category'), function ($query) use ($request) {
-			// 						$query->whereHas('category', function ($query2) use ($request) {
-			// 							return $query2->where('slug', $request->category);
-			// 						});
-			// 					})
-								// ->when($request->has('status'), function ($query) use ($request) {
-								// 	return $query->where('status', $request->status);
-								// }, function (){ return null; })
-								// ->when($request->has('type'), function ($query) use ($request) {
-								// 	$query->where('type', $request->type);
-								// })
-								// ->get();
+			$REQ_CATEGORY = $request->category;
+			$REQ_STATUS = $request->status;
+			$REQ_TYPE = $request->type;
 
+			if ($REQ_CATEGORY == null) {
+				$events = Event::with('category')
+								->where('status', $request->status)
+								->where('type', $request->type)
+								->get();
+			}
 
-				if ($request->category && $request->status && $request->type) {
-					$events = Event::with('category')
+			if ($REQ_STATUS == null) {
+				$events = Event::with('category')
+								->whereHas('category', function ($query) use ($request) {
+									return $query->where('slug', $request->category);
+								})
+								->where('type', $request->type)
+								->get();
+			}
+			
+			if ($REQ_TYPE == null) {
+				$events = Event::with('category')
+								->whereHas('category', function ($query) use ($request) {
+									return $query->where('slug', $request->category);
+								})
+								->where('status', $request->status)
+								->get();
+			}
+
+			if ($REQ_STATUS == null && $REQ_TYPE == null) {
+				$events = Event::with('category')
+								->whereHas('category', function ($query) use ($request) {
+										return $query->where('slug', $request->category);
+								})
+								->get();
+			}
+			
+			if ($REQ_CATEGORY == null && $REQ_TYPE == null) {
+				$events = Event::with('category')
+								->where('status', $request->status)
+								->get();
+			}
+			
+			if ($REQ_CATEGORY == null && $REQ_STATUS == null) {
+				$events = Event::with('category')
+								->where('type', $request->type)
+								->get();
+			}
+
+			if ($REQ_CATEGORY != null && $REQ_STATUS != null && $REQ_TYPE != null) {
+				$events = Event::with('category')
 								->whereHas('category', function ($query) use ($request) {
 										return $query->where('slug', $request->category);
 								})
 								->where('status', $request->status)
 								->where('type', $request->type)
 								->get();
-				} 
-
-				// if ($request->category && $request->status) {
-				// 	$events = Event::with('category')
-				// 				->whereHas('category', function ($query) use ($request) {
-				// 						return $query->where('slug', $request->category);
-				// 				})
-				// 				->where('status', $request->status)
-				// 				->get();
-				// } 
-				
-				// if ($request->category && $request->type) {
-				// 		$events = Event::with('category')
-				// 					->whereHas('category', function ($query) use ($request) {
-				// 							return $query->where('slug', $request->category);
-				// 					})
-				// 					->where('type', $request->type)
-				// 					->get();
-				// } 
-				// if($request->category) {
-				// 	$events = Event::with('category')
-				// 				->whereHas('category', function ($query) use ($request) {
-				// 					return $query->where('slug', $request->category);
-				// 				})
-				// 				->get();
-				// }
-
-				// if($request->status) {
-				// 	$events = Event::with('category')
-				// 					->where('status', $request->status)
-				// 					->get();
-				// }
-
-				// if($request->type) {
-				// 	$events = Event::with('category')
-				// 					->where('type', $request->type)
-				// 					->get();
-				// }
+			}
 				
 
 			if($events)
