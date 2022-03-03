@@ -56,15 +56,16 @@
             </li>
 
             <!-- Sidebar Event -->
-            <li class="nav-item {{ (request()->is('admin/event*')) ? 'active' : '' }}">
-                <a href="{{ route('admin.event.index') }}" class="nav-link">
+            <li class="nav-item {{ (request()->is('admin/events*')) ? 'active' : '' }}">
+                <a href="{{ route('admin.events.index') }}" class="nav-link">
                     <span class="sidebar-icon"><span class="fas fa-folder"></span></span>
                     <span>Data Event</span>
                 </a>
             </li>
 
             <!-- Sidebar Event Registrasi -->
-            <li class="nav-item {{ (request()->is('admin/event-register*')) ? 'active' : '' }}">
+            <li class="nav-item {{ Request::route()->getName() == 'admin.event-register.index' || 
+            Request::route()->getName() == 'admin.event-register.show'  ? 'active' : '' }}">
                 <a href="{{ route('admin.event-register.index') }}" class="nav-link">
                     <span class="sidebar-icon"><span class="fas fa-user-plus"></span></span>
                     <span>Registrasi Event</span>

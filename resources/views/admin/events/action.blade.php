@@ -7,11 +7,11 @@
         <span class="sr-only">Toggle Dropdown</span>
     </button>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ route('admin.event.show', $item->id) }}"><span
+        <a class="dropdown-item" href="{{ route('admin.events.show', $item->id) }}"><span
                 class="fas fa-eye mr-2"></span>Detail</a>
-        <a class="dropdown-item" href="{{ route('admin.event.edit', $item->id) }}"><span
+        <a class="dropdown-item" href="{{ route('admin.events.edit', $item->id) }}"><span
                 class="fas fa-edit mr-2"></span>Sunting</a>
-        <form action="{{ route('admin.event.destroy', $item->id) }}" method="POST">
+        <form action="{{ route('admin.events.destroy', $item->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button id="deleteButton" type="submit" class="dropdown-item text-danger delete-confirm"

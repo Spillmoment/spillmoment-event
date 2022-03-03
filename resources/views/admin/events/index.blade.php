@@ -27,7 +27,7 @@
                         <i class="fas fa-file-excel"></i> Export Excel</a>
                     <a href="#" class="btn btn-sm btn-danger mx-1">
                         <i class="fas fa-file-pdf"></i> Export PDF</a>
-                    <a href="{{ route('admin.event.create') }}" class="btn btn-primary btn-sm mx-1">
+                    <a href="{{ route('admin.events.create') }}" class="btn btn-primary btn-sm mx-1">
                         <i class="fas fa-plus"></i> Tambah Event
                     </a>
                 </div>

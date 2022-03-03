@@ -56,4 +56,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
 	});
 
+	// Dashboard
+	Route::get('dashboard', [DashboardControlller::class, 'index'])->name('dashboard');
+	// Event
+	Route::resource('kategori', KategoriEventController::class)->except(['show']);
+	Route::resource('speaker', SpeakerController::class);
+	Route::resource('events', AdminEventController::class);
+	Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
 });

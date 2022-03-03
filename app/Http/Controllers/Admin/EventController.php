@@ -23,7 +23,7 @@ class EventController extends Controller
                 ->latest();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
-                    return view('admin.event.action', compact('item'));
+                    return view('admin.events.action', compact('item'));
                 })
                 ->addColumn('category', function ($item) {
                     return $item->category->name;
@@ -41,14 +41,14 @@ class EventController extends Controller
                 ->rawColumns(['action', 'photo'])
                 ->make();
         }
-        return view('admin.event.index');
+        return view('admin.events.index');
     }
 
     public function create()
     {
         $category = EventCategory::all();
         $speaker = Speaker::all();
-        return view('admin.event.create', [
+        return view('admin.events.create', [
             'category' => $category,
             'speaker' => $speaker
         ]);
@@ -73,12 +73,12 @@ class EventController extends Controller
         Event::create($data);
         Alert::success('Success', 'Event berhasil ditambahkan')
             ->autoClose(3000);
-        return redirect()->route('admin.event.index');
+        return redirect()->route('admin.events.index');
     }
 
     public function show(Event $event)
     {
-        return view('admin.event.detail', [
+        return view('admin.events.detail', [
             'event' => $event
         ]);
     }
@@ -87,7 +87,7 @@ class EventController extends Controller
     {
         $category = EventCategory::all();
         $speaker = Speaker::all();
-        return view('admin.event.edit', [
+        return view('admin.events.edit', [
             'event' => $event,
             'category' => $category,
             'speaker' => $speaker
@@ -115,7 +115,7 @@ class EventController extends Controller
         $event->update($data);
         Alert::success('Success', 'Event berhasil diupdate')
             ->autoClose(3000);
-        return redirect()->route('admin.event.index');
+        return redirect()->route('admin.events.index');
     }
 
     public function destroy(Event $event)
@@ -124,6 +124,6 @@ class EventController extends Controller
         File::delete('uploads/events/' . $event->photo);
         Alert::success('Success', 'Event berhasil dihapus')
             ->autoClose(3000);
-        return redirect()->route('admin.event.index');
+        return redirect()->route('admin.events.index');
     }
 }
