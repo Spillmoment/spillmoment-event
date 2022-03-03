@@ -57,7 +57,7 @@
 
             <!-- Sidebar Event -->
             <li class="nav-item {{ (request()->is('admin/events*')) ? 'active' : '' }}">
-                <a href="{{ route('admin.events.index') }}" class="nav-link">
+                <a href="{{ route('admin.event.index') }}" class="nav-link">
                     <span class="sidebar-icon"><span class="fas fa-folder"></span></span>
                     <span>Data Event</span>
                 </a>
