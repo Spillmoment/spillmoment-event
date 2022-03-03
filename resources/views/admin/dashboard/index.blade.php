@@ -57,7 +57,7 @@
                     <h6 class="m-b-20">Event</h6>
                     <h2 class="text-right"><i class="fas fa-folder f-left"></i><span>{{ $event }}</span></h2>
                     <p class="m-b-0 text-right mt-2">
-                        <a href="{{ route('admin.events.index') }}" class="text-decoration-none">
+                        <a href="{{ route('admin.event.index') }}" class="text-decoration-none">
                             Detail
                             <span class="fas fa-arrow-right fa-sm"></span>
                         </a>
