@@ -19,9 +19,7 @@
 								<!-- Session Status -->
 								@if (Session::has('status'))
 									<div class="alert alert-success">
-										<ul>
-												<li>{{ Session::get('status') }}</li>
-										</ul>
+										<h6>{{ Session::get('status') }}</h6>
 									</div>
 								@endif
 
