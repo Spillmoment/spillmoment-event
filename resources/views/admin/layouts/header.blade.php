@@ -28,8 +28,18 @@
                         <a class="dropdown-item font-weight-bold" href="#"><span class="far fa-user-circle"></span>My
                             Profile</a>
                         <a class="dropdown-item font-weight-bold" href="#"><span class="fas fa-cog"></span>Settings</a>
-                        <a class="dropdown-item font-weight-bold" href="#"><span
-                                class="fas fa-sign-out-alt text-danger"></span>Logout</a>
+                        {{-- <a class="dropdown-item font-weight-bold" href="#"><span class="fas fa-sign-out-alt text-danger"></span>Logout</a> --}}
+								<form method="post" action="{{ route('admin.logout') }}">
+									@csrf
+
+									{{-- <a href="{{ route('admin.logout') }}" class="dropdown-item font-weight-bold"
+											  onclick="event.preventDefault();
+															  this.closest('form').submit();"> --}}
+									<button type="submit" class="dropdown-item font-weight-bold">
+										<span class="fas fa-sign-out-alt text-danger"></span>Logout
+									</button>
+									{{-- </a> --}}
+							  </form>
                     </div>
                 </li>
             </ul>

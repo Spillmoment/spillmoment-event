@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\DashboardControlller;
@@ -35,19 +36,24 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		// Login
 		Route::get('login', 'AuthenticatedSessionController@create')->name('login');
 		Route::post('login', 'AuthenticatedSessionController@store')->name('adminlogin');
+
+		Route::get('forgot-password', 'PasswordResetLinkController@create')->name('password.request');
+		Route::post('forgot-password', 'PasswordResetLinkController@store')->name('password.email');
+		Route::get('reset-password/{token}', 'NewPasswordController@create')->name('password.reset');
+		Route::post('reset-password', 'NewPasswordController@store')->name('password.update');
+		
 	});
 
 	Route::middleware('admin')->group(function () {
-		Route::get('dashboard', 'HomeController@index')->name('dashboard');
+		Route::post('logout', [AuthenticatedSessionController::class,'destroy'])->name('logout');
+		// Route::get('dashboard', 'HomeController@index')->name('dashboard');
+		// Dashboard
+		Route::get('dashboard', [DashboardControlller::class, 'index'])->name('dashboard');
+		// Event
+		Route::resource('kategori', KategoriEventController::class)->except(['show']);
+		Route::resource('speaker', SpeakerController::class);
+		Route::resource('event', AdminEventController::class);
+		Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
 	});
 
-	Route::post('logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
-
-	// Dashboard
-	Route::get('dashboard', [DashboardControlller::class, 'index'])->name('dashboard');
-	// Event
-	Route::resource('kategori', KategoriEventController::class)->except(['show']);
-	Route::resource('speaker', SpeakerController::class);
-	Route::resource('events', AdminEventController::class);
-	Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
 });

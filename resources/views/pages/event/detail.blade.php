@@ -67,10 +67,10 @@
 														 <h6 class="text-secondary">Anda sudah bergabung.</h6>
 													@else
 														@if ($events->type == 'paid')
-															<button type="submit" class="btn btn-success btn-sm">
+															<span class="btn btn-success btn-sm">
 																<img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
-																<a href="https://api.whatsapp.com/send?phone=085232629479&text=Hallo+Admin%2C+saya+berminat+join+dalam+event+{{ $events->tittle }}" target="_blank" class="text-white text-decoration-none"> Whats App </a>
-															</button>
+																<a href="https://wa.me/085232629479?text=Hallo+Admin%2C+saya+berminat+join+dalam+event+{{ $events->title }}" target="_blank" class="text-white text-decoration-none"> Whats App </a>
+															</span>
 														@else
 															<form action="{{ route('event.join', $events->id) }}" method="post">
 																@csrf

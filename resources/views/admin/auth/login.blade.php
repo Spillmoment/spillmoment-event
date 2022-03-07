@@ -16,6 +16,12 @@
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">Admin | Silahkan Login</h1>
 
+										  <!-- Session Status -->
+											@if (Session::has('status'))
+												<div class="alert alert-success mt-3 text-light">
+													<h6>{{ Session::get('status') }}</h6>
+												</div>
+											@endif
 
                                 @if(session('loginError'))
                                 <div class="alert alert-danger mt-3 text-light" role="alert">
@@ -24,7 +30,7 @@
                                 @endif
 
                             </div>
-                            <form class="mt-4" method="post" action="{{ route('login') }}">
+                            <form class="mt-4" method="post" action="{{ route('admin.adminlogin') }}">
                                 @csrf
                                 <!-- Form -->
                                 <div class="form-group mb-4">
@@ -65,7 +71,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
 
                                         <div class="float-right">
-                                            <a href="{{route('login') }}" class="small text-right">Lupa password?</a>
+                                            <a href="{{route('admin.password.request') }}" class="small text-right">Lupa password?</a>
                                         </div>
                                     </div>
                                 </div>

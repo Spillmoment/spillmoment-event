@@ -24,7 +24,6 @@
                         <div class="combo-box">
                             <p>Kategori Event</p><br>
                             <select name="kategori-event" id="kategori-event" class="select-combox">
-                                <option>- Pilih Kategori Event -</option>
                                 @foreach ($category as $item)
                                 <option value="{{ $item->slug }}">{{ $item->name }}</option>
                                 @endforeach
@@ -33,7 +32,6 @@
                         <div class="combo-box">
                             <p>Status Event</p><br>
                             <select name="status-event" id="status-event" class="select-combox">
-                                <option>- Pilih Status Event -</option>
                                 @foreach ($status as $item)
                                 <option value="{{ $item->status }}">{{ $item->status }}</option>
                                 @endforeach
@@ -42,7 +40,6 @@
                         <div class="combo-box">
                             <p>Tipe Event</p><br>
                             <select name="type-event" id="type-event" class="select-combox">
-                                <option>- Pilih Tipe Event -</option>
                                 @foreach ($type as $item)
                                 <option value="{{ $item->type }}">{{ $item->type }}</option>
                                 @endforeach
@@ -162,18 +159,18 @@
 				send()
 			});
 			
-			function send() {
-				let categoryStorage = localStorage.getItem('category');
-				let statusStorage = localStorage.getItem('status');
-				let typeStorage = localStorage.getItem('type');
+			let categoryStorage = localStorage.getItem('category');
+			let statusStorage = localStorage.getItem('status');
+			let typeStorage = localStorage.getItem('type');
 
+			function send() {
 				$.ajax({
 					type:'GET',
 					url:"{{ route('event.filter') }}",
 					data:{
-						category: categoryStorage,
-						status: statusStorage,
-						type: typeStorage,
+						category: localStorage.getItem('category'),
+						status: localStorage.getItem('status'),
+						type: localStorage.getItem('type'),
 					},
 					success:function(data)
 					{
@@ -182,6 +179,8 @@
 					}
 				})
 			}
+
+			if (categoryStorage !== null || statusStorage !== null || typeStorage !== null) send()
 		});
 	 </script>
 @endpush
