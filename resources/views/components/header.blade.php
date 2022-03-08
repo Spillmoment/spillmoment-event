@@ -29,7 +29,7 @@
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="{{ url('/dashboard') }}">Dashboard</a>
+                            <a href="{{ route('profile.data') }}">Profile</a>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
 																  this.closest('form').submit();">
                                 {{ __('Logout') }}
