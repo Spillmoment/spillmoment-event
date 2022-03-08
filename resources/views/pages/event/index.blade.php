@@ -177,7 +177,6 @@
                 },
                 success: function (data) {
                     $('#card-event').html(data);
-                    console.log(data);
                 }
             })
         }
