@@ -64,20 +64,24 @@
                                     @auth
 
 													@if ($cek_state > 0)
-														 <h6 class="text-secondary">Anda sudah bergabung.</h6>
+														 <h6 class="text-success strong">Anda telah bergabung!</h6>
+														 @if ($events->type == 'paid')
+															<div class="alert alert-warning d-flex align-items-center" role="alert">
+																<div class="small">
+																	<strong>Silahkan konfirmasi pembayaran</strong>. <br>
+																	Tiket akan hangus jika belum terkonfirmasi sebelum waktu event.
+																</div>
+															 </div>
+															 <span class="btn btn-success btn-sm">
+																 <img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
+																 <a href="https://wa.me/085232629479?text=Hallo+Admin%2C+saya+berminat+join+dalam+event+{{ $events->title }}" target="_blank" class="text-white text-decoration-none"> Whats App </a>
+															 </span>
+														 @endif
 													@else
-														@if ($events->type == 'paid')
-															<span class="btn btn-success btn-sm">
-																<img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
-																<a href="https://wa.me/085232629479?text=Hallo+Admin%2C+saya+berminat+join+dalam+event+{{ $events->title }}" target="_blank" class="text-white text-decoration-none"> Whats App </a>
-															</span>
-														@else
-															<form action="{{ route('event.join', $events->id) }}" method="post">
-																@csrf
-																<button class="btn-required">Daftar Event</button>
-															</form>
-															 
-														@endif
+														<form action="{{ route('event.join', $events->id) }}" method="post">
+															@csrf
+															<button class="btn-required">Daftar Event</button>
+														</form>
 													@endif
 
                                     @else

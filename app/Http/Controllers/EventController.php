@@ -151,26 +151,29 @@ class EventController extends Controller
 										box-sizing: border-box;
 										height: 200px;
 										-o-object-fit: cover;
-										object-fit: cover;' src='{{ asset('uploads/events/' . $event->photo) }}' class='card-img-top'
+										object-fit: cover;' src='uploads/events/$event->photo' class='card-img-top'
 											alt='$event->title'>
 										<div class='card-body'>
 											<a href='event/detail/$event->slug' class='text-decoration-none'>
-													<h4 class='card-title' style='font-size: 20px;
-											color: #333;'>$event->title</h4>
+												<h4 class='card-title' style='font-size: 20px; color: #333;'>$event->title</h4>
 											</a>
+											<br>
 											<div class='wrapper-card'>
 													<div class='content-card'>
 														$started_label
 														$type_label
 														<br>
+														<br>
 														<span class='info-tanggal'>
-															<i class='fas fa-calendar-alt'></i> 
+															<i class='fas fa-calendar-alt'></i>
 															<label for=''>$event_date</label>
-														</span><br>
+														</span>
+														<br>
 														<span class='info-jam'>
 															<i class='fas fa-clock'></i>
 															<label for=''>$event_time</label> WIB
-														</span><br>
+														</span>
+														<br>
 														<span class='info-anggota'>
 															<i class='fas fa-laptop'></i>
 															$event_status_label
