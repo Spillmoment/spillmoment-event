@@ -1,77 +1,89 @@
-@extends('layouts.app')
-
-@section('content')
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Update your profile.</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('profile.data.store') }}">
-                        @csrf
-								@method('put')
-
-								 <!-- Session Status -->
-								@if (Session::has('status'))
-									<div class="alert alert-success">
-										<ul>
-												<li>{{ Session::get('status') }}</li>
-										</ul>
-									</div>
-								@endif
-
-								<!-- Validation Errors -->
-								@if($errors->any())
-									<h4 class="text-danger">{{$errors->first()}}</h4>
-								@endif
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>
-                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
-                            <div class="col-md-6">
-										 <select name="gender" id="gender">
-											 <option value="pria" {{ $user->gender == 'pria' && 'selected' }}>Pria</option>
-											 <option value="wanita" {{ $user->gender == 'wanita' && 'selected' }}>Wanita</option>
-										 </select>
-                            </div>
-                        </div> 
-
-                        <div class="form-group row">
-									<label for="phone" class="col-md-4 col-form-label text-md-right">Telephone</label>
-									 <div class="col-md-6">
-										 <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}" >
-									</div>
-							  </div>
-
-                        <div class="form-group row">
-									<label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
-									 <div class="col-md-6">
-										 <textarea name="address" id="address" cols="30" rows="10">{{ $user->address }}</textarea>
-									</div>
-							  </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Update Profile
-                                </button>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header mb-2 text-dark bg-profile">
+        <div class="clearfix">
+            <h5 class="card-title mb-4">Profile {{ auth()->user()->name }}</h4>
         </div>
     </div>
+    <div class="card-body">
+        <form class="row g-3 needs-validation" method="POST" action="{{ route('profile.data.store') }}">
+            @csrf
+            @method('put')
 
+            @if (session('success'))
+            <div class=" alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle"></i>
+                <strong>{{ session('success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control {{ $errors->first('name') ? 'is-invalid' : '' }}" name="name"
+                    id="validationCustom01" placeholder="Masukkan Nama Lengkap" value="{{ auth()->user()->name }}">
+                <div class="invalid-feedback">
+                    {{$errors->first('name')}}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Email</label>
+                <input type="email" class="form-control {{ $errors->first('email') ? 'is-invalid' : '' }}" name="email"
+                    id="validationCustom02" placeholder="Masukkan Email" value="{{ auth()->user()->email }}">
+                <div class="invalid-feedback">
+                    {{$errors->first('email')}}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Nomor Telephone</label>
+                <input type="number" class="form-control {{ $errors->first('phone') ? 'is-invalid' : '' }}" name="phone"
+                    id="validationCustom03" placeholder="Masukkan Nomor Telephone" value="{{ auth()->user()->phone }}">
+                <div class="invalid-feedback">
+                    {{$errors->first('phone')}}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustom04" class="form-label">Jenis Kelamin: </label>
+                <select name="gender" id="gender" class="form-select" id="validationCustom04">
+                    <option value="pria" @selected(auth()->user()->gender == 'pria')>Pria</option>
+                    <option value="wanita" @selected(auth()->user()->gender == 'wanita')>Wanita</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="photo" class="form-label">Photo</label>
+                <input type="file" class="form-control-file {{ $errors->first('photo') ? 'is-invalid' : '' }}"
+                    name="photo" id="photo">
+                <br>
+                @if (auth()->user()->photo != null)
+                <small class="text-muted">Kosongkan jika tidak ingin mengubah
+                    Foto</small>
+                @endif
+                <div class="invalid-feedback">
+                    {{$errors->first('photo')}}
+                </div>
+
+                <div class="my-3">
+                    <img id="img" class="img-target" width="200px">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="address" class="form-label">Alamat</label>
+                <textarea name="address" class="form-control 
+                {{ $errors->first('address') ? 'is-invalid' : '' }}" id="address" rows="3"
+                    placeholder="Masukkan Alamat">{{auth()->user()->address}}</textarea>
+                <div class="invalid-feedback">
+                    {{$errors->first('address')}}
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <button class="btn btn-profile" type="submit">Update Profile</button>
+            </div>
+        </form>
+    </div>
 </div>
-
-@endsection
