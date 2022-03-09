@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EventRegisterControlller;
 use App\Http\Controllers\Admin\KategoriEventController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\UpdateProfileController;
+use App\Models\EventRegister;
 
 // User auth
 require __DIR__ . '/auth.php';
@@ -51,6 +52,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		Route::resource('kategori', KategoriEventController::class)->except(['show']);
 		Route::resource('speaker', SpeakerController::class);
 		Route::resource('event', AdminEventController::class);
-		Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
+		// Register Event
+		Route::get('register-event', [EventRegisterControlller::class, 'index'])->name('register-event.index');
+		Route::get('register-event/{id}', [EventRegisterControlller::class, 'show'])->name('register-event.show');
 	});
 });

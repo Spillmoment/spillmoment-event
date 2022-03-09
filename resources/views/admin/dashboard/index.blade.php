@@ -73,7 +73,7 @@
                     <h6 class="m-b-20">User Registrasi</h6>
                     <h2 class="text-right"><i class="fas fa-user-plus f-left"></i><span>{{ $users }}</span></h2>
                     <p class="m-b-0 text-right mt-2">
-                        <a href="{{ route('admin.event-register.index') }}" class="text-decoration-none">
+                        <a href="{{ route('admin.register-event.index') }}" class="text-decoration-none">
                             Detail
                             <span class="fas fa-arrow-right fa-sm"></span>
                         </a>
@@ -105,7 +105,7 @@
                             {{ $loop->iteration }}
                         </td>
                         <td>
-                            <a href="{{ route('admin.event-register.show', $item->id) }}"
+                            <a href="{{ route('admin.register-event.show', $item->id) }}"
                                 class="text-primary font-weight-bold">
                                 {{ $item->users->name }}
                             </a>

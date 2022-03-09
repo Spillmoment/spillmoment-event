@@ -63,29 +63,33 @@
                                     <br>
                                     @auth
 
-													@if ($cek_state > 0)
-														 <h6 class="text-success strong">Anda telah bergabung!</h6>
-														 @if ($events->type == 'paid')
-															<div class="alert alert-warning d-flex align-items-center" role="alert">
-																<div class="small">
-																	<strong>Silahkan konfirmasi pembayaran</strong>. <br>
-																	Tiket akan hangus jika belum terkonfirmasi sebelum waktu event.
-																</div>
-															 </div>
-															 <span class="btn btn-success btn-sm">
-																 <img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
-																 <a href="https://wa.me/085232629479?text=Hallo+Admin%2C+saya+berminat+join+dalam+event+{{ $events->title }}" target="_blank" class="text-white text-decoration-none"> Whats App </a>
-															 </span>
-														 @endif
-													@else
-														<form action="{{ route('event.join', $events->id) }}" method="post">
-															@csrf
-															<button class="btn-required">Daftar Event</button>
-														</form>
-													@endif
+                                    @if ($cek_state > 0)
+                                    <h6 class="text-success strong">Anda telah bergabung!</h6>
+                                    @if ($events->type == 'paid')
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div class="small">
+                                            <strong>Silahkan konfirmasi pembayaran</strong>. <br><br>
+                                            Tiket akan hangus jika belum terkonfirmasi sebelum waktu event.
+                                        </div>
+                                    </div>
+                                    <span class="btn btn-success btn-sm">
+                                        <img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
+                                        <a href="https://wa.me/085236639572?text=Hallo+Admin%2C+Saya+{{ auth()->user()->name }}+Berminat+Join+Dalam+Event+{{ $events->title }}"
+                                            target="_blank" class="text-white text-decoration-none">
+                                            Kunjungi Whats App
+                                        </a>
+                                    </span>
+                                    @endif
+                                    @else
+                                    <form action="{{ route('event.join', $events->id) }}" method="post">
+                                        @csrf
+                                        <button class="btn-required">Daftar Event</button>
+                                    </form>
+                                    @endif
 
                                     @else
-                                    <a href="{{ route('login') }}"><button class="btn-required">Login untuk mengikuti event</button></a>
+                                    <a href="{{ route('login') }}"><button class="btn-required">Login untuk mengikuti
+                                            event</button></a>
                                     @endauth
                                 </div>
                                 <br>
@@ -113,16 +117,38 @@
                                             <i class="fas fa-handshake"></i> </span> Partner</label>
                                     <p>{{ $events->partner }}</p>
 
+                                    <!-- Status -->
+                                    <label for=""><span>
+                                            <i class="fas fa-cube"></i> </span> Status Event</label>
+                                    <p class="text-capitalize">{{ $events->status }}</p>
+
+                                    <!-- Link Event -->
+                                    <label for=""><span>
+                                            <i class="fas fa-link"></i> </span> Link Event</label>
+                                    <p>{{ $events->link }}</p>
+
+                                    <!-- Place -->
+                                    @if ($events->status == 'offline')
+                                    <label for=""><span>
+                                            <i class="fas fa-hotel"></i> </span> Tempat </label>
+                                    <p class="text-capitalize">{{ $events->place}}</p>
+                                    @endif
+
                                     <!-- mulai event -->
                                     <label for=""><span>
-                                            <i class="fas fa-calendar-alt"></i> </span> Mulai</label>
+                                            <i class="fas fa-calendar-alt"></i> </span>Tanggal Mulai</label>
                                     <p> {{ \Carbon\Carbon::parse($events->event_date)->isoFormat('dddd, D MMMM Y')}}</p>
+
+                                    <!-- waktu event -->
+                                    <label for=""><span>
+                                            <i class="fas fa-calendar-alt"></i> </span>Waktu Mulai</label>
+                                    <p> {{  $events->start_time->format('h:i')  }}.WIB - Selesai</p>
 
                                     <!-- harga dan certificate -->
                                     <label for=""><span>
                                             <i class="fas fa-certificate"></i> </span> Harga Event + Sertifikat</label>
                                     @if ($events->price != 0)
-                                    <p>Rp. {{ $events->price }}.00</p>
+                                    <p>Rp. @convert($events->price)</p>
                                     @else
                                     <p>Gratis</p>
                                     @endif
@@ -138,8 +164,7 @@
                                     <p>{{ $registers }} orang</p>
 
                                     <label for=""><span>
-                                            <i class="fas fa-info-circle"></i> </span> Status</label>
-
+                                            <i class="fas fa-info-circle"></i> </span>Info</label>
                                     @if ($events->started == '0')
                                     <p>Belum Dimulai</p>
                                     @else
