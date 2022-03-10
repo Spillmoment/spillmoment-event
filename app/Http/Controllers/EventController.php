@@ -212,9 +212,16 @@ class EventController extends Controller
 	 {
 		$current_quota = Event::find($event_id);
 		$update_quota = $current_quota->quota - 1;
+
+		$pay = null;
+		if ($current_quota->type == 'paid') {
+			$pay = 'pending';
+		}		
+
 		$join_event = EventRegister::create([
 			'event_id' => $event_id,
-			'user_id' => Auth::id()
+			'user_id' => Auth::id(),
+			'pay_status' => $pay
 		]);
 
 		if($join_event){
