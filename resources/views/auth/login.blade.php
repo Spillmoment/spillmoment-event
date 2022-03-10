@@ -38,7 +38,7 @@
                                 <p>Alamat Email</p>
                                 <div class="auth-input-box">
                                     <input type="text" name="email" id="userphonemail" placeholder="Alamat Email"
-                                        required autofocus />
+                                        required autofocus value="{{ old('email') }}" />
                                 </div>
                                 <br />
                                 <p>Kata Sandi</p>
