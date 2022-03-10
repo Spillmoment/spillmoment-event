@@ -54,6 +54,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		Route::resource('speaker', SpeakerController::class);
 		Route::resource('event', AdminEventController::class);
 		Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
+		Route::put('confirm-event/{id}/{state}', [EventRegisterControlller::class, 'confirm'])->name('confirm-event');
 	});
 
 });
