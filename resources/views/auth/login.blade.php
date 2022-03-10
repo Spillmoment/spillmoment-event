@@ -2,6 +2,7 @@
 
 @section('title','Spillmoment | Login User')
 @section('content')
+
 <div id="auth-login">
     <div class="box-v1">
         <div class="flex-box">
@@ -16,31 +17,35 @@
                             <p>Masuk dengan akun yang sudah terdaftar.</p>
                         </div>
 
-								<!-- Session Status -->
-								@if (Session::has('status'))
-									<div class="alert alert-success">
-										<h6>{{ Session::get('status') }}</h6>
-									</div>
-								@endif
+                        <!-- Session Status -->
+                        @if (Session::has('status'))
+                        <div class="alert alert-success">
+                            <h6>{{ Session::get('status') }}</h6>
+                        </div>
+                        @endif
 
-								<!-- Validation Errors -->
-								@if($errors->any())
-									<h4>{{$errors->first()}}</h4>
-								@endif
+                        <!-- Validation Errors -->
+                        @if($errors->any())
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            <strong>{{$errors->first()}}</strong>
+                        </div>
+                        @endif
 
                         <form method="POST" action="{{ url('/login') }}">
                             @csrf
                             <div class="auth-body">
-                                <p>Email atau nomor ponsel</p>
+                                <p>Alamat Email</p>
                                 <div class="auth-input-box">
-                                    <input type="text" name="email" id="userphonemail" placeholder="" required />
+                                    <input type="text" name="email" id="userphonemail" placeholder="Alamat Email"
+                                        required autofocus />
                                 </div>
                                 <br />
                                 <p>Kata Sandi</p>
                                 <div class="auth-input-box">
                                     <div class="input-box-password">
-                                        <input type="password" name="password" placeholder="" id="passwordInput"
-                                            required />
+                                        <input type="password" name="password" placeholder="Kata Sandi"
+                                            id="passwordInput" required />
                                         <label for="password-function" class="checkbox-pass">
                                             <input type="checkbox" name="" id="password-function" />
                                             <div class="icon-eye1 icon">
@@ -53,14 +58,14 @@
                                     </div>
                                 </div>
                             </div>
-									 <div class="wrap-button">
-										  <br />
-										  {{-- @if (Route::has('password.request')) --}}
-										  <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
-										  {{-- @endif --}}
-										  <button>Masuk</button>
-										  <br /><br />
-									 </div>
+                            <div class="wrap-button">
+                                <br />
+                                @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
+                                @endif
+                                <button>Masuk</button>
+                                <br /><br />
+                            </div>
                         </form>
 
                         <p id="hint">
