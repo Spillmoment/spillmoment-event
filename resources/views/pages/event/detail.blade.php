@@ -68,9 +68,15 @@
                                     @if ($events->type == 'paid')
                                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                                         <div class="small">
-                                            <strong>Silahkan konfirmasi pembayaran</strong>. <br><br>
+                                            <strong>Silahkan konfirmasi pembayaran sesuai dengan harga event</strong>.
+                                            <br>
+                                            <br>
+                                            <h6 style="color: 34364a;" class="my-1"> PT.Spillmoment.id </h6>
+                                            <h6 class="font-weight-bold" class="my-1">0826428529</h6>
+                                            <br>
                                             Tiket akan hangus jika belum terkonfirmasi sebelum waktu event.
                                         </div>
+
                                     </div>
                                     <span class="btn btn-success btn-sm">
                                         <img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
@@ -83,7 +89,7 @@
                                     @else
                                     <form action="{{ route('event.join', $events->id) }}" method="post">
                                         @csrf
-                                        <button class="btn-required">Daftar Event</button>
+                                        <button class="btn-required">Daftar Sekarang</button>
                                     </form>
                                     @endif
 
@@ -100,7 +106,7 @@
 
                                     <!-- Kategori event -->
                                     <label for=""><span>
-                                            <i class="fas fa-adn"></i> </span> Kategori Event</label>
+                                            <i class="fas fa-tag"></i> </span> Kategori Event</label>
                                     <p>{{ $events->category->name ?? ''}}</p>
 
                                     <!-- tipe event -->
@@ -123,9 +129,13 @@
                                     <p class="text-capitalize">{{ $events->status }}</p>
 
                                     <!-- Link Event -->
+                                    @auth
                                     <label for=""><span>
                                             <i class="fas fa-link"></i> </span> Link Event</label>
-                                    <p>{{ $events->link }}</p>
+                                    <p style="color: rgb(6, 112, 199); font-weight: 500">
+                                        <a href="{{ $events->link }}" target="_blank"><i>{{ $events->link }}</i></a>
+                                    </p>
+                                    @endauth
 
                                     <!-- Place -->
                                     @if ($events->status == 'offline')
@@ -155,7 +165,7 @@
 
                                     <!-- kuota -->
                                     <label for=""><span>
-                                            <i class="fas fa-users"></i></span> Kuota tersisa</label>
+                                            <i class="fas fa-users"></i></span> Kuota Tersisa</label>
                                     <p>{{ $events->quota }}</p>
 
                                     <!--  -->
