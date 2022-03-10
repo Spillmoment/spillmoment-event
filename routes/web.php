@@ -54,5 +54,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		// Register Event
 		Route::get('register-event', [EventRegisterControlller::class, 'index'])->name('register-event.index');
 		Route::get('register-event/{id}', [EventRegisterControlller::class, 'show'])->name('register-event.show');
+		Route::put('confirm-event/{id}/{state}', [EventRegisterControlller::class, 'confirm'])->name('confirm-event');
 	});
 });

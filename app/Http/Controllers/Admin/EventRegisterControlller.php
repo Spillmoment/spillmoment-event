@@ -44,4 +44,16 @@ class EventRegisterControlller extends Controller
             'event' => $eventRegister
         ]);
     }
+
+	 public function confirm($id, $state)
+	 {
+		//  dd($state != 'success');
+		if ($state == 'success' || $state == 'pending') {
+			EventRegister::where('id', $id)->update(['pay_status' => $state]);
+			return redirect()->back()->with('success', 'Update status konfirmasi berhasil.');
+		} else {
+			return redirect()->back()->withErrors(['msg' => 'Status tidak ditemukan']);
+		}
+		
+	 }
 }

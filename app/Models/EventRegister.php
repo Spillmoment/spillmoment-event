@@ -9,7 +9,7 @@ class EventRegister extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['event_id', 'user_id'];
+    protected $fillable = ['event_id', 'user_id', 'pay_status'];
 
     public function users()
     {
