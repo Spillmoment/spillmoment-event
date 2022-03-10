@@ -31,7 +31,26 @@
                         <a href="{{ route('admin.event-register.index') }}" class="btn btn-primary btn-sm"> <i
                                 class="fa fa-angle-left" aria-hidden="true"></i> Kembali</a>
                     </div>
-                </div>
+
+						  
+						</div>
+
+						@if($errors->any())
+						<div class="alert alert-danger text-light" role="alert">
+							<strong>
+								{{$errors->first()}}
+							</strong>
+						</div>
+						@endif
+
+						@if(session()->has('success'))
+						<div class="alert alert-success text-primary" role="alert">
+							<strong>
+								{{ session()->get('success') }}
+							</strong>
+						</div>
+						@endif
+
                 <div class="row">
                     <div class="card-body">
                         <style>
@@ -70,6 +89,34 @@
                                     @endisset
                                 </td>
                             </tr>
+
+									 <tr>
+										<th>Konfirmasi Pembayaran</th>
+										<td>
+											@if ($event->pay_status == 'pending')
+												<small style="color: rgb(150, 150, 150)"><em>** Peserta belum terkonfirmasi</em></small>
+												<br>
+												<form action="{{ route('admin.confirm-event', [$event->id, 'success']) }}" method="post">
+													@csrf
+													@method('put')
+													<button class="btn btn-outline-dark" type="submit">Confirm</button>
+												</form>
+											@elseif($event->pay_status == 'success')
+												<small class="text-success">** Peserta sudah dikonfirmasi, tekan tombol kuning untuk membatalkan</small>
+												<br>
+												<form action="{{ route('admin.confirm-event', [$event->id, 'pending']) }}" method="post">
+													@csrf
+													@method('put')
+													<button class="btn btn-warning"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation" viewBox="0 0 16 16">
+														<path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z"/>
+													 </svg> Cancel</button>
+												</form>
+											@else
+												<small style="color: rgb(150, 150, 150)"><em>** Tidak perlu konfirmasi dengan event type FREE</em></small>
+											@endif
+											
+										</td>
+									 </tr>
 
 
                         </table>
