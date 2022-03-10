@@ -7,11 +7,12 @@ use App\Models\EventCategory;
 use App\Models\EventRegister;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
-    public function index(Request $request)
-    {
+	public function index(Request $request)
+	{
 		// initial for select
 		$category = EventCategory::all();
 		$status = Event::where('status', 'online')
@@ -24,17 +25,6 @@ class EventController extends Controller
 			->get();
 		// ---------------
 
-		// $key_category = $request->query('category');
-		// $key_status = $request->query('status');
-
-		// $event = Event::with('category')
-		// 			->whereHas('category', function ($query) use ($key_category) {
-		// 					$query->where('slug', $key_category);
-		// 			})
-		// 			->where('status', $key_status)
-		// 			->get();
-
-		// dd($event);
 		$event = Event::all();
 		return view('pages.event.index', [
 			'category' => $category,
@@ -42,13 +32,12 @@ class EventController extends Controller
 			'status' => $status,
 			'type' => $type
 		]);
+	}
 
-    }
-
-	 public function filter(Request $request)
-	 {
-		if($request->ajax()){
-			$output="";
+	public function filter(Request $request)
+	{
+		if ($request->ajax()) {
+			$output = "";
 
 			$REQ_CATEGORY = $request->category;
 			$REQ_STATUS = $request->status;
@@ -56,80 +45,79 @@ class EventController extends Controller
 
 			if ($REQ_CATEGORY == null) {
 				$events = Event::with('category')
-								->where('status', $request->status)
-								->where('type', $request->type)
-								->get();
+					->where('status', $request->status)
+					->where('type', $request->type)
+					->get();
 			}
 
 			if ($REQ_STATUS == null) {
 				$events = Event::with('category')
-								->whereHas('category', function ($query) use ($request) {
-									return $query->where('slug', $request->category);
-								})
-								->where('type', $request->type)
-								->get();
+					->whereHas('category', function ($query) use ($request) {
+						return $query->where('slug', $request->category);
+					})
+					->where('type', $request->type)
+					->get();
 			}
-			
+
 			if ($REQ_TYPE == null) {
 				$events = Event::with('category')
-								->whereHas('category', function ($query) use ($request) {
-									return $query->where('slug', $request->category);
-								})
-								->where('status', $request->status)
-								->get();
+					->whereHas('category', function ($query) use ($request) {
+						return $query->where('slug', $request->category);
+					})
+					->where('status', $request->status)
+					->get();
 			}
 
 			if ($REQ_STATUS == null && $REQ_TYPE == null) {
 				$events = Event::with('category')
-								->whereHas('category', function ($query) use ($request) {
-										return $query->where('slug', $request->category);
-								})
-								->get();
+					->whereHas('category', function ($query) use ($request) {
+						return $query->where('slug', $request->category);
+					})
+					->get();
 			}
-			
+
 			if ($REQ_CATEGORY == null && $REQ_TYPE == null) {
 				$events = Event::with('category')
-								->where('status', $request->status)
-								->get();
+					->where('status', $request->status)
+					->get();
 			}
-			
+
 			if ($REQ_CATEGORY == null && $REQ_STATUS == null) {
 				$events = Event::with('category')
-								->where('type', $request->type)
-								->get();
+					->where('type', $request->type)
+					->get();
 			}
 
 			if ($REQ_CATEGORY != null && $REQ_STATUS != null && $REQ_TYPE != null) {
 				$events = Event::with('category')
-								->whereHas('category', function ($query) use ($request) {
-										return $query->where('slug', $request->category);
-								})
-								->where('status', $request->status)
-								->where('type', $request->type)
-								->get();
+					->whereHas('category', function ($query) use ($request) {
+						return $query->where('slug', $request->category);
+					})
+					->where('status', $request->status)
+					->where('type', $request->type)
+					->get();
 			}
-				
 
-			if($events)
-			{
+
+			if ($events) {
 				foreach ($events as $key => $event) {
 
 					// Conditional rendering tag------
-					if ($event->started == '0'){
+					if ($event->started == '0') {
 						$started_label = "<button class='badge'>
 								<i class='fas fa-stopwatch'></i> <label> Belum dimulai</label>
 						</button>";
-					}else{
+					} else {
 						$started_label = "<button class='badge'>
 								<i class='fas fa-stopwatch'></i> <label> Telah dimulai</label>
 						</button>";
 					}
 
-					if ($event->type == 'paid'){
+					if ($event->type == 'paid') {
 						$type_label = "<button class='badge paid'>
 								<i class='fas fa-wallet'></i> <label>Berbayar</label>
 						</button>";
-					}else{
+					} else {
 						$type_label = "<button class='badge paid'>
 								<i class='fas fa-wallet'></i> <label>Gratis</label>
 						</button>";
@@ -138,14 +126,14 @@ class EventController extends Controller
 					$event_date = $event->event_date->format('d F Y');
 					$event_time = $event->start_time->format('h:i');
 
-					if ($event->status == 'offline'){
+					if ($event->status == 'offline') {
 						$event_status_label = "<label for=''>Offline</label>";
-					}else{
+					} else {
 						$event_status_label = "<label for=''>Online</label>";
 					}
 					// ----------------------------
 
-					$output.="<div class='col'>
+					$output .= "<div class='col'>
 									<div class='card'>
 										<img style='width: 100%;
 										box-sizing: border-box;
@@ -155,7 +143,9 @@ class EventController extends Controller
 											alt='$event->title'>
 										<div class='card-body'>
 											<a href='event/detail/$event->slug' class='text-decoration-none'>
-												<h4 class='card-title' style='font-size: 20px; color: #333;'>$event->title</h4>
+												<h4 class='card-title' style='font-size: 20px; color: #333;'> 
+												" . Str::limit($event->title, 30) . " 
+												</h4>
 											</a>
 											<br>
 											<div class='wrapper-card'>
@@ -190,33 +180,31 @@ class EventController extends Controller
 				}
 				return Response($output);
 			}
-
 		}
-			
-	 }
+	}
 
-    public function detail($slug)
-    {
-        $event = Event::where('slug', $slug)->first();
-        $register = EventRegister::where('event_id', $event->id)->count();
-		  $cek_state = EventRegister::where('event_id', $event->id)->where('user_id', Auth::id())->count();
-		  
-        return view('pages.event.detail', [
-            'events' => $event,
-            'registers' => $register,
-				'cek_state' => $cek_state
-        ]);
-    }
+	public function detail($slug)
+	{
+		$event = Event::where('slug', $slug)->first();
+		$register = EventRegister::where('event_id', $event->id)->count();
+		$cek_state = EventRegister::where('event_id', $event->id)->where('user_id', Auth::id())->count();
 
-	 public function join($event_id)
-	 {
+		return view('pages.event.detail', [
+			'events' => $event,
+			'registers' => $register,
+			'cek_state' => $cek_state
+		]);
+	}
+
+	public function join($event_id)
+	{
 		$current_quota = Event::find($event_id);
 		$update_quota = $current_quota->quota - 1;
 
 		$pay = null;
 		if ($current_quota->type == 'paid') {
 			$pay = 'pending';
-		}		
+		}
 
 		$join_event = EventRegister::create([
 			'event_id' => $event_id,
@@ -224,11 +212,11 @@ class EventController extends Controller
 			'pay_status' => $pay
 		]);
 
-		if($join_event){
+		if ($join_event) {
 			Event::where('id', $event_id)
-					->update(['quota' => $update_quota]);
+				->update(['quota' => $update_quota]);
 
 			return back()->with('status', 'Join success.');
 		}
-	 }
+	}
 }
