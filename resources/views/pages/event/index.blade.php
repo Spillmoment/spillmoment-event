@@ -45,6 +45,12 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="combo-box">
+                            <p>Partner</p><br>
+                            <select name="type-event" id="type-event" class="select-combox">
+                                <option value=""></option>
+                            </select>
+                        </div>
 
                     </div>
                 </div>
@@ -67,7 +73,9 @@
                 <div class="card-body">
                     <a href="{{ route('event.detail', $item->slug) }}" class="text-decoration-none">
                         <h4 class="card-title" style="font-size: 20px;
-                    color: #333;">{{ $item->title }}</h4>
+                    color: #333;">
+                            {{Str::limit( $item->title, 30)}}
+                        </h4>
                     </a>
                     <div class="wrapper-card">
                         <div class="content-card">
