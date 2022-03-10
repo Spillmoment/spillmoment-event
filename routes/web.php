@@ -9,7 +9,6 @@ use App\Http\Controllers\Admin\EventRegisterControlller;
 use App\Http\Controllers\Admin\KategoriEventController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\UpdateProfileController;
-use App\Models\EventRegister;
 
 // User auth
 require __DIR__ . '/auth.php';

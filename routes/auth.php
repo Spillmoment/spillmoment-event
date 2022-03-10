@@ -60,5 +60,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('account', 'UpdateProfileController@changePasswordIndex')->name('profile.password');
         Route::put('account', 'UpdateProfileController@changePasswordStore')->name('profile.password.store');
+
+        Route::get('event', 'UpdateProfileController@event')->name('profile.event');
     });
 });

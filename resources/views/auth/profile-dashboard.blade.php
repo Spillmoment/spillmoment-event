@@ -22,9 +22,13 @@
                             <div class="list-group">
                                 <a href="{{ route('profile.data') }}"
                                     class="{{ Route::currentRouteName() == 'profile.data' ? 'active-profile' : '' }} list-group-item list-group-item-action">Profile</a>
+                                <a href="{{ route('profile.event') }}"
+                                    class="{{ Route::currentRouteName() == 'profile.event' ? 'active-profile' : '' }} list-group-item list-group-item-action">Event</a>
                                 <a href="{{ route('profile.password') }}"
                                     class="{{ Route::currentRouteName() == 'profile.password' ? 'active-profile' : '' }} list-group-item list-group-item-action">Account</a>
-
+                                <a href="{{ route('logout') }}"
+                                    class="{{ Route::currentRouteName() == 'logout' ? 'active-profile' : '' }} list-group-item list-group-item-action">
+                                    <i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>
                             <!--   SIDEBAR .//END   -->
                         </aside>
@@ -33,6 +37,8 @@
                                 <div class="col-md-12">
                                     @if(Route::currentRouteName() == 'profile.data')
                                     @include('auth.profile-change-data')
+                                    @elseif(Route::currentRouteName() == 'profile.event')
+                                    @include('auth.profile-event')
                                     @elseif(Route::currentRouteName() == 'profile.password')
                                     @include('auth.profile-change-password')
                                     @endif

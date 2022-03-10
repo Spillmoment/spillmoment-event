@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventRegister;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,5 +71,11 @@ class UpdateProfileController extends Controller
 		}
 
 		return back()->with(['success' => 'Profile berhasil diupdate!']);
+	}
+
+	public function event()
+	{
+		$data['event'] = EventRegister::with(['event', 'users'])->where('user_id', Auth::id())->get();
+		return view('auth.profile-dashboard', $data);
 	}
 }

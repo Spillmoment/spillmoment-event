@@ -74,7 +74,7 @@
                                     </div>
                                     <span class="btn btn-success btn-sm">
                                         <img src="{{ asset('assets/frontend/img/wa.png') }}" width="20px">
-                                        <a href="https://wa.me/085236639572?text=Hallo+Admin%2C+Saya+{{ auth()->user()->name }}+Berminat+Join+Dalam+Event+{{ $events->title }}"
+                                        <a href="https://wa.me/+6285236639572?text=Halo+Admin%2C+Saya+{{ auth()->user()->name }}+Berminat+Join+Dalam+Event+{{ $events->title }}"
                                             target="_blank" class="text-white text-decoration-none">
                                             Kunjungi Whats App
                                         </a>
@@ -141,7 +141,7 @@
 
                                     <!-- waktu event -->
                                     <label for=""><span>
-                                            <i class="fas fa-calendar-alt"></i> </span>Waktu Mulai</label>
+                                            <i class="fas fa-user-clock    "></i> </span>Waktu Mulai</label>
                                     <p> {{  $events->start_time->format('h:i')  }}.WIB - Selesai</p>
 
                                     <!-- harga dan certificate -->

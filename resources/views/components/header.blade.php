@@ -67,8 +67,13 @@
             <a href="#">Tentang</a>
             <div class="menu-auth">
                 <br /><br />
-                <a href=""><button>Masuk</button></a>
-                <a href=""><button>Mendaftar</button></a>
+                @auth
+                <a href="{{ route('profile.data') }}"><button>Profile</button></a>
+                <a href="{{ route('logout') }}"><button>Logout</button></a>
+                @else
+                <a href="{{ route('login') }}"><button>Masuk</button></a>
+                <a href="{{ route('register') }}"><button>Mendaftar</button></a>
+                @endauth
             </div>
         </div>
     </div>
