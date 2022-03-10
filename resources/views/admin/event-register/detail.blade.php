@@ -14,7 +14,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                             <li class="breadcrumb-item"><a href="#"><span class="fas fa-home"></span></a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.event-register.index') }}">Event</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.register-event.index') }}">Event</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Detail Registrasi Event</li>
                         </ol>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 mx-2">
-                        <a href="{{ route('admin.event-register.index') }}" class="btn btn-primary btn-sm"> <i
+                        <a href="{{ route('admin.register-event.index') }}" class="btn btn-primary btn-sm"> <i
                                 class="fa fa-angle-left" aria-hidden="true"></i> Kembali</a>
                     </div>
 

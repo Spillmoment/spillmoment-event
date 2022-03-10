@@ -12,15 +12,15 @@
                         aria-expanded="false">
                         <div class="media d-flex align-items-center">
                             <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder"
-                                @isset(Auth::user()->photo)
-                            src="{{ asset('uploads/users/' . Auth::user()->photo) }}"
+                                @isset(Auth::guard('admin')->user()->photo)
+                            src="{{ asset('uploads/users/' . Auth::guard('admin')->user()->photo) }}"
                             @else
                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                             @endisset
                             >
                             <div class="media-body ml-2 text-dark align-items-center d-none d-lg-block">
-                                <span
-                                    class="mb-0 font-small font-weight-bold">{{ Auth::user()->name ?? 'Guest' }}</span>
+                                <span class="mb-0 font-small font-weight-bold">
+                                    {{ Auth::guard('admin')->user()->name ?? 'Guest' }}</span>
                             </div>
                         </div>
                     </a>
@@ -28,18 +28,14 @@
                         <a class="dropdown-item font-weight-bold" href="#"><span class="far fa-user-circle"></span>My
                             Profile</a>
                         <a class="dropdown-item font-weight-bold" href="#"><span class="fas fa-cog"></span>Settings</a>
-                        {{-- <a class="dropdown-item font-weight-bold" href="#"><span class="fas fa-sign-out-alt text-danger"></span>Logout</a> --}}
-								<form method="post" action="{{ route('admin.logout') }}">
-									@csrf
+                        <form method="post" action="{{ route('admin.logout') }}">
+                            @csrf
 
-									{{-- <a href="{{ route('admin.logout') }}" class="dropdown-item font-weight-bold"
-											  onclick="event.preventDefault();
-															  this.closest('form').submit();"> --}}
-									<button type="submit" class="dropdown-item font-weight-bold">
-										<span class="fas fa-sign-out-alt text-danger"></span>Logout
-									</button>
-									{{-- </a> --}}
-							  </form>
+                            <button class="dropdown-item font-weight-bold" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                <span class="fas fa-sign-out-alt text-danger"></span>Logout
+                            </button>
+                        </form>
                     </div>
                 </li>
             </ul>

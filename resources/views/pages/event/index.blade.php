@@ -132,54 +132,57 @@
 @endsection
 
 @push('script')
-	 <script>
-		$(document).ready(function(){
-			$('#kategori-event').val(localStorage.getItem('category'));
-			$('#status-event').val(localStorage.getItem('status'));
-			$('#type-event').val(localStorage.getItem('type'));
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function () {
+        $('#kategori-event').val(localStorage.getItem('category'));
+        $('#status-event').val(localStorage.getItem('status'));
+        $('#type-event').val(localStorage.getItem('type'));
 
-			$("#kategori-event").change(function(){
-				let categoryValue = $('#kategori-event').val();
-				localStorage.setItem('category', categoryValue);
+        $("#kategori-event").change(function () {
+            let categoryValue = $('#kategori-event').val();
+            localStorage.setItem('category', categoryValue);
 
-				send()
-			});
-			
-			$("#status-event").change(function(){
-				let statusValue = $('#status-event').val();
-				localStorage.setItem('status', statusValue);
+            send()
+        });
 
-				send()
-			});
+        $("#status-event").change(function () {
+            let statusValue = $('#status-event').val();
+            localStorage.setItem('status', statusValue);
 
-			$("#type-event").change(function(){
-				let typeValue = $('#type-event').val();
-				localStorage.setItem('type', typeValue);
+            send()
+        });
 
-				send()
-			});
-			
-			let categoryStorage = localStorage.getItem('category');
-			let statusStorage = localStorage.getItem('status');
-			let typeStorage = localStorage.getItem('type');
+        $("#type-event").change(function () {
+            let typeValue = $('#type-event').val();
+            localStorage.setItem('type', typeValue);
 
-			function send() {
-				$.ajax({
-					type:'GET',
-					url:"{{ route('event.filter') }}",
-					data:{
-						category: localStorage.getItem('category'),
-						status: localStorage.getItem('status'),
-						type: localStorage.getItem('type'),
-					},
-					success:function(data)
-					{
-						$('#card-event').html(data);
-					}
-				})
-			}
+            send()
+        });
 
-			if (categoryStorage !== null || statusStorage !== null || typeStorage !== null) send()
-		});
-	 </script>
+        let categoryStorage = localStorage.getItem('category');
+        let statusStorage = localStorage.getItem('status');
+        let typeStorage = localStorage.getItem('type');
+
+        function send() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('event.filter') }}",
+                data: {
+                    category: localStorage.getItem('category'),
+                    status: localStorage.getItem('status'),
+                    type: localStorage.getItem('type'),
+                },
+                success: function (data) {
+                    $('#card-event').html(data);
+                }
+            })
+        }
+
+        if (categoryStorage !== null || statusStorage !== null || typeStorage !== null) send()
+    });
+
+</script>
 @endpush

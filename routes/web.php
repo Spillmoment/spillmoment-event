@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\EventRegisterControlller;
 use App\Http\Controllers\Admin\KategoriEventController;
 use App\Http\Controllers\Admin\SpeakerController;
+use App\Http\Controllers\UpdateProfileController;
+use App\Models\EventRegister;
 
 // User auth
 require __DIR__ . '/auth.php';
@@ -25,9 +27,7 @@ Route::prefix('event')
 		Route::post('join-event/{event_id}', [EventController::class, 'join'])->name('join');
 	});
 
-Route::get('/dashboard', function () {
-	return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [UpdateProfileController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 // Admin All Feature
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
@@ -41,11 +41,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		Route::post('forgot-password', 'PasswordResetLinkController@store')->name('password.email');
 		Route::get('reset-password/{token}', 'NewPasswordController@create')->name('password.reset');
 		Route::post('reset-password', 'NewPasswordController@store')->name('password.update');
-		
 	});
 
 	Route::middleware('admin')->group(function () {
-		Route::post('logout', [AuthenticatedSessionController::class,'destroy'])->name('logout');
+		Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 		// Route::get('dashboard', 'HomeController@index')->name('dashboard');
 		// Dashboard
 		Route::get('dashboard', [DashboardControlller::class, 'index'])->name('dashboard');
@@ -53,8 +52,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		Route::resource('kategori', KategoriEventController::class)->except(['show']);
 		Route::resource('speaker', SpeakerController::class);
 		Route::resource('event', AdminEventController::class);
-		Route::resource('event-register', EventRegisterControlller::class, ['only' => ['index', 'show']]);
+		// Register Event
+		Route::get('register-event', [EventRegisterControlller::class, 'index'])->name('register-event.index');
+		Route::get('register-event/{id}', [EventRegisterControlller::class, 'show'])->name('register-event.show');
 		Route::put('confirm-event/{id}/{state}', [EventRegisterControlller::class, 'confirm'])->name('confirm-event');
 	});
-
 });

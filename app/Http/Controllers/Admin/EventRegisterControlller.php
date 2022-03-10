@@ -16,7 +16,7 @@ class EventRegisterControlller extends Controller
                 ->latest();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
-                    return '<a class="btn btn-primary btn-sm font-weight-bold" href="' . route('admin.event-register.show', $item->id) . '"> Detail </a>';
+                    return '<a class="btn btn-primary btn-sm font-weight-bold" href="' . route('admin.register-event.show', $item->id) . '"> Detail </a>';
                 })
                 ->addColumn('name', function ($item) {
                     return $item->users->name;
@@ -37,8 +37,9 @@ class EventRegisterControlller extends Controller
     }
 
 
-    public function show(EventRegister $eventRegister)
+    public function show($id)
     {
+        $eventRegister = EventRegister::findOrFail($id);
         return view('admin.event-register.detail', [
             'event' => $eventRegister
         ]);
