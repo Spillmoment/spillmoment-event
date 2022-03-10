@@ -2,10 +2,14 @@
     <div class="card-header mb-2 text-dark bg-profile">
         <div class="clearfix">
             <h5 class="card-title mb-4">Profile {{ auth()->user()->name }}</h4>
+                <img src="{{ asset('uploads/users/'.Auth::user()->photo) }}" class="img-sm rounded-circle
+                border" width="100px" height="100px">
         </div>
+
     </div>
     <div class="card-body">
-        <form class="row g-3 needs-validation" method="POST" action="{{ route('profile.data.store') }}">
+        <form class="row g-3 needs-validation" method="POST" action="{{ route('profile.data.store') }}"
+            enctype="multipart/form-data">
             @csrf
             @method('put')
 
