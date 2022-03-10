@@ -48,16 +48,16 @@ class UpdateProfileController extends Controller
 			'email' => 'required|min:12|max:15|unique:users,email,' . Auth::id(),
 			'phone' => 'required|min:12|max:15|unique:users,phone,' . Auth::id(),
 			'gender' => 'required|in:pria,wanita',
-			// 'photo'	 => 'sometimes|nullable|image|mimes:jpeg,jpg,png,bmp',
+			'photo'	 => 'sometimes|nullable|image|mimes:jpeg,jpg,png,bmp',
 			'address' => 'required'
 		]);
 
-		/* if ($request->hasFile('photo')) {
+		if ($request->hasFile('photo')) {
 			File::delete('uploads/users/' . Auth::user()->photo);
-			$request->photo =  $request->file('photo');
-			$extention = $request->photo->getClientOriginalExtension();
+			$photo =  $request->file('photo');
+			$extention = $photo->getClientOriginalExtension();
 			$filename = time() . '.' . $extention;
-			$request->photo->move('uploads/users/', $filename);
+			$photo->move('uploads/users/', $filename);
 
 			User::findOrFail(Auth::id())->update([
 				'name' => $request->name,
@@ -66,18 +66,8 @@ class UpdateProfileController extends Controller
 				'gender' => $request->gender,
 				'photo' => $filename,
 				'address' => $request->address,
-			]); */
-		// } else {
-		// }
-
-
-		User::findOrFail(Auth::id())->update([
-			'name' => $request->name,
-			'email' => $request->email,
-			'phone' => $request->phone,
-			'gender' => $request->gender,
-			'address' => $request->address,
-		]);
+			]);
+		}
 
 		return back()->with(['success' => 'Profile berhasil diupdate!']);
 	}
