@@ -50,9 +50,10 @@
 
                                 <div class="mb-4">
                                     <label for="body">Deskripsi</label>
-                                    <input type="text"
+                                    <textarea type="text"
                                         class="form-control {{ $errors->first('body') ? 'is-invalid' : '' }}"
-                                        name="body" id="body" value="{{old('body')}}" placeholder="Masukkan Deskripsi">
+                                        name="body" id="body"
+                                        placeholder="Masukkan Deskripsi">{{old('body')}}</textarea>
                                     <div class="invalid-feedback">
                                         {{$errors->first('body')}}
                                     </div>
@@ -225,7 +226,7 @@
                                         <input data-datepicker="" name="event_date"
                                             class="form-control datepicker-input {{ $errors->first('event_date') ? 'is-invalid' : '' }}"
                                             id="event_date" type="text" placeholder="dd/mm/yyyy"
-                                            value="{{old('event_date')}}">
+                                            value="{{old('event_date')}}" autocomplete="off">
                                         <div class="invalid-feedback">
                                             {{$errors->first('event_date')}}
                                         </div>
@@ -262,6 +263,7 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
 <script>
     var readURL = function (input) {
         if (input.files && input.files[0]) {
@@ -277,6 +279,15 @@
     $(".form-control-file").on('change', function () {
         readURL(this);
     });
+
+    ClassicEditor
+        .create(document.querySelector('#body'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
 </script>
 <script src="{{ asset('assets/backend/js/picker/mdtimepicker.js') }}"></script>

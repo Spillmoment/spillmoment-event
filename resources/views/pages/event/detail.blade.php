@@ -51,7 +51,7 @@
                                 <div class="card-text">
                                     <hr>
                                     <p class="text-muted">
-                                        {{ $events->body }}
+                                        {!! $events->body !!}
                                     </p>
                                 </div>
                             </div>

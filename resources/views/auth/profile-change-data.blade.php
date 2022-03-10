@@ -2,8 +2,13 @@
     <div class="card-header mb-2 text-dark bg-profile">
         <div class="clearfix">
             <h5 class="card-title mb-4">Profile {{ auth()->user()->name }}</h4>
+                @if (Auth::user()->photo != null)
                 <img src="{{ asset('uploads/users/'.Auth::user()->photo) }}" class="img-sm rounded-circle
                 border" width="100px" height="100px">
+                @else
+                <img src="https://sekolahutsman.sch.id/wp-content/uploads/2016/03/no-profile.png" class="img-sm rounded-circle
+                border" width="100px" height="100px">
+                @endif
         </div>
 
     </div>
