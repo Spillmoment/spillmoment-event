@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Event;
 use App\Models\EventCategory;
+use App\Models\Partner;
 use App\Models\Speaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -31,6 +32,7 @@ class EventFactory extends Factory
             'slug'  => \Str::slug($title),
             'event_category_id' => $this->faker->randomElement(EventCategory::all()),
             'speaker_id' => $this->faker->randomElement(Speaker::all()),
+            'partner_id' => $this->faker->randomElement(Partner::all()),
             'body'  => $this->faker->paragraph(),
             'photo' => $this->faker->imageUrl($width = 640, $height = 480),
             'price' => $this->faker->randomNumber(2),
