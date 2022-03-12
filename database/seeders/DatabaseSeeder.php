@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             EventCategorySeeder::class,
             SpeakerSeeder::class,
+            PartnerSeeder::class,
             EventSeeder::class,
             UserSeeder::class
         ]);
