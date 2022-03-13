@@ -45,6 +45,16 @@ class EventController extends Controller
 
     }
 
+	 public function kategoriGetAutocomplete(Request $request)
+    {
+		$data = [];
+		if ($request->has('q')) {
+			$cari = $request->q;
+			$data = EventCategory::select('id', 'name', 'slug')->where('name', 'LIKE', '%' . $cari . '%')->get();
+		}
+		return response()->json($data);
+    }
+
 	 public function filter(Request $request)
 	 {
 		if($request->ajax()){
@@ -99,6 +109,10 @@ class EventController extends Controller
 								->get();
 			}
 
+			if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_TYPE == null) {
+				$events = Event::with('category')->get();
+			}
+			
 			if ($REQ_CATEGORY != null && $REQ_STATUS != null && $REQ_TYPE != null) {
 				$events = Event::with('category')
 								->whereHas('category', function ($query) use ($request) {
