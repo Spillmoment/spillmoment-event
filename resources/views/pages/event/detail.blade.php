@@ -121,7 +121,7 @@
                                     <!-- partner -->
                                     <label for=""><span>
                                             <i class="fas fa-handshake"></i> </span> Partner</label>
-                                    <p>{{ $events->partner }}</p>
+                                    <p>{{ $events->partner->name ?? '' }}</p>
 
                                     <!-- Status -->
                                     <label for=""><span>
@@ -147,7 +147,7 @@
                                     <!-- mulai event -->
                                     <label for=""><span>
                                             <i class="fas fa-calendar-alt"></i> </span>Tanggal Mulai</label>
-                                    <p> {{ \Carbon\Carbon::parse($events->event_date)->isoFormat('dddd, D MMMM Y')}}</p>
+                                    <p> {{ $events->event_date->isoFormat('dddd, D MMMM Y')}}</p>
 
                                     <!-- waktu event -->
                                     <label for=""><span>
