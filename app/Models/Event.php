@@ -10,7 +10,6 @@ class Event extends Model
 {
     use HasFactory;
 
-
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])
@@ -20,7 +19,7 @@ class Event extends Model
     protected $dates = ['start_time', 'end_time', 'event_date'];
 
     protected $fillable = [
-        'event_category_id', 'speaker_id', 'title', 'slug', 'body', 'photo', 'price', 'link', 'partner',
+        'event_category_id', 'speaker_id', 'partner_id', 'title', 'slug', 'body', 'photo', 'price', 'link', 'partner',
         'quota', 'type', 'status', 'place', 'event_date', 'start_time', 'end_time', 'started'
     ];
 
@@ -32,6 +31,11 @@ class Event extends Model
     public function speaker()
     {
         return $this->belongsTo(Speaker::class);
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class, 'partner_id');
     }
 
     public function event_register()
