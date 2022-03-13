@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EventRequest;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Models\Event;
-use App\Models\EventCategory;
-use App\Models\Speaker;
+use App\Models\{Event, EventCategory, Partner, Speaker};
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -26,10 +23,13 @@ class EventController extends Controller
                     return view('admin.events.action', compact('item'));
                 })
                 ->addColumn('category', function ($item) {
-                    return $item->category->name;
+                    return $item->category->name ?? 'N/A';
                 })
                 ->addColumn('speaker', function ($item) {
-                    return $item->speaker->name;
+                    return $item->speaker->name ?? 'N/A';
+                })
+                ->addColumn('partner', function ($item) {
+                    return $item->partner->name ?? 'N/A';
                 })
                 ->editColumn('photo', function ($item) {
                     if ($item->photo) {
@@ -46,11 +46,10 @@ class EventController extends Controller
 
     public function create()
     {
-        $category = EventCategory::all();
-        $speaker = Speaker::all();
         return view('admin.events.create', [
-            'category' => $category,
-            'speaker' => $speaker
+            'category' => EventCategory::all(),
+            'speaker' => Speaker::all(),
+            'partner' => Partner::all()
         ]);
     }
 
@@ -89,8 +88,9 @@ class EventController extends Controller
         $speaker = Speaker::all();
         return view('admin.events.edit', [
             'event' => $event,
-            'category' => $category,
-            'speaker' => $speaker
+            'category' => EventCategory::all(),
+            'speaker' => Speaker::all(),
+            'partner' => Partner::all()
         ]);
     }
 
