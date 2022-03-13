@@ -7,6 +7,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/event.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @endpush
 
 <div class="container">
@@ -23,11 +26,12 @@
                     <div class="wrapper-combo-box">
                         <div class="combo-box">
                             <p>Kategori Event</p><br>
-                            <select name="kategori-event" id="kategori-event" class="select-combox">
+                            {{-- <select name="kategori-event" id="kategori-event" class="select-combox">
                                 @foreach ($category as $item)
                                 <option value="{{ $item->slug }}">{{ $item->name }}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
+									 <select name="kategori-event" id="kategori-event" class="select-combox"></select>
                         </div>
                         <div class="combo-box">
                             <p>Status Event</p><br>
@@ -46,7 +50,14 @@
                             </select>
                         </div>
 
-                    </div>
+							</div>
+							<div class="row mt-2">
+								<div class="d-grid gap-2 col-4 mx-auto">
+									<button id="btn-reset-filter" class="btn" style="background-color: #e4b391">
+										Bersihkan
+									</button>
+								 </div>
+							</div>
                 </div>
             </div>
         </div>
@@ -135,53 +146,99 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#kategori-event').val(localStorage.getItem('category'));
-        $('#status-event').val(localStorage.getItem('status'));
-        $('#type-event').val(localStorage.getItem('type'));
 
-        $("#kategori-event").change(function () {
-            let categoryValue = $('#kategori-event').val();
-            localStorage.setItem('category', categoryValue);
+		let categoryStorage = localStorage.getItem('category');
+		let statusStorage = localStorage.getItem('status');
+		let typeStorage = localStorage.getItem('type');
 
-            send()
-        });
+		// Set default option if storage exists
+		const str2 = categoryStorage.charAt(0).toUpperCase() + categoryStorage.slice(1);
+		//   $("#kategori-event").html(`<option value=${localStorage.getItem('category')}> ${str2} </option>`)
+		  $('#kategori-event').append(`<option value="${categoryStorage}"> ${str2} </option>`);
+		  $('#status-event').val(statusStorage);
+		  $('#type-event').val(typeStorage);
+		  // ----------------------------------------
 
-        $("#status-event").change(function () {
-            let statusValue = $('#status-event').val();
-            localStorage.setItem('status', statusValue);
+		$('#kategori-event').select2({
+			placeholder: 'Kategori...',
+			ajax: {
+			url: "{{ route('event.kategori.getAutocomplte') }}",
+			dataType: 'json',
+			delay: 250,
+			processResults: function (data) {
+				return {
+					results:  $.map(data, function (item) {
+					return {
+						text: item.name,
+						id: item.slug
+					}
+					})
+				};
+			},
+			cache: true
+			}
+		});
 
-            send()
-        });
+		$("#kategori-event").change(function () {
+			let categoryValue = $('#kategori-event').val();
+			localStorage.setItem('category', categoryValue);
 
-        $("#type-event").change(function () {
-            let typeValue = $('#type-event').val();
-            localStorage.setItem('type', typeValue);
+			send()
+		});
 
-            send()
-        });
+		$("#status-event").change(function () {
+			let statusValue = $('#status-event').val();
+			localStorage.setItem('status', statusValue);
 
-        let categoryStorage = localStorage.getItem('category');
-        let statusStorage = localStorage.getItem('status');
-        let typeStorage = localStorage.getItem('type');
+			send()
+		});
 
-        function send() {
-            $.ajax({
-                type: 'GET',
-                url: "{{ route('event.filter') }}",
-                data: {
-                    category: localStorage.getItem('category'),
-                    status: localStorage.getItem('status'),
-                    type: localStorage.getItem('type'),
-                },
-                success: function (data) {
-                    $('#card-event').html(data);
-                }
-            })
-        }
+		$("#type-event").change(function () {
+			let typeValue = $('#type-event').val();
+			localStorage.setItem('type', typeValue);
 
-        if (categoryStorage !== null || statusStorage !== null || typeStorage !== null) send()
+			send()
+		});
+		
+		$("#btn-reset-filter").click(function () {
+			
+			localStorage.removeItem("category");
+			localStorage.removeItem("status");
+			localStorage.removeItem("type");
+
+
+			send()
+		});
+
+		function send() {
+			$.ajax({
+					type: 'GET',
+					url: "{{ route('event.filter') }}",
+					data: {
+					category: localStorage.getItem('category'),
+					status: localStorage.getItem('status'),
+					type: localStorage.getItem('type'),
+					},
+					success: function (data) {
+					if (localStorage.getItem('category') === null) document.getElementById('kategori-event').value=null;
+					if (localStorage.getItem('status') === null) document.getElementById('status-event').value=null;
+					if (localStorage.getItem('type') === null) document.getElementById('type-event').value=null;
+					
+					$('#card-event').html(data);
+					if (data == '') {
+						$('#card-event').html('<h6 style="color: #e0a173" class="text-center"><strong>Event tidak ditemukan, mungkin akan hadir dalam beberapa waktu mendatang.</strong></h6>');
+					}
+					}
+			})
+		}
+
+		if (categoryStorage !== null || statusStorage !== null || typeStorage !== null) send()
+  
+		
+
     });
 
 </script>
