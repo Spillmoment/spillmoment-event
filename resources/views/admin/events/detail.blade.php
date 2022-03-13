@@ -50,7 +50,7 @@
 
                             <tr>
                                 <th>Deskripsi</th>
-                                <td>{{ $event->body }}</td>
+                                <td>{!! $event->body !!}</td>
                             </tr>
 
                             <tr>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('event_category_id')->constrained();
             $table->foreignId('speaker_id')->constrained();
+            $table->foreignId('partner_id')->constrained();
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('body');

@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('event_registers', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-				$table->enum('pay_status', ['pending', 'success'])->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('address');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_registers');
+        Schema::dropIfExists('partners');
     }
 };
