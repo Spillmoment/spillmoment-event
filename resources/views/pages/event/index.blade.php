@@ -51,9 +51,7 @@
                         </div>
                         <div class="combo-box">
                             <p>Partner</p><br>
-                            <select name="type-event" id="type-event" class="select-combox">
-                                <option value=""></option>
-                            </select>
+                            <select name="partner-event" id="partner-event" class="select-combox"></select>
                         </div>
 
 							</div>
@@ -156,19 +154,21 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-    $(document).ready(function () {
-
-		let categoryStorage = localStorage.getItem('category');
+	$(document).ready(function () {
+		let categoryStorage = localStorage.getItem('category') ? localStorage.getItem('category') : 'kategori...' ;
 		let statusStorage = localStorage.getItem('status');
 		let typeStorage = localStorage.getItem('type');
+		let partnerStorage = localStorage.getItem('partner') ? localStorage.getItem('partner') : 'partner...' ;
 
 		// Set default option if storage exists
-		const str2 = categoryStorage.charAt(0).toUpperCase() + categoryStorage.slice(1);
-		//   $("#kategori-event").html(`<option value=${localStorage.getItem('category')}> ${str2} </option>`)
-		  $('#kategori-event').append(`<option value="${categoryStorage}"> ${str2} </option>`);
-		  $('#status-event').val(statusStorage);
-		  $('#type-event').val(typeStorage);
-		  // ----------------------------------------
+		const categoryToUpper = categoryStorage.charAt(0).toUpperCase() + categoryStorage.slice(1);
+		const partnerToUpper = partnerStorage.charAt(0).toUpperCase() + partnerStorage.slice(1);
+
+		$('#kategori-event').append(`<option value="${categoryStorage}"> ${categoryToUpper} </option>`);
+		$('#status-event').val(statusStorage);
+		$('#type-event').val(typeStorage);
+		$('#partner-event').append(`<option value="${partnerStorage}"> ${partnerToUpper} </option>`);
+		// ----------------------------------------
 
 		$('#kategori-event').select2({
 			placeholder: 'Kategori...',
@@ -186,7 +186,27 @@
 					})
 				};
 			},
-			cache: true
+				cache: true
+			}
+		});
+		
+		$('#partner-event').select2({
+			placeholder: 'Partner...',
+			ajax: {
+			url: "{{ route('event.partner.getAutocomplte') }}",
+			dataType: 'json',
+			delay: 250,
+			processResults: function (data) {
+				return {
+					results:  $.map(data, function (item) {
+					return {
+						text: `${item.name} - ${item.address}`,
+						id: item.slug
+					}
+					})
+				};
+			},
+				cache: true
 			}
 		});
 
@@ -210,44 +230,51 @@
 
 			send()
 		});
+
+		$("#partner-event").change(function () {
+			let partnerValue = $('#partner-event').val();
+			localStorage.setItem('partner', partnerValue);
+
+			send()
+		});
 		
 		$("#btn-reset-filter").click(function () {
-			
 			localStorage.removeItem("category");
 			localStorage.removeItem("status");
 			localStorage.removeItem("type");
-
+			localStorage.removeItem("partner");
 
 			send()
 		});
 
 		function send() {
 			$.ajax({
-					type: 'GET',
-					url: "{{ route('event.filter') }}",
-					data: {
+				type: 'GET',
+				url: "{{ route('event.filter') }}",
+				data: {
 					category: localStorage.getItem('category'),
 					status: localStorage.getItem('status'),
 					type: localStorage.getItem('type'),
-					},
-					success: function (data) {
+					partner: localStorage.getItem('partner'),
+				},
+				success: function (data) {
 					if (localStorage.getItem('category') === null) document.getElementById('kategori-event').value=null;
 					if (localStorage.getItem('status') === null) document.getElementById('status-event').value=null;
 					if (localStorage.getItem('type') === null) document.getElementById('type-event').value=null;
+					if (localStorage.getItem('partner') === null) document.getElementById('partner-event').value=null;
 					
-					$('#card-event').html(data);
 					if (data == '') {
 						$('#card-event').html('<h6 style="color: #e0a173" class="text-center"><strong>Event tidak ditemukan, mungkin akan hadir dalam beberapa waktu mendatang.</strong></h6>');
 					}
-					}
+						$('#card-event').html(data);
+					console.log(data);
+
+				}
 			})
 		}
 
 		if (categoryStorage !== null || statusStorage !== null || typeStorage !== null) send()
-  
-		
 
-    });
-
+	});
 </script>
 @endpush
