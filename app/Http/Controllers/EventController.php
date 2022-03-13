@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\Models\EventCategory;
-use App\Models\EventRegister;
+use App\Models\{Event, EventCategory, EventRegister};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -15,17 +13,19 @@ class EventController extends Controller
 	{
 		// initial for select
 		$category = EventCategory::all();
-		$status = Event::where('status', 'online')
+		$status = Event::with(['category', 'speaker', 'partner'])
+			->where('status', 'online')
 			->orWhere('status', 'offline')
 			->groupBy('status')
 			->get();
-		$type = Event::where('type', 'paid')
+		$type = Event::with(['category', 'speaker', 'partner'])
+			->where('type', 'paid')
 			->orWhere('type', 'free')
 			->groupBy('type')
 			->get();
 		// ---------------
 
-		$event = Event::all();
+		$event = Event::with(['category', 'speaker', 'partner'])->latest()->paginate(6);
 		return view('pages.event.index', [
 			'category' => $category,
 			'events' => $event,
@@ -185,9 +185,11 @@ class EventController extends Controller
 
 	public function detail($slug)
 	{
-		$event = Event::where('slug', $slug)->first();
+		$event = Event::with(['category', 'speaker', 'partner'])
+			->where('slug', $slug)->first();
 		$register = EventRegister::where('event_id', $event->id)->count();
-		$cek_state = EventRegister::where('event_id', $event->id)->where('user_id', Auth::id())->count();
+		$cek_state = EventRegister::where('event_id', $event->id)
+			->where('user_id', Auth::id())->count();
 
 		return view('pages.event.detail', [
 			'events' => $event,
