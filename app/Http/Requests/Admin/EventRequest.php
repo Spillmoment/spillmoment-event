@@ -24,17 +24,16 @@ class EventRequest extends FormRequest
         return [
             'event_category_id' => 'required',
             'speaker_id' => 'required',
+            'partner_id' => 'required',
             'title' => 'required|max:255',
             'body' => 'required',
             'photo' => $photo,
             'price' => 'nullable|integer',
             'link' => 'required',
-            'partner' => 'required',
             'quota' => 'required|integer',
             'type' => 'required|in:paid,free',
             'status' => 'required|in:online,offline',
             'place' => 'required',
-            // 'started' => 'required',
             'event_date' => 'required|date',
             'start_time' => 'required',
         ];
@@ -43,11 +42,13 @@ class EventRequest extends FormRequest
     public function messages()
     {
         return [
+            'event_category_id.required' => 'Event kategori wajib diisi',
+            'speaker_id.required' => 'Speaker wajib diisi',
+            'partner_id.required' => 'Partner wajib diisi',
             'title.required' => 'Nama event wajib diisi',
             'body.required' => 'Deskripsi wajib diisi',
             'photo.required' => 'Foto wajib diisi',
             'link.required' => 'Link wajib diisi',
-            'partner.required' => 'Partner wajib diisi',
             'quota.required' => 'Kuota wajib diisi',
             'place.required' => 'Tempat wajib diisi',
             'event_date.required' => 'Tanggal event wajib diisi',
