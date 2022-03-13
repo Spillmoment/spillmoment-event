@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\Admin\DashboardControlller;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\{DashboardControlller, EventRegisterControlller, KategoriEventController, PartnerController, SpeakerController};
 use App\Http\Controllers\Admin\EventController as AdminEventController;
-use App\Http\Controllers\Admin\EventRegisterControlller;
-use App\Http\Controllers\Admin\KategoriEventController;
-use App\Http\Controllers\Admin\SpeakerController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\UpdateProfileController;
 
 // User auth
@@ -50,6 +47,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		// Event
 		Route::resource('kategori', KategoriEventController::class)->except(['show']);
 		Route::resource('speaker', SpeakerController::class);
+		Route::resource('partner', PartnerController::class)->except(['show']);
 		Route::resource('event', AdminEventController::class);
 		// Register Event
 		Route::get('register-event', [EventRegisterControlller::class, 'index'])->name('register-event.index');
