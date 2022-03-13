@@ -23,6 +23,7 @@ Route::prefix('event')
 		Route::get('', [EventController::class, 'index'])->name('index');
 		Route::get('filter', [EventController::class, 'filter'])->name('filter');
 		Route::get('kategori-event', [EventController::class, 'kategoriGetAutocomplete'])->name('kategori.getAutocomplte');
+		Route::get('partner-event', [EventController::class, 'partnerGetAutocomplete'])->name('partner.getAutocomplte');
 		Route::get('detail/{slug}', [EventController::class, 'detail'])->name('detail');
 		Route::post('join-event/{event_id}', [EventController::class, 'join'])->name('join');
 	});
