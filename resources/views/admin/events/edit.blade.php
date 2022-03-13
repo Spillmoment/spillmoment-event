@@ -51,9 +51,10 @@
 
                                 <div class="mb-4">
                                     <label for="body">Deskripsi</label>
-                                    <input type="text"
+                                    <textarea type="text"
                                         class="form-control {{ $errors->first('body') ? 'is-invalid' : '' }}"
-                                        name="body" id="body" value="{{$event->body}}" placeholder="Masukkan Deskripsi">
+                                        name="body" id="body"
+                                        placeholder="Masukkan Deskripsi">{{old('body',$event->body)}}</textarea>
                                     <div class="invalid-feedback">
                                         {{$errors->first('body')}}
                                     </div>
@@ -87,14 +88,18 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="partner">Partner</label>
-                                    <input type="text"
-                                        class="form-control {{ $errors->first('partner') ? 'is-invalid' : '' }}"
-                                        name="partner" id="partner" value="{{$event->partner}}"
-                                        placeholder="Masukkan Partner">
-                                    <div class="invalid-feedback">
-                                        {{$errors->first('partner')}}
-                                    </div>
+                                    <label class="my-1 mr-2" for="partner">Partner Event</label>
+                                    <select name="partner_id"
+                                        class="form-select {{ $errors->first('partner_id') ? 'is-invalid' : '' }}"
+                                        id="partner" aria-label="Default select example">
+                                        <option selected="">Pilih Partner</option>
+                                        @forelse ($partner as $row)
+                                        <option value="{{ $row->id }}" @selected($event->partner_id == $row->id)
+                                            >
+                                            @empty
+                                        <option value=""></option>
+                                        @endforelse
+                                    </select>
                                 </div>
 
                                 <div>
@@ -298,6 +303,7 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
 <script>
     var readURL = function (input) {
         if (input.files && input.files[0]) {
@@ -313,6 +319,15 @@
     $(".form-control-file").on('change', function () {
         readURL(this);
     });
+
+    ClassicEditor
+        .create(document.querySelector('#body'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
 </script>
 <script src="{{ asset('assets/backend/js/picker/mdtimepicker.js') }}"></script>

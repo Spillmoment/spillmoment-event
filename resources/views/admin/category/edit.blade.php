@@ -27,7 +27,7 @@
                             <div class="mb-3">
                                 <label for="name">Nama Kategori</label>
                                 <input type="text" class="form-control {{ $errors->first('name') ? 'is-invalid' : '' }}"
-                                    name="name" id="name" value="{{$kategori->name}}" placeholder="Nama Kursus">
+                                    name="name" id="name" value="{{$kategori->name}}" placeholder="Nama Kategori">
                                 <div class="invalid-feedback">
                                     {{$errors->first('name')}}
                                 </div>

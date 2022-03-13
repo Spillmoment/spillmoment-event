@@ -88,14 +88,17 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="partner">Partner</label>
-                                    <input type="text"
-                                        class="form-control {{ $errors->first('partner') ? 'is-invalid' : '' }}"
-                                        name="partner" id="partner" value="{{old('partner')}}"
-                                        placeholder="Masukkan Partner">
-                                    <div class="invalid-feedback">
-                                        {{$errors->first('partner')}}
-                                    </div>
+                                    <label class="my-1 mr-2" for="partner">Partner Event</label>
+                                    <select name="partner_id"
+                                        class="form-select {{ $errors->first('partner_id') ? 'is-invalid' : '' }}"
+                                        id="partner" aria-label="Default select example">
+                                        <option selected="">Pilih Partner</option>
+                                        @forelse ($partner as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @empty
+                                        <option value=""></option>
+                                        @endforelse
+                                    </select>
                                 </div>
 
                                 <div>

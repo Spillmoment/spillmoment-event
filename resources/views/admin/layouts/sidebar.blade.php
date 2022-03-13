@@ -54,6 +54,14 @@
                 </a>
             </li>
 
+            <!-- Sidebar Partner -->
+            <li class="nav-item {{ (request()->is('admin/partner*')) ? 'active' : '' }}">
+                <a href="{{ route('admin.partner.index') }}" class="nav-link">
+                    <span class="sidebar-icon"><span class="fas fa-handshake"></span></span>
+                    <span>Partner Event</span>
+                </a>
+            </li>
+
             <!-- Sidebar Event -->
             <li class="nav-item {{ (request()->is('admin/event*')) ? 'active' : '' }}">
                 <a href="{{ route('admin.event.index') }}" class="nav-link">
