@@ -32,7 +32,7 @@
                         </div>
                         @endif
 
-                        <form method="POST" action="{{ url('/login') }}">
+                        <form method="POST" id="login-form" action="" >
                             @csrf
                             <div class="auth-body">
                                 <p>Alamat Email</p>
@@ -84,6 +84,8 @@
 
 @push('script')
 <script>
+	document.getElementById("login-form").action = `/login?page=${document.referrer}`;
+	
     var user = document.querySelector("#userphonemail").value;
     var pass = document.querySelector("#password").value;
 
