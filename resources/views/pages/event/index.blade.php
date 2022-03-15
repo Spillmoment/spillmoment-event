@@ -283,8 +283,9 @@
 					
 					if (data == '') {
 						$('#card-event').html('<h6 style="color: #e0a173" class="text-center"><strong>Event tidak ditemukan, mungkin akan hadir dalam beberapa waktu mendatang.</strong></h6>');
-					}
+					}else{
 						$('#card-event').html(data);
+					}
 					console.log(data);
 
 				}
