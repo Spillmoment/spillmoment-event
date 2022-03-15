@@ -10,7 +10,7 @@
                 <div class="col-body">
                     <div class="auth-box">
                         <div class="auth-icon-brand">
-                            <img src="{{ asset('img/logo-spillmoment.png') }}" alt="" />
+                            <img src="{{ asset('assets/frontend/img/logo-spillmoment.png') }}" alt="" />
                         </div>
                         <div class="auth-title">
                             <h2>Login</h2>
@@ -32,7 +32,7 @@
                         </div>
                         @endif
 
-                        <form method="POST" id="login-form" action="" >
+                        <form method="POST" id="login-form" action="">
                             @csrf
                             <div class="auth-body">
                                 <p>Alamat Email</p>
@@ -84,8 +84,8 @@
 
 @push('script')
 <script>
-	document.getElementById("login-form").action = `/login?page=${document.referrer}`;
-	
+    document.getElementById("login-form").action = `/login?page=${document.referrer}`;
+
     var user = document.querySelector("#userphonemail").value;
     var pass = document.querySelector("#password").value;
 
