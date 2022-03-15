@@ -26,12 +26,7 @@
                     <div class="wrapper-combo-box">
                         <div class="combo-box">
                             <p>Kategori Event</p><br>
-                            {{-- <select name="kategori-event" id="kategori-event" class="select-combox">
-                                @foreach ($category as $item)
-                                <option value="{{ $item->slug }}">{{ $item->name }}</option>
-                                @endforeach
-                            </select> --}}
-									 <select name="kategori-event" id="kategori-event" class="select-combox"></select>
+                            <select name="kategori-event" id="kategori-event" class="select-combox"></select>
                         </div>
                         <div class="combo-box">
                             <p>Status Event</p><br>
@@ -54,14 +49,14 @@
                             <select name="partner-event" id="partner-event" class="select-combox"></select>
                         </div>
 
-							</div>
-							<div class="row mt-2">
-								<div class="d-grid gap-2 col-4 mx-auto">
-									<button id="btn-reset-filter" class="btn" style="background-color: #e4b391">
-										Bersihkan
-									</button>
-								 </div>
-							</div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="d-grid gap-2 col-4 mx-auto">
+                            <button id="btn-reset-filter" class="btn" style="background-color: #e4b391">
+                                <i class="fas fa-refresh "></i> Refresh
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,23 +137,30 @@
         </div>
         @endforelse
 
+
+        @if($events->lastPage() > 1)
         <nav aria-label="Page navigation example">
             <ul class="pagination pagination-sm">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">Previous</span>
-                    </a>
+                @if($events->currentPage() != $events->onFirstPage())
+                <li class="page-item"><a class="page-link" href="{{ $events->previousPageUrl() }}">Previous</a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">Next</span>
-                    </a>
-                </li>
+                @endif
+                @for($i = 1; $i <= $events->lastPage(); $i++)
+                    <li class="page-item {{ $i == $events->currentPage() ? 'active' : '' }}"><a
+                            class="page-link {{ $i == $events->currentPage() ? 'current' : '' }}"
+                            href="{{ $events->url($i) }}">{{ $i }}</a></li>
+                    @endfor
+                    @if($events->currentPage() != $events->lastPage())
+                    <li class="page-item"><a class="page-link" href="{{ $events->nextPageUrl()  }}">Next</a>
+                    </li>
+                    @endif
+                    </li>
             </ul>
         </nav>
+        @endif
+
+
+
 
     </div>
 </div>

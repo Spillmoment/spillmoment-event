@@ -22,14 +22,14 @@ class EventController extends Controller
                 ->addColumn('action', function ($item) {
                     return view('admin.events.action', compact('item'));
                 })
+                ->editColumn('title', function ($item) {
+                    return Str::limit($item->title, 30);
+                })
                 ->addColumn('category', function ($item) {
                     return $item->category->name ?? 'N/A';
                 })
                 ->addColumn('speaker', function ($item) {
                     return $item->speaker->name ?? 'N/A';
-                })
-                ->addColumn('partner', function ($item) {
-                    return $item->partner->name ?? 'N/A';
                 })
                 ->editColumn('photo', function ($item) {
                     if ($item->photo) {
@@ -38,7 +38,7 @@ class EventController extends Controller
                         return 'N/A';
                     }
                 })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action', 'photo', 'title'])
                 ->make();
         }
         return view('admin.events.index');
@@ -84,8 +84,6 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-        $category = EventCategory::all();
-        $speaker = Speaker::all();
         return view('admin.events.edit', [
             'event' => $event,
             'category' => EventCategory::all(),

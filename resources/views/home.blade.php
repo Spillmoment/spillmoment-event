@@ -12,7 +12,7 @@
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
-                <img src="https://cdn.spillmoment.id/img/gambar1.jpeg" alt="Spillmoment picture" />
+                <img src="https://cdn.spillmoment.id/img/unsplash_BcVvVvqiCGA.png" alt="Spillmoment picture" />
             </div>
             <div class="item-carousel">
                 <div class="content-item">
@@ -20,7 +20,7 @@
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
-                <img src="https://cdn.spillmoment.id/img/gambar2.jpeg" alt="Spillmoment picture" />
+                <img src="https://cdn.spillmoment.id/img/unsplash_mW8IZdX7n8E.png" alt="Spillmoment picture" />
             </div>
             <div class="item-carousel">
                 <div class="content-item">
@@ -28,7 +28,7 @@
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
-                <img src="https://cdn.spillmoment.id/img/gambar1.jpeg" alt="Spillmoment picture" />
+                <img src="https://cdn.spillmoment.id/img/unsplash_smgTvepind4.png" alt="Spillmoment picture" />
             </div>
             <div class="item-carousel">
                 <div class="content-item">
@@ -36,7 +36,7 @@
                     <br /><br />
                     <button>Pesan Sekarang</button>
                 </div>
-                <img src="https://cdn.spillmoment.id/img/gambar2.jpeg" alt="Spillmoment picture" />
+                <img src="https://cdn.spillmoment.id/img/image 1.png" alt="Spillmoment picture" />
             </div>
         </div>
 

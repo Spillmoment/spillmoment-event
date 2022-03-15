@@ -76,6 +76,7 @@ class UpdateProfileController extends Controller
 	public function event()
 	{
 		$data['event'] = EventRegister::with(['event', 'users'])->where('user_id', Auth::id())->get();
+		$data['check_event'] = EventRegister::all()->count();
 		return view('auth.profile-dashboard', $data);
 	}
 }

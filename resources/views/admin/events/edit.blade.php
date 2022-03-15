@@ -92,13 +92,11 @@
                                     <select name="partner_id"
                                         class="form-select {{ $errors->first('partner_id') ? 'is-invalid' : '' }}"
                                         id="partner" aria-label="Default select example">
-                                        <option selected="">Pilih Partner</option>
-                                        @forelse ($partner as $row)
+                                        @foreach ($partner as $row)
                                         <option value="{{ $row->id }}" @selected($event->partner_id == $row->id)
                                             >
-                                            @empty
-                                        <option value=""></option>
-                                        @endforelse
+                                            {{ $row->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 

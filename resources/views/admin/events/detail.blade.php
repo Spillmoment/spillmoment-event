@@ -92,7 +92,7 @@
 
                             <tr>
                                 <th>Partner</th>
-                                <td>{{ $event->partner }}</td>
+                                <td>{{ $event->partner->name }}</td>
                             </tr>
 
                             <tr>
