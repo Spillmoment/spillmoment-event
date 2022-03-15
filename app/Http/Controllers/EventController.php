@@ -29,7 +29,9 @@ class EventController extends Controller
 			->get();
 		// ---------------
 
-		$event = Event::with(['category', 'speaker', 'partner'])->latest()->paginate(6);
+		$event = Event::with(['category', 'speaker', 'partner'])
+			->latest()->paginate(6);
+
 		return view('pages.event.index', [
 			'category' => $category,
 			'events' => $event,

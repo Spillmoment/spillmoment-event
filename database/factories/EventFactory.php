@@ -37,7 +37,6 @@ class EventFactory extends Factory
             'photo' => $this->faker->imageUrl($width = 640, $height = 480),
             'price' => $this->faker->randomNumber(2),
             'link'  => 'https:example.com',
-            'partner' => 'BIll Gates',
             'quota' => 5,
             'place' => 'Stadion Bung karno',
             'event_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
