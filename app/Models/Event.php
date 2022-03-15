@@ -19,7 +19,7 @@ class Event extends Model
     protected $dates = ['start_time', 'end_time', 'event_date'];
 
     protected $fillable = [
-        'event_category_id', 'speaker_id', 'partner_id', 'title', 'slug', 'body', 'photo', 'price', 'link', 'partner',
+        'event_category_id', 'speaker_id', 'partner_id', 'title', 'slug', 'body', 'photo', 'price', 'link',
         'quota', 'type', 'status', 'place', 'event_date', 'start_time', 'end_time', 'started'
     ];
 

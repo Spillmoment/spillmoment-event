@@ -55,7 +55,6 @@
                                 <th>Nama Event</th>
                                 <th>Kategori</th>
                                 <th>Speaker</th>
-                                <th>Partner</th>
                                 <th>Foto</th>
                                 <th width="210">Action</th>
                             </tr>
@@ -104,10 +103,6 @@
             {
                 data: 'speaker',
                 name: 'speaker.name'
-            },
-            {
-                data: 'partner',
-                name: 'partner.name'
             },
             {
                 data: 'photo',
