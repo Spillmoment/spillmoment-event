@@ -1,7 +1,8 @@
 # SpillMoment
-## Marketplace Engaged in Property and logistics for the delivery of catering food orders
+## Marketplace Engaged In Property And Logistics For The Delivery Of Catering Food Orders
 
-### Installation
+### Step By Step Installation
+
 - Clone this project using the command below:
     </br>``git clone https://github.com/Spillmoment/spillmoment-event/``
     
