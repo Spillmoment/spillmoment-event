@@ -126,11 +126,158 @@
     <div class="box-p3">
         <div class="container">
             <div class="option-menu-box">
-                <h1>Promosi</h1>
+                <h1>Paket Promo</h1>
                 <router-link to="" class="showall">Lihat semua</router-link>
             </div>
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-3">
+
+                    <div class="card">
+                        <!-- bagian image card -->
+                        <div class="shine">
+                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
+                        </div>
+                        <!-- bagian content card -->
+                        <div class="content-item">
+                            <div class="flex-card">
+                                <div class="col-card">
+                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
+                                </div>
+                                <div class="col-card">
+                                    <button>Detail</button>
+                                </div>
+                            </div>
+
+                            <div class="event">
+                                <h2>Acara</h2>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <div class="flex-footer-card">
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                </div>
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-calendar"></i>
+                                        <span> Desember 2021</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <!-- bagian image card -->
+                        <div class="shine">
+                            <img src="https://cdn.spillmoment.id/img/img-2.jpg" alt="Spillmoment.id" />
+                        </div>
+                        <!-- bagian content card -->
+                        <div class="content-item">
+                            <div class="flex-card">
+                                <div class="col-card">
+                                    <h2>Sewa Semalaman Hotel Yellow Be</h2>
+                                </div>
+                                <div class="col-card">
+                                    <button>Detail</button>
+                                </div>
+                            </div>
+
+                            <div class="cost">
+                                <h2>Rp. 559.999</h2>
+                                <h2><strike>Rp. 1.200.000 </strike></h2>
+                            </div>
+
+
+                        </div>
+                        <div class="footer-card">
+                            <div class="flex-footer-card">
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                </div>
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-calendar"></i>
+                                        <span> Desember 2021</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <!-- bagian image card -->
+                        <img src="https://cdn.spillmoment.id/img/img-3.jpg" alt="Spillmoment.id" />
+                        <!-- bagian content card -->
+                        <div class="content-item">
+                            <div class="flex-card">
+                                <div class="col-card">
+                                    <h2>Photografer keren</h2>
+                                </div>
+                                <div class="col-card">
+                                    <button>Detail</button>
+                                </div>
+                            </div>
+
+                            <div class="event">
+                                <h2>Acara</h2>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <div class="flex-footer-card">
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                </div>
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-calendar"></i>
+                                        <span> Desember 2021</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <!-- bagian image card -->
+
+                        <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
+                        <!-- bagian content card -->
+                        <div class="content-item">
+                            <div class="flex-card">
+                                <div class="col-card">
+                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
+                                </div>
+                                <div class="col-card">
+                                    <button>Detail</button>
+                                </div>
+                            </div>
+
+
+                            <div class="event">
+                                <h2>Acara</h2>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <div class="flex-footer-card">
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                </div>
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-calendar"></i>
+                                        <span> Desember 2021</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- </carousel> --}}
+                </div>
+                <div style="height: 100px"></div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir dari box 3 -->
+
+    <!-- ini adalah bagian box 3 -->
+    <div class="box-p3" style="margin-top: -100px">
+        <div class="container">
+            <div class="option-menu-box">
+                <h1>Spillmoment</h1>
+                <a href="" class="showall">Lihat semua</a>
+            </div>
+            <div class="wrapper-card">
+                <div class="owl-carousel owl-theme" id="carousel-6">
 
                     <div class="card">
                         <!-- bagian image card -->
@@ -422,103 +569,5 @@
 
 
 @push('script')
-
-<script>
-    // carousel box-v1
-    $('#carousel-1').owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: false,
-        items: 1,
-        dots: true,
-        autoplaySpeed: 1000,
-
-    })
-    // carousel box-v2
-    $('#carousel-2').owlCarousel({
-        margin: 20,
-        dots: true,
-        loop: false,
-        navText: ["<img src='https://cdn.spillmoment.id/img/arrow-left.png'>",
-            "<img src='https://cdn.spillmoment.id/img/arrow-right.png'>"
-        ],
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            1440: {
-                items: 3,
-                nav: true
-            },
-            1024: {
-                items: 3,
-                nav: true
-            },
-            780: {
-                items: 3,
-                nav: true
-            },
-        }
-    })
-    // carousel box-v3
-    $('#carousel-3').owlCarousel({
-        itmes: 3,
-        margin: 10,
-        dots: true,
-        navText: ["<img src='https://cdn.spillmoment.id/img/arrow-left.png'>",
-            "<img src='https://cdn.spillmoment.id/img/arrow-right.png'>"
-        ],
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            1440: {
-                items: 3,
-                nav: true
-            },
-            1024: {
-                items: 3,
-                nav: true
-            },
-            780: {
-                items: 3,
-                nav: true
-            },
-        }
-    })
-    // carousel box-v4
-    $('#carousel-4').owlCarousel({
-        itmes: 3,
-        margin: 10,
-        dots: true,
-        navText: ['', ''],
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            1440: {
-                items: 3,
-                nav: true
-            },
-            1024: {
-                items: 3,
-                nav: true
-            },
-            780: {
-                items: 3,
-                nav: true
-            },
-        }
-    })
-    $('#carousel-5').owlCarousel({
-        items: 1,
-        nav: false,
-        autoplay: true,
-
-    })
-
-</script>
+@include('web.home.carousel')
 @endpush
