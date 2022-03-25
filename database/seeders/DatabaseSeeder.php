@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             UserSeeder::class,
             CategorySeeder::class,
-            ProductSeeder::class,
-            VendorSeeder::class
+            VendorSeeder::class,
+            ProductSeeder::class
         ]);
     }
 }
