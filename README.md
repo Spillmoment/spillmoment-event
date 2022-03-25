@@ -1,10 +1,10 @@
 # SpillMoment
 ## Marketplace Engaged In Property And Logistics For The Delivery Of Catering Food Orders
 
-![HomePage](https://github.com/Spillmoment/spillmoment-event/blob/master/public/assets/frontend/img/screencapture-127-0-0-1-8000-2022-03-25-15_20_24.png)
+![HomePage](https://github.com/Spillmoment/spillmoment-event/blob/master/public/assets/frontend/img/Screenshot from 2022-03-25 15-31-54.png)
 
-[![](https://img.shields.io/github/issues/devoverid/forum?style=flat-square)](https://img.shields.io/github/issues/Spillmoment/spillmoment-event?style=flat-square) ![](https://img.shields.io/github/stars/devoverid/forum?style=flat-square)
-![](https://img.shields.io/github/forks/Spillmoment/spillmoment-event?style=flat-square) [](http://makeapullrequest.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub Followers](https://img.shields.io/github/followers/viandwi24.sv
+[![](https://img.shields.io/github/issues/Spillmoment/forum?style=flat-square)](https://img.shields.io/github/issues/Spillmoment/spillmoment-event?style=flat-square) ![](https://img.shields.io/github/stars/Spillmoment/spillmoment-event?style=flat-square)
+![](https://img.shields.io/github/forks/Spillmoment/spillmoment-event?style=flat-square) [](http://makeapullrequest.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub Followers](https://img.shields.io/github/followers/viandwi24.svg?style=flat-square&label=Follow&maxAge=2592000)](https://github.com/viandwi24?tab=followers)
 
 ### Step By Step Installation
 
@@ -31,7 +31,12 @@
 - [Notion](https://www.notion.so/degovan/spillmoment-id-a0589dbf5ea04baea610886f1900fd1c)
 - [Database Structure](https://app.dynobird.com/?action=open&id=63c068f5-624a-4afb-8316-861abde5dd05)
 
-### Contributing
+### Contributor
+<a href="https://github.com/Spillmoment/spillmoment-event/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Spillmoment/spillmoment-event"/>
+</a>
+
+### How To Contribute
 - See the issue labeled ``feature`` or you can discuss it with the team
 - Create a new branch according to the feature you're working on
 - Make a pull request and the reviewer will review your work
