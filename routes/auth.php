@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\{
+    AuthenticatedSessionController,
+    Auth\ConfirmablePasswordController,
+    Auth\EmailVerificationNotificationController,
+    Auth\EmailVerificationPromptController,
+    Auth\NewPasswordController,
+    Auth\PasswordResetLinkController,
+    Auth\RegisteredUserController,
+    Auth\VerifyEmailController
+};
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -54,13 +56,19 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::prefix('profile')->group(function () {
-        Route::get('', 'UpdateProfileController@changeDataIndex')->name('profile.data');
-        Route::put('', 'UpdateProfileController@changeDataUpdate')->name('profile.data.store');
+    Route::prefix('profile')
+        ->group(function () {
+            Route::get('', 'UpdateProfileController@changeDataIndex')
+                ->name('profile.data');
+            Route::put('', 'UpdateProfileController@changeDataUpdate')
+                ->name('profile.data.store');
 
-        Route::get('account', 'UpdateProfileController@changePasswordIndex')->name('profile.password');
-        Route::put('account', 'UpdateProfileController@changePasswordStore')->name('profile.password.store');
+            Route::get('account', 'UpdateProfileController@changePasswordIndex')
+                ->name('profile.password');
+            Route::put('account', 'UpdateProfileController@changePasswordStore')
+                ->name('profile.password.store');
 
-        Route::get('event', 'UpdateProfileController@event')->name('profile.event');
-    });
+            Route::get('event', 'UpdateProfileController@event')
+                ->name('profile.event');
+        });
 });
