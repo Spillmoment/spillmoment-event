@@ -3,7 +3,7 @@
 
 ![Login Page](https://github.com/Spillmoment/spillmoment-event/blob/master/public/assets/frontend/img/Screenshot%20from%202022-03-25%2015-31-54.png?raw=true)
 
-[![](https://img.shields.io/github/issues/Spillmoment/spillmoment-event?style=flat-square)](https://img.shields.io/github/issues/Spillmoment/spillmoment-event?style=flat-square) 
+[![](https://img.shields.io/github/issues/Spillmoment/spillmoment-event?style=flat-square)](https://img.shields.io/github/issues/Spillmoment/spillmoment-event?style=flat-square)
 ![](https://img.shields.io/github/stars/Spillmoment/spillmoment-event?style=flat-square)
 ![](https://img.shields.io/github/forks/Spillmoment/spillmoment-event?style=flat-square) [](http://makeapullrequest.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub Followers](https://img.shields.io/github/followers/viandwi24.svg?style=flat-square&label=Follow&maxAge=2592000)](https://github.com/viandwi24?tab=followers)
 
