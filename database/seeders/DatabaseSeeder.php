@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
             SpeakerSeeder::class,
             PartnerSeeder::class,
             EventSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
+            VendorSeeder::class
         ]);
     }
 }
