@@ -60,8 +60,7 @@
         <div class="menu-bar">
             <a href="#">Produk</a>
             <a href="#">Paket Spesial</a>
-            <a href="#">Promosi & Acara</a>
-            <a href="#">Galeri</a>
+            <a href="#">Promosi Produk</a>
             <a href="{{ route('event.index') }}">Event</a>
             <a href="#">Kontak Kami</a>
             <div class="menu-auth">
