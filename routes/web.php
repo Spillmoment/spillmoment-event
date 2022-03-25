@@ -13,7 +13,10 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Web\{
 	HomeController,
 	EventController,
-	ProfileController
+	ProfileController,
+	CategoryController,
+	ProductController,
+	VendorController
 };
 
 // User auth
@@ -21,9 +24,31 @@ require __DIR__ . '/auth.php';
 
 Route::get('', HomeController::class)
 	->name('home');
+
 Route::get('dashboard', [ProfileController::class, 'dashboard'])
 	->middleware(['auth'])
 	->name('dashboard');
+
+Route::prefix('category')
+	->name('category.')
+	->group(function () {
+		Route::get('', [CategoryController::class, 'index'])->name('index');
+		Route::get('detail/{slug}', [CategoryController::class, 'detail'])->name('detail');
+	});
+
+Route::prefix('product')
+	->name('product.')
+	->group(function () {
+		Route::get('', [ProductController::class, 'index'])->name('index');
+		Route::get('detail/{slug}', [ProductController::class, 'detail'])->name('detail');
+	});
+
+Route::prefix('vendor')
+	->name('vendor.')
+	->group(function () {
+		Route::get('', [VendorController::class, 'index'])->name('index');
+		Route::get('detail/{slug}', [VendorController::class, 'detail'])->name('detail');
+	});
 
 Route::prefix('event')
 	->name('event.')
@@ -41,6 +66,7 @@ Route::prefix('event')
 		Route::post('join-event/{event_id}', [EventController::class, 'join'])
 			->name('join');
 	});
+
 
 
 // Admin All Feature
