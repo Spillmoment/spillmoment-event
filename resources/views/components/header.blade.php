@@ -42,7 +42,6 @@
                         <a href="{{ route('register') }}">Register</a>
                         @endif
                         @endauth
-                        {{-- <a href="/login">Login</a>|<a href="/register">Register</a> --}}
                     </div>
                 </div>
                 <div class="col-head">
@@ -59,12 +58,12 @@
             <a href="javascript:void(0)"><i class="fas fa-times"></i></a>
         </div>
         <div class="menu-bar">
-            <a href="#">Vendor</a>
+            <a href="#">Produk</a>
             <a href="#">Paket Spesial</a>
             <a href="#">Promosi & Acara</a>
             <a href="#">Galeri</a>
             <a href="{{ route('event.index') }}">Event</a>
-            <a href="#">Tentang</a>
+            <a href="#">Kontak Kami</a>
             <div class="menu-auth">
                 <br /><br />
                 @auth
