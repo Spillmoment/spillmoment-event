@@ -19,7 +19,7 @@
     </br>``php artisan migrate --seed``
   
 - Run Aplication Using Development Server
-- </br>``php artisan serve``
+    </br>``php artisan serve``
 
 ### External Resources
 - [Notion](https://www.notion.so/degovan/spillmoment-id-a0589dbf5ea04baea610886f1900fd1c)
