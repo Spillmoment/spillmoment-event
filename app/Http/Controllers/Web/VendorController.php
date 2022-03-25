@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
-    //
+    public function index()
+    {
+        # code...
+    }
+
+    public function detail()
+    {
+        # code...
+    }
 }
