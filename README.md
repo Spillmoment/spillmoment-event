@@ -1,5 +1,5 @@
 # SpillMoment
-## Marketplace Engaged in Event Organizer
+## Marketplace Engaged in Property and logistics for the delivery of catering food orders
 
 ### Installation
 - Clone this project using the command below:
