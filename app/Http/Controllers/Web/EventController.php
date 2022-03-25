@@ -1,259 +1,260 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\EventRegister;
 use App\Models\Partner;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+
 class EventController extends Controller
 {
-	public function index(Request $request)
-	{
-		// initial for select
-		$category = EventCategory::all();
-		$status = Event::with(['category', 'speaker', 'partner'])
-			->where('status', 'online')
-			->orWhere('status', 'offline')
-			->groupBy('status')
-			->get();
-		$type = Event::with(['category', 'speaker', 'partner'])
-			->where('type', 'paid')
-			->orWhere('type', 'free')
-			->groupBy('type')
-			->get();
-		// ---------------
+    public function index(Request $request)
+    {
+        // initial for select
+        $category = EventCategory::all();
+        $status = Event::with(['category', 'speaker', 'partner'])
+            ->where('status', 'online')
+            ->orWhere('status', 'offline')
+            ->groupBy('status')
+            ->get();
+        $type = Event::with(['category', 'speaker', 'partner'])
+            ->where('type', 'paid')
+            ->orWhere('type', 'free')
+            ->groupBy('type')
+            ->get();
+        // ---------------
 
-		$event = Event::with(['category', 'speaker', 'partner'])
-			->latest()->paginate(6);
+        $event = Event::with(['category', 'speaker', 'partner'])
+            ->latest()->paginate(6);
 
-		return view('pages.event.index', [
-			'category' => $category,
-			'events' => $event,
-			'status' => $status,
-			'type' => $type
-		]);
-	}
+        return view('web.event.index', [
+            'category' => $category,
+            'events' => $event,
+            'status' => $status,
+            'type' => $type
+        ]);
+    }
 
-	public function kategoriGetAutocomplete(Request $request)
-	{
-		$data = [];
-		if ($request->has('q')) {
-			$cari = $request->q;
-			$data = EventCategory::select('id', 'name', 'slug')->where('name', 'LIKE', '%' . $cari . '%')->get();
-		}
-		return response()->json($data);
-	}
+    public function kategoriGetAutocomplete(Request $request)
+    {
+        $data = [];
+        if ($request->has('q')) {
+            $cari = $request->q;
+            $data = EventCategory::select('id', 'name', 'slug')->where('name', 'LIKE', '%' . $cari . '%')->get();
+        }
+        return response()->json($data);
+    }
 
-	public function partnerGetAutocomplete(Request $request)
-	{
-		$data = [];
-		if ($request->has('q')) {
-			$cari = $request->q;
-			$data = Partner::select('id', 'name', 'slug', 'address')
-				->where(function ($query) use ($cari) {
-					$query->where('name', 'LIKE', '%' . $cari . '%')
-						->orWhere('address', 'LIKE', '%' . $cari . '%');
-				})
-				->get();
-		}
-		return response()->json($data);
-	}
+    public function partnerGetAutocomplete(Request $request)
+    {
+        $data = [];
+        if ($request->has('q')) {
+            $cari = $request->q;
+            $data = Partner::select('id', 'name', 'slug', 'address')
+                ->where(function ($query) use ($cari) {
+                    $query->where('name', 'LIKE', '%' . $cari . '%')
+                        ->orWhere('address', 'LIKE', '%' . $cari . '%');
+                })
+                ->get();
+        }
+        return response()->json($data);
+    }
 
-	public function filter(Request $request)
-	{
-		if ($request->ajax()) {
-			$output = "";
+    public function filter(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
 
-			$REQ_CATEGORY = $request->category;
-			$REQ_STATUS = $request->status;
-			$REQ_TYPE = $request->type;
-			$REQ_PARTNER = $request->partner;
+            $REQ_CATEGORY = $request->category;
+            $REQ_STATUS = $request->status;
+            $REQ_TYPE = $request->type;
+            $REQ_PARTNER = $request->partner;
 
-			if ($REQ_CATEGORY == null) {
-				$events = Event::with(['category', 'partner'])
-					->where('status', $request->status)
-					->where('type', $request->type)
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_CATEGORY == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->where('status', $request->status)
+                    ->where('type', $request->type)
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_STATUS == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->where('type', $request->type)
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_STATUS == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->where('type', $request->type)
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_TYPE == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->where('status', $request->status)
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_TYPE == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->where('status', $request->status)
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->where('status', $request->status)
-					->where('type', $request->type)
-					->get();
-			}
+            if ($REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->where('status', $request->status)
+                    ->where('type', $request->type)
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_STATUS == null) {
-				$events = Event::with(['category', 'partner'])
-					->where('type', $request->type)
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_STATUS == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->where('type', $request->type)
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_TYPE == null) {
-				$events = Event::with(['category', 'partner'])
-					->where('status', $request->status)
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_TYPE == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->where('status', $request->status)
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->where('status', $request->status)
-					->where('type', $request->type)
-					->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->where('status', $request->status)
+                    ->where('type', $request->type)
+                    ->get();
+            }
 
-			if ($REQ_STATUS == null && $REQ_TYPE == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_STATUS == null && $REQ_TYPE == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_STATUS == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->where('type', $request->type)
-					->get();
-			}
+            if ($REQ_STATUS == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->where('type', $request->type)
+                    ->get();
+            }
 
-			if ($REQ_TYPE == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->where('status', $request->status)
-					->get();
-			}
+            if ($REQ_TYPE == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->where('status', $request->status)
+                    ->get();
+            }
 
-			if ($REQ_STATUS == null && $REQ_TYPE == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->get();
-			}
+            if ($REQ_STATUS == null && $REQ_TYPE == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_TYPE == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->where('status', $request->status)
-					->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_TYPE == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->where('status', $request->status)
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])
-					->where('type', $request->type)
-					->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->where('type', $request->type)
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_TYPE == null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_TYPE == null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
-			if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_TYPE == null && $REQ_PARTNER == null) {
-				$events = Event::with(['category', 'partner'])->get();
-			}
+            if ($REQ_CATEGORY == null && $REQ_STATUS == null && $REQ_TYPE == null && $REQ_PARTNER == null) {
+                $events = Event::with(['category', 'partner'])->get();
+            }
 
-			if ($REQ_CATEGORY != null && $REQ_STATUS != null && $REQ_TYPE != null && $REQ_PARTNER != null) {
-				$events = Event::with(['category', 'partner'])
-					->whereHas('category', function ($query) use ($request) {
-						return $query->where('slug', $request->category);
-					})
-					->where('status', $request->status)
-					->where('type', $request->type)
-					->whereHas('partner', function ($query) use ($request) {
-						return $query->where('slug', $request->partner);
-					})
-					->get();
-			}
+            if ($REQ_CATEGORY != null && $REQ_STATUS != null && $REQ_TYPE != null && $REQ_PARTNER != null) {
+                $events = Event::with(['category', 'partner'])
+                    ->whereHas('category', function ($query) use ($request) {
+                        return $query->where('slug', $request->category);
+                    })
+                    ->where('status', $request->status)
+                    ->where('type', $request->type)
+                    ->whereHas('partner', function ($query) use ($request) {
+                        return $query->where('slug', $request->partner);
+                    })
+                    ->get();
+            }
 
 
-			if ($events) {
-				foreach ($events as $key => $event) {
+            if ($events) {
+                foreach ($events as $key => $event) {
 
-					// Conditional rendering tag------
-					if ($event->started == '0') {
-						$started_label = "<button class='badge'>
+                    // Conditional rendering tag------
+                    if ($event->started == '0') {
+                        $started_label = "<button class='badge'>
 								<i class='fas fa-stopwatch'></i> <label> Belum dimulai</label>
 						</button>";
-					} else {
-						$started_label = "<button class='badge'>
+                    } else {
+                        $started_label = "<button class='badge'>
 								<i class='fas fa-stopwatch'></i> <label> Telah dimulai</label>
 						</button>";
-					}
+                    }
 
-					if ($event->type == 'paid') {
-						$type_label = "<button class='badge paid'>
+                    if ($event->type == 'paid') {
+                        $type_label = "<button class='badge paid'>
 								<i class='fas fa-wallet'></i> <label>Berbayar</label>
 						</button>";
-					} else {
-						$type_label = "<button class='badge paid'>
+                    } else {
+                        $type_label = "<button class='badge paid'>
 								<i class='fas fa-wallet'></i> <label>Gratis</label>
 						</button>";
-					}
+                    }
 
-					$event_date = $event->event_date->format('d F Y');
-					$event_time = $event->start_time->format('h:i');
+                    $event_date = $event->event_date->format('d F Y');
+                    $event_time = $event->start_time->format('h:i');
 
-					if ($event->status == 'offline') {
-						$event_status_label = "<label for=''>Offline</label>";
-					} else {
-						$event_status_label = "<label for=''>Online</label>";
-					}
-					// ----------------------------
+                    if ($event->status == 'offline') {
+                        $event_status_label = "<label for=''>Offline</label>";
+                    } else {
+                        $event_status_label = "<label for=''>Online</label>";
+                    }
+                    // ----------------------------
 
-					$output .= "<div class='col'>
+                    $output .= "<div class='col'>
 									<div class='card'>
 										<img style='width: 100%;
 										box-sizing: border-box;
@@ -297,48 +298,48 @@ class EventController extends Controller
 										</div>
 									</div>
 							</div>";
-				}
-				return Response($output);
-			}
-		}
-	}
+                }
+                return Response($output);
+            }
+        }
+    }
 
-	public function detail($slug)
-	{
-		$event = Event::with(['category', 'speaker', 'partner'])
-			->where('slug', $slug)->first();
-		$register = EventRegister::where('event_id', $event->id)->count();
-		$cek_state = EventRegister::where('event_id', $event->id)
-			->where('user_id', Auth::id())->count();
+    public function detail($slug)
+    {
+        $event = Event::with(['category', 'speaker', 'partner'])
+            ->where('slug', $slug)->first();
+        $register = EventRegister::where('event_id', $event->id)->count();
+        $cek_state = EventRegister::where('event_id', $event->id)
+            ->where('user_id', Auth::id())->count();
 
-		return view('pages.event.detail', [
-			'events' => $event,
-			'registers' => $register,
-			'cek_state' => $cek_state
-		]);
-	}
+        return view('web.event.detail', [
+            'events' => $event,
+            'registers' => $register,
+            'cek_state' => $cek_state
+        ]);
+    }
 
-	public function join($event_id)
-	{
-		$current_quota = Event::find($event_id);
-		$update_quota = $current_quota->quota - 1;
+    public function join($event_id)
+    {
+        $current_quota = Event::find($event_id);
+        $update_quota = $current_quota->quota - 1;
 
-		$pay = null;
-		if ($current_quota->type == 'paid') {
-			$pay = 'pending';
-		}
+        $pay = null;
+        if ($current_quota->type == 'paid') {
+            $pay = 'pending';
+        }
 
-		$join_event = EventRegister::create([
-			'event_id' => $event_id,
-			'user_id' => Auth::id(),
-			'pay_status' => $pay
-		]);
+        $join_event = EventRegister::create([
+            'event_id' => $event_id,
+            'user_id' => Auth::id(),
+            'pay_status' => $pay
+        ]);
 
-		if ($join_event) {
-			Event::where('id', $event_id)
-				->update(['quota' => $update_quota]);
+        if ($join_event) {
+            Event::where('id', $event_id)
+                ->update(['quota' => $update_quota]);
 
-			return back()->with('status', 'Join success.');
-		}
-	}
+            return back()->with('status', 'Join success.');
+        }
+    }
 }
