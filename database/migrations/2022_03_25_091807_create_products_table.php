@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('category_id');
-            $table->foreign('event_category_id')->references('id')
+            $table->foreign('category_id')->references('id')
                 ->on('categories')->onDelete('cascade');
 
             $table->foreignId('vendor_id');
             $table->foreign('vendor_id')->references('id')
                 ->on('vendors')->onDelete('cascade');
 
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
 
