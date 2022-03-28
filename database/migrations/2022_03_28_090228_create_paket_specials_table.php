@@ -13,22 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('paket_specials', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('id')
                 ->on('categories')->onDelete('cascade');
 
+            $table->foreignId('product_id');
+            $table->foreign('product_id')->references('id')
+                ->on('products')->onDelete('cascade');
+
             $table->foreignId('vendor_id');
             $table->foreign('vendor_id')->references('id')
                 ->on('vendors')->onDelete('cascade');
 
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
 
-            $table->string('code', 50)->unique();
             $table->string('name', 100);
             $table->string('slug')->unique();
             $table->longText('description')->nullable();
@@ -49,6 +52,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('paket_specials');
     }
 };
