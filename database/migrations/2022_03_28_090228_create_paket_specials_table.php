@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('paket_specials', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('category_id');
+            $table->foreign('category_id')->references('id')
+                ->on('categories')->onDelete('cascade');
+
             $table->foreignId('product_id');
             $table->foreign('product_id')->references('id')
                 ->on('products')->onDelete('cascade');
