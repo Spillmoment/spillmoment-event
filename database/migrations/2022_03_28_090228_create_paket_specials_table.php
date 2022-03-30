@@ -28,10 +28,6 @@ return new class extends Migration
             $table->foreign('vendor_id')->references('id')
                 ->on('vendors')->onDelete('cascade');
 
-            $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')
-                ->on('users')->onDelete('cascade');
-
             $table->string('name', 100);
             $table->string('slug')->unique();
             $table->longText('description')->nullable();
