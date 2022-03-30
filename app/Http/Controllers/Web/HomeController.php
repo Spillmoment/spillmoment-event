@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        return view('web.home.index');
+        $data['product'] = Product::with(['category', 'vendor'])
+            ->latest()->get();
+        $data['category'] = Product::with(['category', 'vendor'])
+            ->latest()->get();
+        return view('web.home.index', $data);
     }
 }

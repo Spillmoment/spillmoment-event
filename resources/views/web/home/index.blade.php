@@ -2,7 +2,9 @@
 
 @section('title','Spillmoment | Halaman Home')
 @section('content')
+
 <div class="home">
+
     <!-- ini adalah bagian box 1 -->
     <div class="box-p1">
         <div class="owl-carousel owl-theme" id="carousel-1">
@@ -47,19 +49,20 @@
     <div class="box-p2">
         <div class="container">
             <div class="option-menu-box">
-                <h1>Vendor Terbaru</h1>
-                <a href="/vendor" class="showall">Lihat Semua</a>
+                <h1>Product Terbaru</h1>
+                <a href="{{ route('product.index') }}" class="showall">Lihat Semua</a>
             </div>
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-2">
 
+                    @forelse ($product as $item)
                     <div class="card">
-                        <img src="https://cdn.spillmoment.id/img/makanan.jpg" alt="Spillmoment picture" />
+                        <img src="{{ asset('uploads/product/rendang.jpg') }}" alt="Spillmoment picture" />
                         <!-- bagian content card -->
                         <div class="content-card">
-                            <h1>Prasmanan Rendang & Sambal kentang</h1>
-                            <h2>Rp 1.500.000</h2>
-                            <p>Makanan</p>
+                            <h1>{{ $item->name }}</h1>
+                            <h2>Rp {{ $item->price }}.000</h2>
+                            <p>{{ $item->category->name }}</p>
                         </div>
                         <div class="footer-card">
                             <a href="#"><i class="far fa-map-marked-alt"></i> <span>Tenggarang</span></a>
@@ -67,53 +70,10 @@
                             <a href="#"><i class="far fa-star"></i> <span>5.0</span></a>
                         </div>
                     </div>
-                    <div class="card">
-                        <!-- bagian image card  -->
-                        <img src="https://cdn.spillmoment.id/img/gaun2-vendor.jpg" alt="Spillmoment picture" />
-                        <!-- bagian content card -->
-                        <div class="content-card">
-                            <h1>Gaun Pernikahan</h1>
-                            <h2>Rp 500.000</h2>
-                            <p>Gaun nikah & Tunangan</p>
-                        </div>
-                        <!-- bagian rate product card  -->
-                        <div class="footer-card">
-                            <a href="#"><i class="far fa-map-marked-alt"></i> <span>Tenggarang</span></a>
-                            <a href="#"><i class="far fa-heart"></i> <span>100</span></a>
-                            <a href="#"><i class="far fa-star"></i> <span>5.0</span></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card  -->
-                        <img src="https://cdn.spillmoment.id/img/bayi2.jpg" alt="Spillmoment picture" />
-                        <!-- bagian content card -->
-                        <div class="content-card">
-                            <h1>Sewa Fotografer</h1>
-                            <h2>Rp 1.500.000</h2>
-                            <p>Fotografer</p>
-                        </div>
-                        <!-- bagian rate product card  -->
-                        <div class="footer-card">
-                            <a href="#"><i class="far fa-map-marked-alt"></i> <span>Tenggarang</span></a>
-                            <a href="#"><i class="far fa-heart"></i> <span>100</span></a>
-                            <a href="#"><i class="far fa-star"></i> <span>5.0</span></a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card  -->
-                        <img src="https://cdn.spillmoment.id/img/makeup3-vendor.jpg" alt="Spillmoment picture" />
-                        <div class="content-card">
-                            <h1>Makeup modern</h1>
-                            <h2>Rp 800.000</h2>
-                            <p>Makeup</p>
-                        </div>
-                        <!-- bagian rate product card  -->
-                        <div class="footer-card">
-                            <a href="#"><i class="far fa-map-marked-alt"></i> <span>Tenggarang</span></a>
-                            <a href="#"><i class="far fa-heart"></i> <span>100</span></a>
-                            <a href="#"><i class="far fa-star"></i> <span>5.0</span></a>
-                        </div>
-                    </div>
+                    @empty
+                    <h3>Produk Kosong</h3>
+                    @endforelse
+
                     {{-- </carousel> --}}
                 </div>
                 <div style="height: 100px"></div>
@@ -127,7 +87,7 @@
         <div class="container">
             <div class="option-menu-box">
                 <h1>Paket Promo</h1>
-                <router-link to="" class="showall">Lihat semua</router-link>
+                <a href="" class="showall">Lihat semua</a>
             </div>
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-3">
@@ -351,44 +311,24 @@
         <div class="container">
             <div class="option-menu-box">
                 <h1>Kategori</h1>
-                <router-link to="/kategory" class="showall">Lihat semua</router-link>
+                <a href="{{ route('category.index') }}" class="showall">Lihat semua</a>
             </div>
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-4">
 
+                    @forelse ($category as $item)
+                    <a href="{{ route('category.detail', $item->id) }}">
+                        <div class="card">
+                            <img src="{{ asset('uploads/category/dekorasi.jpg') }}" alt="Spillmoment picture" />
+                            <div class="content-card">
+                                <h2>{{ $item->name }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                    @empty
+                    <h3>Kategori Kosong</h3>
+                    @endforelse
 
-                    <a to="/dekorasi">
-                        <div class="card">
-                            <img src="https://cdn.spillmoment.id/img/dekorasi4.jpg" alt="Spillmoment picture" />
-                            <div class="content-card">
-                                <h2>Dekorasi</h2>
-                            </div>
-                        </div>
-                    </a>
-                    <a to="/makeup">
-                        <div class="card">
-                            <img src="https://cdn.spillmoment.id/img/makeup3-vendor.jpg" alt="Spillmoment picture" />
-                            <div class="content-card">
-                                <h2>Make up</h2>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="card">
-                        <a to="/gaunnikah">
-                            <img src="https://cdn.spillmoment.id/img/gaun2-vendor.jpg" alt="Spillmoment picture" />
-                            <div class="content-card">
-                                <h2>Gaun nikah & Tunangan</h2>
-                            </div>
-                        </a>
-                    </div>
-                    <a to="/fotografer">
-                        <div class="card">
-                            <img src="https://cdn.spillmoment.id/img/bayi1.jpg" alt="Spillmoment picture" />
-                            <div class="content-card">
-                                <h2>Fotografer</h2>
-                            </div>
-                        </div>
-                    </a>
                     {{-- </carousel> --}}
                 </div>
                 <div style="height: 50px"></div>
