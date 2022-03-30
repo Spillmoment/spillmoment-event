@@ -132,13 +132,14 @@
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-3">
 
-                    <div class="card">
+                    {{--    <div class="card">
                         <!-- bagian image card -->
                         <div class="shine">
                             <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
                         </div>
                         <!-- bagian content card -->
                         <div class="content-item">
+          
                             <div class="flex-card">
                                 <div class="col-card">
                                     <h2>Pernikahan Mewah Lisa & Bejo</h2>
@@ -163,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="card">
                         <!-- bagian image card -->
                         <div class="shine">
@@ -187,80 +188,9 @@
 
 
                         </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-                        <img src="https://cdn.spillmoment.id/img/img-3.jpg" alt="Spillmoment.id" />
-                        <!-- bagian content card -->
-                        <div class="content-item">
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Photografer keren</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
 
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-
-                        <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
-                        <!-- bagian content card -->
-                        <div class="content-item">
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
-
-
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     {{-- </carousel> --}}
                 </div>
                 <div style="height: 100px"></div>
