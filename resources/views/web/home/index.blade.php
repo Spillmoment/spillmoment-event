@@ -87,54 +87,28 @@
         <div class="container">
             <div class="option-menu-box">
                 <h1>Paket Promo</h1>
-                <a href="" class="showall">Lihat semua</a>
+                <a href="#" class="showall">Lihat semua</a>
             </div>
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-3">
 
-                    {{--    <div class="card">
-                        <!-- bagian image card -->
-                        <div class="shine">
-                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
-                        </div>
-                        <!-- bagian content card -->
-                        <div class="content-item">
-          
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                    @forelse ($discount as $item)
                     <div class="card">
                         <!-- bagian image card -->
-                        <div class="shine">
-                            <img src="https://cdn.spillmoment.id/img/img-2.jpg" alt="Spillmoment.id" />
+                        <div class="item">
+                            <a href="{{ route('product.detail', $item->slug) }}">
+                                <span class="discount-badge">
+                                    <span style="color: rgb(240, 0, 0)">{{ $item->discount }}% </span>
+                                    <br>
+                                    OFF</span>
+                                <img src="https://cdn.spillmoment.id/img/img-2.jpg" alt="Spillmoment.id" />
+                            </a>
                         </div>
                         <!-- bagian content card -->
                         <div class="content-item">
                             <div class="flex-card">
                                 <div class="col-card">
-                                    <h2>Sewa Semalaman Hotel Yellow Be</h2>
+                                    <h2>{{ $item->name }}</h2>
                                 </div>
                                 <div class="col-card">
                                     <button>Detail</button>
@@ -142,14 +116,19 @@
                             </div>
 
                             <div class="cost">
-                                <h2>Rp. 559.999</h2>
-                                <h2><strike>Rp. 1.200.000 </strike></h2>
+                                <h2>
+                                    Rp.{{ $item->price * $item->discount / 100 }}.000
+                                </h2>
+                                <h2><strike> Rp.{{ number_format($item->price) }}.000</strike></h2>
                             </div>
-
 
                         </div>
 
                     </div>
+                    @empty
+                    <h3>Data promo kosong</h3>
+                    @endforelse
+
 
                     {{-- </carousel> --}}
                 </div>
@@ -176,6 +155,7 @@
                         </div>
                         <!-- bagian content card -->
                         <div class="content-item">
+
                             <div class="flex-card">
                                 <div class="col-card">
                                     <h2>Pernikahan Mewah Lisa & Bejo</h2>
@@ -184,103 +164,6 @@
                                     <button>Detail</button>
                                 </div>
                             </div>
-
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-                        <div class="shine">
-                            <img src="https://cdn.spillmoment.id/img/img-2.jpg" alt="Spillmoment.id" />
-                        </div>
-                        <!-- bagian content card -->
-                        <div class="content-item">
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Sewa Semalaman Hotel Yellow Be</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
-
-                            <div class="cost">
-                                <h2>Rp. 559.999</h2>
-                                <h2><strike>Rp. 1.200.000 </strike></h2>
-                            </div>
-
-
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-                        <img src="https://cdn.spillmoment.id/img/img-3.jpg" alt="Spillmoment.id" />
-                        <!-- bagian content card -->
-                        <div class="content-item">
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Photografer keren</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-
-                        <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
-                        <!-- bagian content card -->
-                        <div class="content-item">
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
-
 
                             <div class="event">
                                 <h2>Acara</h2>
