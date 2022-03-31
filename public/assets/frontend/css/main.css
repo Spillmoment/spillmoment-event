@@ -2844,3 +2844,24 @@ a {
 .closebtn:hover {
     color: black;
 }
+
+
+.item {
+    position: relative;
+    padding-top: 10px;
+    display: inline-block;
+}
+
+.discount-badge {
+    position: absolute;
+    right: -8px;
+    top: 10px;
+    background: rgb(253, 194, 1);
+    text-align: center;
+    border-bottom-right-radius: 30pt 25pt;
+    border-bottom-left-radius: 30pt 25pt;
+    padding: 5px 15px;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 500;
+}
