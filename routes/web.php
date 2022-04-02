@@ -41,6 +41,7 @@ Route::prefix('product')
 	->group(function () {
 		Route::get('', [ProductController::class, 'index'])->name('index');
 		Route::get('detail/{slug}', [ProductController::class, 'detail'])->name('detail');
+		Route::get('tes', [ProductController::class, 'tes']);
 	});
 
 Route::prefix('vendor')
