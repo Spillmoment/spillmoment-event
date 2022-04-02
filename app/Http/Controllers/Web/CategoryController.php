@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        # code...
+        return view('web.category.index');
     }
 
     public function detail()
