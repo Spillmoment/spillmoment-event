@@ -22,4 +22,9 @@ class ProductController extends Controller
             ->first();
         return view('web.products.detail', $data);
     }
+
+    public function tes()
+    {
+        return view('web.products.detail');
+    }
 }
