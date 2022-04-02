@@ -65,7 +65,7 @@
                             <p>{{ $item->category->name }}</p>
                         </div>
                         <div class="footer-card">
-                            <a href="#"><i class="far fa-map-marked-alt"></i> <span>Tenggarang</span></a>
+                            <a href="#"><i class="far fa-map"></i> <span>{{ $item->vendor->address }}</span></a>
                             <a href="#"><i class="far fa-heart"></i> <span>100</span></a>
                             <a href="#"><i class="far fa-star"></i> <span>5.0</span></a>
                         </div>
@@ -98,7 +98,7 @@
                         <div class="item">
                             <a href="{{ route('product.detail', $item->slug) }}">
                                 <span class="discount-badge">
-                                    <span style="color: rgb(240, 0, 0)">{{ $item->discount }}% </span>
+                                    <span style="color: rgb(218, 29, 29)">{{ $item->discount }}% </span>
                                     <br>
                                     OFF</span>
                                 <img src="https://cdn.spillmoment.id/img/img-2.jpg" alt="Spillmoment.id" />
@@ -111,7 +111,7 @@
                                     <h2>{{ $item->name }}</h2>
                                 </div>
                                 <div class="col-card">
-                                    <button>Detail</button>
+                                    <a href="#"> <button style="font-weight: 600"> Detail </button></a>
                                 </div>
                             </div>
 
@@ -148,6 +148,72 @@
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-6">
 
+                    <div class="card">
+                        <!-- bagian image card -->
+                        <div class="shine">
+                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
+                        </div>
+                        <!-- bagian content card -->
+                        <div class="content-item">
+
+                            <div class="flex-card">
+                                <div class="col-card">
+                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
+                                </div>
+                                <div class="col-card">
+                                    <button>Detail</button>
+                                </div>
+                            </div>
+
+                            <div class="event">
+                                <h2>Acara</h2>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <div class="flex-footer-card">
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                </div>
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-calendar"></i>
+                                        <span> Desember 2021</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <!-- bagian image card -->
+                        <div class="shine">
+                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
+                        </div>
+                        <!-- bagian content card -->
+                        <div class="content-item">
+
+                            <div class="flex-card">
+                                <div class="col-card">
+                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
+                                </div>
+                                <div class="col-card">
+                                    <button>Detail</button>
+                                </div>
+                            </div>
+
+                            <div class="event">
+                                <h2>Acara</h2>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <div class="flex-footer-card">
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                </div>
+                                <div class="col-card-ft">
+                                    <a href="#"><i class="far fa-calendar"></i>
+                                        <span> Desember 2021</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         <!-- bagian image card -->
                         <div class="shine">
