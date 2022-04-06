@@ -1,0 +1,61 @@
+.garis {
+    width: 1292px;
+    height: 0px;
+    border: 1px solid #000000;
+}
+
+.thumbnail {
+    width: 136px;
+    height: 136px;
+}
+
+.title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    color: #0A0909;
+}
+
+.vendors {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.price {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+}
+
+span {
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    padding: 10px;
+    font-size: 12px;
+}
+
+span .map-icon {
+    color: grey;
+    margin-right: 5px;
+}
+
+span .star-icon {
+    color: gold;
+    margin-right: 5px;
+}
+
+.test {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    margin-right: 150px
+}
