@@ -4,108 +4,60 @@
 
 @section('content')
 
-
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/product.css') }}">
 @endpush
 
-
-<div class="detail-product">
-
-    <div class="box-v1">
-        <div class="container">
-            {{--   <div class="wrapper-video">
-                <div class="plyr__video-embed" id="player">
-                    <blockquote class="tiktok-embed"
-                        cite="https://www.tiktok.com/@gerrybrooksprin/video/6808679698583850246"
-                        data-video-id="6808679698583850246" style="max-width: 605px;min-width: 325px;">
-                        <section> <a target="_blank" title="@gerrybrooksprin"
-                                href="https://www.tiktok.com/@gerrybrooksprin">@gerrybrooksprin</a>
-                        </section>
-                    </blockquote>
-                    <script async src="https://www.tiktok.com/embed.js"></script>
-                </div>
-            </div> --}}
-        </div>
+<div class="container">
+    <div class="row my-5 text-center pt-5 pb-5">
+        <h3>test</h3>
     </div>
-    <br>
-    <br>
-    <div class="box-v2">
-        <div class="container">
-            <div class="grid-container">
-                <div class="col-grid">
-                    <div class="profile-wrapper">
-                        <div class="avatar-profile profile-info">
-                            <img src="../assets/img/women1.jpg" alt="profile picture">
-                        </div>
-                        <div class="profile-info">
-                            <h2>Makeup Natural & Modern</h2>
-                            <p>Sari Salon</p>
-                            <br>
-                            <h2>Rp 500.000 - 1.500.000</h2>
-                            <br>
-                            <label for="">Makeup</label><label for="">
-                                <fa :icon="['fas','map-marker-alt']" class="map-icon" /> <span
-                                    class="text">Tenggarang</span></label><label for="">
-                                <fa :icon="['fas','star']" class="star-icon" /> <span class="text">5.0</span></label>
-                            <br> <br>
-                            <div class="insight-wrap">
-                                <div class="col-insight">
-                                    <p>600</p>
-                                    <p>Love</p>
-                                </div>
-                                <div class="col-insight">
-                                    <p>600</p>
-                                    <p>View</p>
-                                </div>
-                                <div class="col-insight">
-                                    <p>600</p>
-                                    <p>Preview</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-grid">
-                    <button>Pesan Sekarang</button>
-                </div>
-            </div>
-            <div id="tab-on-dp">
-                {{--  <TabNav :tabs="['Koleksi','Ulasan', 'Tentang']" :selected="selected" @selected="setSelected">
-                    <br><br>
-                    <div class="line"></div>
+    <div class="row my-5 pt-5 pb-5 justify-content-center">
+        <hr class="garis">
+        <div class="col-md-2 my-3">
+            <img class="thumbnail rounded-circle"
+                src="https://kwikku.us/uploads/public/images/listicle/header/75187-listicle-20171227204602.jpg" alt=""
+                srcset="">
+        </div>
+        <div class="col-md-4 my-3">
+            <span class="title fs-5">Make up Natural & Modern</span>
+            <span class="fw-normal vendors fs-6">Sari Salon</span>
+            <span class="fw-bolder price fs-4">Rp. 1.500.000</span>
+            <span class="tag">Makeup</span>
+            <span><i class="fa fa-map-marker-alt map-icon" aria-hidden="true"></i> Tenggarang</span>
+            <span><i class="fa fa-star star-icon" aria-hidden="true"></i> 5.0</span>
+
+            <div class="d-flex flex-row bd-highlight mb-3 mt-2 test">
+                <div class="p-2 bd-highlight">600
                     <br>
-                    <Tab :isSelected="selected === 'Koleksi'">
-                        <div id="collection">
-                            <p>Menampilkan 100 dari semua hasil</p>
-                            <br><br>
-                            <div class="wrapper-collection">
-                                <div class="col-collect">
-                                    <div class="body-collect">
-                                        <div class="content-collect">
-                                            <h2>Hello</h2>
-                                        </div>
-                                    </div>
-                                    <button class="btn-play">
-                                        <fa :icon="['fas','play']" /></button>
-                                    <img src="../assets/img/dt-card.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                    </Tab>
-                    <Tab :isSelected="selected === 'Ulasan'">
-                        <p>Ulasan</p>
-                    </Tab>
-                    <Tab :isSelected="selected === 'Tentang'">
-                        <p>Tentang</p>
-                    </Tab>
-                </TabNav> --}}
+                    Love
+                </div>
+                <div class="p-2 bd-highlight">600
+                    <br>
+                    View
+                </div>
+                <div class="p-2 bd-highlight">600
+                    <br>
+                    Preview
+                </div>
             </div>
+
+
         </div>
+        <div class="col-md-3 my-3">
+            <a class="btn btn-primary btn-sm " href="#" role="button">Link</a>
+        </div>
+        <div class="col-md-3 my-3">
+            <a class="btn btn-primary btn-sm " href="#" role="button"> aa</a>
+        </div>
+        <hr class="garis">
+    </div>
+    <div class="row my-5">
 
     </div>
+
 
 </div>
 
