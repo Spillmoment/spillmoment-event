@@ -4,6 +4,15 @@
     border: 1px solid #000000;
 }
 
+.garis-horizontal {
+    border: 1px solid #000000;
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    margin-top: 50%;
+    transform: rotate(90deg);
+}
+
 .thumbnail {
     width: 136px;
     height: 136px;
@@ -13,7 +22,7 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
-    line-height: 28px;
+    line-height: 20px;
     display: flex;
     align-items: center;
     letter-spacing: 0.15px;
@@ -30,10 +39,17 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
-    line-height: 28px;
+    line-height: 20px;
     display: flex;
     align-items: center;
     letter-spacing: 0.15px;
+}
+
+span .tag {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(10, 9, 9, 0.9);
 }
 
 span {
@@ -52,10 +68,94 @@ span .star-icon {
     margin-right: 5px;
 }
 
-.test {
+.text-footer {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
-    margin-right: 150px
+    margin-right: 150px;
+    color: rgba(10, 9, 9, 0.9);
+}
+
+.btn-bg {
+    background: #cac5c5;
+    margin-left: 15px;
+    padding: 10px;
+}
+
+.btn-bg img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-bg span {
+    font-weight: 500;
+    color: rgba(10, 9, 9, 0.9);
+    margin-left: -5px;
+    font-size: 0.8em;
+}
+
+.nav-tabs .active {
+    font-weight: bold;
+    border: 5px solid #f5c6a5;
+}
+
+.nav-tabs .text-nav {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 18px;
+    color: #000000;
+}
+
+.bg-yellow {
+    color: #FFD700;
+}
+
+.tab-ulasan {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: #000000;
+}
+
+.tab-ulasan .btn-white {
+    background: #E5E5E5;
+    width: 85px;
+    height: 33px;
+}
+
+.tab-ulasan .btn-gray {
+    background: #C4C4C4;
+    width: 45px;
+    height: 33px;
+    margin-left: -4px;
+    border-radius: 0;
+}
+
+.tab-ulasan span .text {
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    margin: auto;
+}
+
+.tab-review .user-proc {
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+.tab-review .detail-rev {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #555555;
+    margin-top: 10px;
 }
