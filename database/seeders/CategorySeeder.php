@@ -18,13 +18,23 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Busana & Pakaian',
                 'slug' => 'busana-pakaian',
-                'image' => 'noimage.png'
+                'image' => 'kategori-1.jpg',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
-
             [
                 'name' => 'Makanan & Catering',
                 'slug' => 'makanan-catering',
-                'image' => 'noimage.png'
+                'image' => 'kategori-2.jpg',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Kategori 3',
+                'slug' => 'kategori-3',
+                'image' => 'kategori-3.jpg',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ]
         ]);
     }
