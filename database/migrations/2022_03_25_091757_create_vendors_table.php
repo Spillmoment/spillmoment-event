@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('nik', 16)->nullable();
             $table->string('name', 255);
             $table->string('slug', 255);
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('photo', 255);
             $table->string('whatsapp', 15);
             $table->string('instagram', 100);
+            $table->string('link');
             $table->longText('address')->nullable();
             $table->timestamps();
         });
