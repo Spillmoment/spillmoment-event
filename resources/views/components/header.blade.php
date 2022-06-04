@@ -17,7 +17,7 @@
                     </div>
                     <form action="" method="">
                         <div class="input-search">
-                            <input type="text" placeholder="Temukan vendor pernikahan mu...." aria-autocomplete="off"
+                            <input type="text" placeholder="Temukan vendor acara mu...." aria-autocomplete="off"
                                 autocomplete="off" name="search" />
                             <button><i class="fas fa-search"></i></button>
                         </div>
@@ -58,9 +58,9 @@
             <a href="javascript:void(0)"><i class="fas fa-times"></i></a>
         </div>
         <div class="menu-bar">
-            <a href="#">Produk</a>
+            <a href="{{ route('product.index') }}">Produk</a>
             <a href="#">Paket Spesial</a>
-            <a href="#">Promosi Produk</a>
+            <a href="#">Vendor</a>
             <a href="{{ route('event.index') }}">Event</a>
             <a href="#">Kontak Kami</a>
             <div class="menu-auth">
