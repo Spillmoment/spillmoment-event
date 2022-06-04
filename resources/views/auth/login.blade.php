@@ -83,11 +83,13 @@
 @endsection
 
 @push('script')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.getElementById("login-form").action = `/login?page=${document.referrer}`;
 
     var user = document.querySelector("#userphonemail").value;
-    var pass = document.querySelector("#password").value;
+    var pass = document.querySelector("#passwordInput").value;
 
     var showHidepass = document.querySelector("#password-function");
     var iconEyeOne = document.querySelector(".icon-eye1");
