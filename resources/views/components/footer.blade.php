@@ -15,11 +15,11 @@
                         <div class="menu-footer">
                             <h2>Menu</h2>
                             <br />
-                            <a href="#" class="text-decoration-none">Vendor</a>
-                            <a href="#" class="text-decoration-none">Promo & Acara</a>
+                            <a href="{{ route('product.index') }}" class="text-decoration-none">Product</a>
                             <a href="#" class="text-decoration-none">Paket Spesial</a>
+                            <a href="#" class="text-decoration-none">Vendor</a>
                             <a href="#" class="text-decoration-none">Event</a>
-                            <a href="#" class="text-decoration-none">Undangan Online</a>
+                            <a href="#" class="text-decoration-none">Kontak Kami</a>
                         </div>
                     </div>
                     <div class="col-footer">
@@ -58,6 +58,6 @@
         </div>
     </footer>
     <div class="small-footer">
-        <p>&copy; Spillmoment 2021 Allright Reserved</p>
+        <p>&copy; Spillmoment 2022 Allright Reserved</p>
     </div>
 </div>
