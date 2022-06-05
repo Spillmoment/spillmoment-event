@@ -16,15 +16,29 @@ class CategorySeeder extends Seeder
     {
         Category::insert([
             [
-                'name' => 'Busana & Pakaian',
-                'slug' => 'busana-pakaian',
-                'image' => 'noimage.png'
+                'name' => 'Makanan',
+                'slug' => 'makanan',
+                'image' => 'makanan.jpg'
             ],
-
             [
-                'name' => 'Makanan & Catering',
-                'slug' => 'makanan-catering',
-                'image' => 'noimage.png'
+                'name' => 'Minuman',
+                'slug' => 'minuman',
+                'image' => 'minuman.jpg'
+            ],
+            [
+                'name' => 'Make Over',
+                'slug' => 'make-over',
+                'image' => 'makeover.jpg'
+            ],
+            [
+                'name' => 'Dekorasi',
+                'slug' => 'dekorasi',
+                'image' => 'dekorasi.jpg'
+            ],
+            [
+                'name' => 'Fotografer',
+                'slug' => 'fotografer',
+                'image' => 'fotografer.jpg'
             ]
         ]);
     }
