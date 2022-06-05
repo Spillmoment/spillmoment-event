@@ -268,7 +268,7 @@
                     @forelse ($category as $item)
                     <a href="{{ route('category.detail', $item->id) }}">
                         <div class="card">
-                            <img src="{{ asset('uploads/category/dekorasi.jpg') }}" alt="Spillmoment picture" />
+                            <img src="{{ asset('uploads/category/' . $item->image) }}" alt="Spillmoment picture" />
                             <div class="content-card">
                                 <h2>{{ $item->name }}</h2>
                             </div>
