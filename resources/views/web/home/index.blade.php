@@ -57,7 +57,7 @@
 
                     @forelse ($product as $item)
                     <div class="card">
-                        <img src="{{ asset('uploads/product/rendang.jpg') }}" alt="Spillmoment picture" />
+                        <img src="{{ asset('uploads/product/'. $item->photos) }}" alt="Spillmoment picture" />
                         <!-- bagian content card -->
                         <div class="content-card">
                             <h1>{{ $item->name }}</h1>
@@ -310,15 +310,15 @@
                                 <div class="col-avatar">
                                     <div class="rate-star">
                                         <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <span class="star">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <span class="star">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <span class="star">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span class="star">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>
@@ -350,15 +350,15 @@
                                 <div class="col-avatar">
                                     <div class="rate-star">
                                         <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
-                                        <span class="star">
-                                            <fa :icon="['fas', 'star']" /></span>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <span class="star">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <span class="star">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <span class="star">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span class="star">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>

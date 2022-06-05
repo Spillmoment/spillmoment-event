@@ -3,13 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\{
     AuthenticatedSessionController,
-    Auth\ConfirmablePasswordController,
-    Auth\EmailVerificationNotificationController,
-    Auth\EmailVerificationPromptController,
-    Auth\NewPasswordController,
-    Auth\PasswordResetLinkController,
-    Auth\RegisteredUserController,
-    Auth\VerifyEmailController
+    ConfirmablePasswordController,
+    EmailVerificationNotificationController,
+    EmailVerificationPromptController,
+    NewPasswordController,
+    PasswordResetLinkController,
+    RegisteredUserController,
+    VerifyEmailController
 };
 
 Route::middleware('guest')->group(function () {
