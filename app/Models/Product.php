@@ -22,13 +22,17 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class)->withDefault([
-            'name' => 'Makanan'
-        ]);
+        return $this->belongsTo(Category::class)
+            ->withDefault([
+                'name' => 'Makanan'
+            ]);
     }
 
     public function vendor()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(Vendor::class)
+            ->withDefault([
+                'name' => 'Koridor'
+            ]);
     }
 }
