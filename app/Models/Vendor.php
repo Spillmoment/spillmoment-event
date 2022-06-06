@@ -30,4 +30,9 @@ class Vendor extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function spillmoment()
+    {
+        return $this->hasMany(Spillmoment::class);
+    }
 }
