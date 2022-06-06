@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('nik', 16)->nullable();
+            $table->string('nik', 16)->nullable()->unique();
             $table->string('name', 255);
             $table->string('slug', 255);
             $table->longText('description');
-            $table->string('photo', 255);
+            $table->string('photo', 255)->nullable();
             $table->string('whatsapp', 15);
             $table->string('instagram', 100);
             $table->string('link');
