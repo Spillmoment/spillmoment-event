@@ -57,7 +57,8 @@
 
                     @forelse ($product as $item)
                     <div class="card">
-                        <img src="{{ asset('uploads/product/'. $item->photos) }}" alt="Spillmoment picture" />
+                        <img height="250px" src="{{ asset('uploads/product/'. $item->photos) }}"
+                            alt="Spillmoment picture" />
                         <!-- bagian content card -->
                         <div class="content-card">
                             <h1>{{ $item->name }}</h1>
@@ -82,64 +83,10 @@
     </div>
     <!-- akhir dari box 2 -->
 
+
+
     <!-- ini adalah bagian box 3 -->
     <div class="box-p3">
-        <div class="container">
-            <div class="option-menu-box">
-                <h1>Paket Promo</h1>
-                <a href="#" class="showall">Lihat semua</a>
-            </div>
-            <div class="wrapper-card">
-                <div class="owl-carousel owl-theme" id="carousel-3">
-
-                    @forelse ($discount as $item)
-                    <div class="card">
-                        <!-- bagian image card -->
-                        <div class="item">
-                            <a href="{{ route('product.detail', $item->slug) }}">
-                                <span class="discount-badge">
-                                    <span style="color: rgb(218, 29, 29)">{{ $item->discount }}% </span>
-                                    <br>
-                                    OFF</span>
-                                <img src="https://cdn.spillmoment.id/img/img-2.jpg" alt="Spillmoment.id" />
-                            </a>
-                        </div>
-                        <!-- bagian content card -->
-                        <div class="content-item">
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>{{ $item->name }}</h2>
-                                </div>
-                                <div class="col-card">
-                                    <a href="#"> <button style="font-weight: 600"> Detail </button></a>
-                                </div>
-                            </div>
-
-                            <div class="cost">
-                                <h2>
-                                    Rp.{{ $item->price * $item->discount / 100 }}.000
-                                </h2>
-                                <h2><strike> Rp.{{ number_format($item->price) }}.000</strike></h2>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    @empty
-                    <h3>Data promo kosong</h3>
-                    @endforelse
-
-
-                    {{-- </carousel> --}}
-                </div>
-                <div style="height: 100px"></div>
-            </div>
-        </div>
-    </div>
-    <!-- akhir dari box 3 -->
-
-    <!-- ini adalah bagian box 3 -->
-    <div class="box-p3" style="margin-top: -100px">
         <div class="container">
             <div class="option-menu-box">
                 <h1>Spillmoment</h1>
@@ -148,17 +95,19 @@
             <div class="wrapper-card">
                 <div class="owl-carousel owl-theme" id="carousel-6">
 
+                    @forelse ($spill as $item)
                     <div class="card">
                         <!-- bagian image card -->
                         <div class="shine">
-                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
+                            <img height="250px" src="{{ asset('uploads/spillmoment/' . $item->image) }}"
+                                alt="Spillmoment.id" />
                         </div>
                         <!-- bagian content card -->
                         <div class="content-item">
 
                             <div class="flex-card">
                                 <div class="col-card">
-                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
+                                    <h2>{{ $item->title }}</h2>
                                 </div>
                                 <div class="col-card">
                                     <button>Detail</button>
@@ -166,87 +115,26 @@
                             </div>
 
                             <div class="event">
-                                <h2>Acara</h2>
+                                <h2>{{ $item->vendor->name }}</h2>
                             </div>
                         </div>
                         <div class="footer-card">
                             <div class="flex-footer-card">
                                 <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
+                                    <a href="#"><i class="far fa-home"></i>
+                                        <span>{{ $item->vendor->address }}</span></a>
                                 </div>
                                 <div class="col-card-ft">
                                     <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
+                                        <span> {{ $item->created_at->format('d F Y') }}</span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-                        <div class="shine">
-                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
-                        </div>
-                        <!-- bagian content card -->
-                        <div class="content-item">
+                    @empty
 
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
+                    @endforelse
 
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- bagian image card -->
-                        <div class="shine">
-                            <img src="https://cdn.spillmoment.id/img/img-1.jpg" alt="Spillmoment.id" />
-                        </div>
-                        <!-- bagian content card -->
-                        <div class="content-item">
-
-                            <div class="flex-card">
-                                <div class="col-card">
-                                    <h2>Pernikahan Mewah Lisa & Bejo</h2>
-                                </div>
-                                <div class="col-card">
-                                    <button>Detail</button>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <h2>Acara</h2>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <div class="flex-footer-card">
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-home"></i> <span>Sepatan</span></a>
-                                </div>
-                                <div class="col-card-ft">
-                                    <a href="#"><i class="far fa-calendar"></i>
-                                        <span> Desember 2021</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     {{-- </carousel> --}}
                 </div>
                 <div style="height: 100px"></div>
@@ -268,7 +156,8 @@
                     @forelse ($category as $item)
                     <a href="{{ route('category.detail', $item->id) }}">
                         <div class="card">
-                            <img src="{{ asset('uploads/category/' . $item->image) }}" alt="Spillmoment picture" />
+                            <img height="250px" src="{{ asset('uploads/category/' . $item->image) }}"
+                                alt="Spillmoment picture" />
                             <div class="content-card">
                                 <h2>{{ $item->name }}</h2>
                             </div>
