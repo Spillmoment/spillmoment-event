@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             VendorSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            SpillmomentSeeder::class
         ]);
     }
 }
