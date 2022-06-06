@@ -40,5 +40,6 @@ class CategorySeeder extends Seeder
                 'slug' => 'fotografer',
                 'image' => 'fotografer.jpg'
             ]
+        ]);
     }
 }
