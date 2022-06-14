@@ -154,7 +154,7 @@
                 <div class="owl-carousel owl-theme" id="carousel-4">
 
                     @forelse ($category as $item)
-                    <a href="{{ route('category.detail', $item->id) }}">
+                    <a href="{{ route('category.detail', $item->slug) }}">
                         <div class="card">
                             <img height="250px" src="{{ asset('uploads/category/' . $item->image) }}"
                                 alt="Spillmoment picture" />
