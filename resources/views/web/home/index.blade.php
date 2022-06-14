@@ -57,11 +57,18 @@
 
                     @forelse ($product as $item)
                     <div class="card">
-                        <img height="250px" src="{{ asset('uploads/product/'. $item->photos) }}"
-                            alt="Spillmoment picture" />
+                        <a href="{{ route('product.detail', $item->slug) }}">
+                            <img height="250px" src="{{ asset('uploads/product/'. $item->photos) }}"
+                                alt="Spillmoment picture" />
+                        </a>
+
                         <!-- bagian content card -->
                         <div class="content-card">
-                            <h1>{{ $item->name }}</h1>
+                            <h1>
+                                <a style="color: #000"
+                                    href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}
+                                </a>
+                            </h1>
                             <h2>Rp {{ $item->price }}.000</h2>
                             <p>{{ $item->category->name }}</p>
                         </div>
